@@ -10,9 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_03_171144) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_04_141107) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.string "industry"
+    t.integer "employee_nb"
+    t.integer "kwh"
+    t.integer "square_meter"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "admin_id"
+    t.index ["admin_id"], name: "index_companies_on_admin_id"
+  end
+
+  create_table "footprints", force: :cascade do |t|
+    t.json "ghg_result"
+    t.string "type"
+    t.boolean "certified"
+    t.date "date"
+    t.integer "ghg_target"
+    t.integer "target_year"
+    t.boolean "target_commitment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "company_id"
+    t.index ["company_id"], name: "index_footprints_on_company_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "name"
+    t.bigint "footprints_id", null: false
+    t.integer "ghg_contribution"
+    t.date "start_date"
+    t.date "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "owner_id"
+    t.index ["footprints_id"], name: "index_tasks_on_footprints_id"
+    t.index ["owner_id"], name: "index_tasks_on_owner_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,8 +61,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_03_171144) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "position"
+    t.string "name"
+    t.bigint "company_id"
+    t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "companies", "users", column: "admin_id"
+  add_foreign_key "footprints", "companies"
+  add_foreign_key "tasks", "footprints", column: "footprints_id"
+  add_foreign_key "tasks", "users", column: "owner_id"
+  add_foreign_key "users", "companies"
 end
