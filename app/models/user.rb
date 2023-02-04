@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :company
-  has_many :tasks, as: :owner
+  has_many :tasks
 end
