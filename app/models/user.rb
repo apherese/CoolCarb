@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :company
-  has_many :tasks
+  has_many :tasks, dependent: :nullify
 end
