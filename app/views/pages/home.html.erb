@@ -1,2 +1,9 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<%= content_for(:navbar_class, "navbar-home") %>
+
+<div class="banner">
+  <div class="banner-content text-center">
+    <h1>La plate-forme des PME engagées pour le climat!</h1>
+    <p>Décarbonnez votre empreinte</p>
+    <%= link_to "Calculez votre bilan carbone en un clic", new_user_session_path, class: "btn btn-lg btn-primary"  %>
+  </div>
+</div>
