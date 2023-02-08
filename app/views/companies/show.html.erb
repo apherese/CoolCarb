@@ -3,6 +3,15 @@
     <%= "Société #{@company.name}" %>
   </h1>
   <h2>
-      <%= "Activité : #{@company.industry}" %>
+    <%= "Activité : #{@company.industry}" %>
   </h2>
+  <p><strong>
+    <%= "Liste des bilans carbone de #{@company.name}" %>
+  </strong></p>
+  <ul class="list-group">
+    <% @company.footprints.each do |footprint| %>
+      <li class="list-group-item"><%= "Statut du bilan #{footprint.certified}" %></li>
+      <li class="list-group-item"><%=  "Résultat du bilan #{footprint.ghg_result}" %></li>
+    <% end %>
+  </ul>
 </div>
