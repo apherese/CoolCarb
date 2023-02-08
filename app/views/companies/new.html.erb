@@ -1,1 +1,8 @@
-<%= "hello from controller new" %>
+<div class="container">
+    <%= simple_form_for(@company) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :industry %>
+    <%= f.input :employee_nb %>
+    <%= f.submit "Créer votre PME" %>
+  <% end %>
+</div>

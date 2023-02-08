@@ -21,7 +21,7 @@ mohamed = User.create!({ name: "Mohamed", position: "CEO", email: "mohamed@gmail
 amine = User.create!({ name: "Amine", position: "DRSE", email: "amine@gmail.com", company: metropol, password: "azerty", admin: true })
 nathanael = User.create!({ name: "Nathanaël", position: "CLO", email: "nathanael@gmail.com", company: radisson, password: "azerty", admin: true })
 
-2 = User.create!({ name: "Claire", position: "CEO", email: "claire@gmail.com", company: aigle_noir, password: "azerty", admin: false })
+employee_1_1 = User.create!({ name: "Claire", position: "CEO", email: "claire@gmail.com", company: aigle_noir, password: "azerty", admin: false })
 employee_1_2 = User.create!({ name: "Margot", position: "DRSE", email: "margot@gmail.com", company: aigle_noir, password: "azerty", admin: false })
 employee_1_3 = User.create!({ name: "Fred", position: "DSI", email: "fred@gmail.com", company: aigle_noir, password: "azerty", admin: false })
 employee_1_4 = User.create!({ name: "Iris", position: "Chef", email: "iris@gmail.com", company: aigle_noir, password: "azerty", admin: false })
