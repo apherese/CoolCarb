@@ -5,6 +5,18 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+require "json"
+require "open-uri"
+
+url = "https://data.ademe.fr/data-fair/api/v1/datasets/bilans-ges/values_agg?field=APE(NAF)&amp;metric=avg&amp;metric_field=Emissions_publication_P1_-_tCO2e&amp;qs=5510Z&nbsp;&nbsp;&nbsp;&nbsp;"
+benchmark_serialized = URI.open(url).read
+benchmark = JSON.parse(benchmark_serialized)
+
+puts "#{benchmark["aggs"]}"
+
+
+
+
 
 Company.destroy_all
 User.destroy_all
