@@ -5,16 +5,23 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+# avec Rest-Client (marche aussi)
+# require "json"
+# require "rest-client"
+# url = "https://data.ademe.fr/data-fair/api/v1/datasets/bilans-ges/values_agg?field=APE(NAF)&metric=avg&metric_field=Emissions_publication_P1_-_tCO2e&qs=5510Z"
+# benchmark_serialized = RestClient.get(url)
+# benchmark = JSON.parse(benchmark_serialized)
+
+# Seed the benchmark of hotels avec open URI
 require "json"
 require "open-uri"
 
-url = "https://data.ademe.fr/data-fair/api/v1/datasets/bilans-ges/values_agg?field=APE(NAF)&amp;metric=avg&amp;metric_field=Emissions_publication_P1_-_tCO2e&amp;qs=5510Z&nbsp;&nbsp;&nbsp;&nbsp;"
+# moyenne du secteur des hôtels du Poste P1
+url = "https://data.ademe.fr/data-fair/api/v1/datasets/bilans-ges/values_agg?field=APE(NAF)&metric=avg&metric_field=Emissions_publication_P1_-_tCO2e&qs=5510Z"
 benchmark_serialized = URI.open(url).read
-benchmark = JSON.parse(benchmark_serialized)
-
-puts "#{benchmark["aggs"]}"
-
-
+benchmark_mean = JSON.parse(benchmark_serialized)
+p benchmark_mean
 
 
 
