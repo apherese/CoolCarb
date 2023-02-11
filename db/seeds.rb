@@ -15,7 +15,14 @@
 
 # Seed the benchmark of hotels avec open URI
 require "json"
-require "open-uri"
+
+Task.destroy_all
+Footprint.destroy_all
+User.destroy_all
+Company.destroy_all
+
+
+# require "open-uri"
 
 # moyenne du secteur des hôtels du Poste P1
 # url = "https://data.ademe.fr/data-fair/api/v1/datasets/bilans-ges/values_agg?field=APE(NAF)&metric=avg&metric_field=Emissions_publication_P1_-_tCO2e&qs=5510Z"
@@ -23,15 +30,33 @@ require "open-uri"
 # benchmark_mean = JSON.parse(benchmark_serialized)
 # p benchmark_mean
 
-url = "https://data.ademe.fr/data-fair/api/v1/datasets/bilans-ges/lines?select=Raison_sociale_%2F_Nom_de_l'entit%C3%A9%2CAnn%C3%A9e_de_reporting%2CNombre_de_salari%C3%A9s_%2F_d'agents%2CAPE(NAF)%2CEmissions_publication_P1_-_tCO2e%2CEmissions_publication_P2_-_tCO2e%2CEmissions_publication_P3_-_tCO2e%2CEmissions_publication_P4_-_tCO2e%2CEmissions_publication_P5_-_tCO2e%2CEmissions_publication_P6_-_tCO2e%2CEmissions_publication_P7_-_tCO2e%2CEmissions_publication_P8_-_tCO2e%2CEmissions_publication_P9_-_tCO2e%2CEmissions_publication_P10_-_tCO2e%2CEmissions_publication_P11_-_tCO2e%2CEmissions_publication_P12_-_tCO2e%2CEmissions_publication_P13_-_tCO2e%2CEmissions_publication_P14_-_tCO2e%2CEmissions_publication_P15_-_tCO2e%2CEmissions_publication_P16_-_tCO2e%2CEmissions_publication_P17_-_tCO2e%2CEmissions_publication_P18_-_tCO2e%2CEmissions_publication_P19_-_tCO2e%2CEmissions_publication_P20_-_tCO2e%2CEmissions_publication_P21_-_tCO2e%2CEmissions_publication_P22_-_tCO2e%2CEmissions_publication_P23_-_tCO2e%2CVolume_de_r%C3%A9duction_attendu_-_Scope_1_-_en_tCO2e%2CVolume_de_r%C3%A9duction_attendu_-_Scope_2_-_en_tCO2e%2CVolume_de_r%C3%A9duction_attendu_-_Scope_3_-_en_tCO2e%2CPlan_d'actions_-_Scope_1%2CPlan_d'actions_-_Scope_2%2CPlan_d'actions_-_Scope_3&qs=5510Z"
-list_hotel_serialized = URI.open(url).read
-@list_hotel = JSON.parse(list_hotel_serialized)
-# p @list_hotel
+# url = "https://data.ademe.fr/data-fair/api/v1/datasets/bilans-ges/lines?select=Raison_sociale_%2F_Nom_de_l'entit%C3%A9%2CAnn%C3%A9e_de_reporting%2CNombre_de_salari%C3%A9s_%2F_d'agents%2CAPE(NAF)%2CEmissions_publication_P1_-_tCO2e%2CEmissions_publication_P2_-_tCO2e%2CEmissions_publication_P3_-_tCO2e%2CEmissions_publication_P4_-_tCO2e%2CEmissions_publication_P5_-_tCO2e%2CEmissions_publication_P6_-_tCO2e%2CEmissions_publication_P7_-_tCO2e%2CEmissions_publication_P8_-_tCO2e%2CEmissions_publication_P9_-_tCO2e%2CEmissions_publication_P10_-_tCO2e%2CEmissions_publication_P11_-_tCO2e%2CEmissions_publication_P12_-_tCO2e%2CEmissions_publication_P13_-_tCO2e%2CEmissions_publication_P14_-_tCO2e%2CEmissions_publication_P15_-_tCO2e%2CEmissions_publication_P16_-_tCO2e%2CEmissions_publication_P17_-_tCO2e%2CEmissions_publication_P18_-_tCO2e%2CEmissions_publication_P19_-_tCO2e%2CEmissions_publication_P20_-_tCO2e%2CEmissions_publication_P21_-_tCO2e%2CEmissions_publication_P22_-_tCO2e%2CEmissions_publication_P23_-_tCO2e%2CVolume_de_r%C3%A9duction_attendu_-_Scope_1_-_en_tCO2e%2CVolume_de_r%C3%A9duction_attendu_-_Scope_2_-_en_tCO2e%2CVolume_de_r%C3%A9duction_attendu_-_Scope_3_-_en_tCO2e%2CPlan_d'actions_-_Scope_1%2CPlan_d'actions_-_Scope_2%2CPlan_d'actions_-_Scope_3&qs=5510Z"
+# list_hotel_serialized = URI.open(url).read
+=begin
+filepath = "data/ademe_data.json"
+data = File.read(filepath)
+list_data = JSON.parse(data)["results"]
+list_data.each do |el|
+  hotel_parameter = {
+    name: el["Raison_sociale_/_Nom_de_l'entité"],
+    industry: "Hôtel",
+    employee_nb: el["Nombre_de_salariés_/_d'agents"]
+  }
 
-Company.destroy_all
-User.destroy_all
-Task.destroy_all
-Footprint.destroy_all
+  company = Company.create(hotel_parameter)
+
+  scope_1 = el["Emissions_publication_P1_-_tCO2e"] + el["Emissions_publication_P2_-_tCO2e"]
+  footprint_parameter = {
+    ghg_result: {
+    scope_1: scope_1
+    },
+    company_id: company.id
+  }
+
+ Footprint.create(footprint_parameter)
+
+end
+=end
 
 aigle_noir = Company.create!({ name: "Aigle Noir", industry: "Hôtel", employee_nb: 15, kwh: 150_000, square_meter: 1_000 })
 hotel_plage = Company.create!({ name: "La Plage", industry: "Hôtel", employee_nb: 5, kwh: 50_000, square_meter: 300 })

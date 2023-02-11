@@ -1,5 +1,7 @@
 <div class="container">
-  <%= @list_hotel["results"][1] %>
+  <%= @list_hotel["results"][0..6].each do |element| %>
+    <li><%= element %></li>
+  <% end %>
 </div>
 
   <%# <%= @list_hotel["results"].forEach(element  => console.log(element) ) %>
