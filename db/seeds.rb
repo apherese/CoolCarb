@@ -46,16 +46,16 @@ list_data.each do |el|
 
   company = Company.create(hotel_parameter)
 
+
   scope_1 = [el["Emissions_publication_P1_-_tCO2e"], el["Emissions_publication_P2_-_tCO2e"], el["Emissions_publication_P3_-_tCO2e"], el["Emissions_publication_P4_-_tCO2e"], el["Emissions_publication_P5_-_tCO2e"]].compact.sum
   scope_2 = [el["Emissions_publication_P6_-_tCO2e"], el["Emissions_publication_P7_-_tCO2e"]].compact.sum
   scope_3 = [el["Emissions_publication_P8_-_tCO2e"], el["Emissions_publication_P9_-_tCO2e"], el["Emissions_publication_P10_-_tCO2e"], el["Emissions_publication_P11_-_tCO2e"], el["Emissions_publication_P12_-_tCO2e"], el["Emissions_publication_P13_-_tCO2e"], el["Emissions_publication_P14_-_tCO2e"], el["Emissions_publication_P15_-_tCO2e"], el["Emissions_publication_P16_-_tCO2e"], el["Emissions_publication_P17_-_tCO2e"], el["Emissions_publication_P18_-_tCO2e"], el["Emissions_publication_P19_-_tCO2e"], el["Emissions_publication_P20_-_tCO2e"], el["Emissions_publication_P21_-_tCO2e"], el["Emissions_publication_P22_-_tCO2e"], el["Emissions_publication_P23_-_tCO2e"]].compact.sum
+  ghg_result = scope_1 + scope_2 + scope_3
 
   footprint_parameter = {
-    ghg_result: {
-      scope_1: scope_1,
-      scope_2: scope_2,
-      scope_3: scope_3
-    },
+    scope_1: scope_1,
+    scope_2: scope_2,
+    scope_3: scope_3,
     date: el["Année_de_reporting"],
     certified: true,
     company_id: company.id
