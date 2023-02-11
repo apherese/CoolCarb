@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :companies, only: [:index, :show, :new, :create] do
-    get "/list", to: "companies#list"
     resources :footprints, only: [:new, :create, :update, :download]
   end
 

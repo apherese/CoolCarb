@@ -32,10 +32,11 @@ Company.destroy_all
 
 # url = "https://data.ademe.fr/data-fair/api/v1/datasets/bilans-ges/lines?select=Raison_sociale_%2F_Nom_de_l'entit%C3%A9%2CAnn%C3%A9e_de_reporting%2CNombre_de_salari%C3%A9s_%2F_d'agents%2CAPE(NAF)%2CEmissions_publication_P1_-_tCO2e%2CEmissions_publication_P2_-_tCO2e%2CEmissions_publication_P3_-_tCO2e%2CEmissions_publication_P4_-_tCO2e%2CEmissions_publication_P5_-_tCO2e%2CEmissions_publication_P6_-_tCO2e%2CEmissions_publication_P7_-_tCO2e%2CEmissions_publication_P8_-_tCO2e%2CEmissions_publication_P9_-_tCO2e%2CEmissions_publication_P10_-_tCO2e%2CEmissions_publication_P11_-_tCO2e%2CEmissions_publication_P12_-_tCO2e%2CEmissions_publication_P13_-_tCO2e%2CEmissions_publication_P14_-_tCO2e%2CEmissions_publication_P15_-_tCO2e%2CEmissions_publication_P16_-_tCO2e%2CEmissions_publication_P17_-_tCO2e%2CEmissions_publication_P18_-_tCO2e%2CEmissions_publication_P19_-_tCO2e%2CEmissions_publication_P20_-_tCO2e%2CEmissions_publication_P21_-_tCO2e%2CEmissions_publication_P22_-_tCO2e%2CEmissions_publication_P23_-_tCO2e%2CVolume_de_r%C3%A9duction_attendu_-_Scope_1_-_en_tCO2e%2CVolume_de_r%C3%A9duction_attendu_-_Scope_2_-_en_tCO2e%2CVolume_de_r%C3%A9duction_attendu_-_Scope_3_-_en_tCO2e%2CPlan_d'actions_-_Scope_1%2CPlan_d'actions_-_Scope_2%2CPlan_d'actions_-_Scope_3&qs=5510Z"
 # list_hotel_serialized = URI.open(url).read
-=begin
+
 filepath = "data/ademe_data.json"
 data = File.read(filepath)
 list_data = JSON.parse(data)["results"]
+
 list_data.each do |el|
   hotel_parameter = {
     name: el["Raison_sociale_/_Nom_de_l'entité"],
@@ -45,60 +46,65 @@ list_data.each do |el|
 
   company = Company.create(hotel_parameter)
 
-  scope_1 = el["Emissions_publication_P1_-_tCO2e"] + el["Emissions_publication_P2_-_tCO2e"]
+  scope_1 = [el["Emissions_publication_P1_-_tCO2e"], el["Emissions_publication_P2_-_tCO2e"], el["Emissions_publication_P3_-_tCO2e"], el["Emissions_publication_P4_-_tCO2e"], el["Emissions_publication_P5_-_tCO2e"]].compact.sum
+  scope_2 = [el["Emissions_publication_P6_-_tCO2e"], el["Emissions_publication_P7_-_tCO2e"]].compact.sum
+  scope_3 = [el["Emissions_publication_P8_-_tCO2e"], el["Emissions_publication_P9_-_tCO2e"], el["Emissions_publication_P10_-_tCO2e"], el["Emissions_publication_P11_-_tCO2e"], el["Emissions_publication_P12_-_tCO2e"], el["Emissions_publication_P13_-_tCO2e"], el["Emissions_publication_P14_-_tCO2e"], el["Emissions_publication_P15_-_tCO2e"], el["Emissions_publication_P16_-_tCO2e"], el["Emissions_publication_P17_-_tCO2e"], el["Emissions_publication_P18_-_tCO2e"], el["Emissions_publication_P19_-_tCO2e"], el["Emissions_publication_P20_-_tCO2e"], el["Emissions_publication_P21_-_tCO2e"], el["Emissions_publication_P22_-_tCO2e"], el["Emissions_publication_P23_-_tCO2e"]].compact.sum
+
   footprint_parameter = {
     ghg_result: {
-    scope_1: scope_1
+      scope_1: scope_1,
+      scope_2: scope_2,
+      scope_3: scope_3
     },
+    date: el["Année_de_reporting"],
+    certified: true,
     company_id: company.id
   }
-
- Footprint.create(footprint_parameter)
-
+  Footprint.create(footprint_parameter)
 end
-=end
 
-aigle_noir = Company.create!({ name: "Aigle Noir", industry: "Hôtel", employee_nb: 15, kwh: 150_000, square_meter: 1_000 })
-hotel_plage = Company.create!({ name: "La Plage", industry: "Hôtel", employee_nb: 5, kwh: 50_000, square_meter: 300 })
-metropol = Company.create!({ name: "Metropol", industry: "Hôtel", employee_nb: 100, kwh: 2_150_000, square_meter: 5_000 })
-radisson = Company.create!({ name: "Radisson", industry: "Hôtel", employee_nb: 50, kwh: 1_150_000, square_meter: 3_000 })
+aigle_noir = Company.create!({ name: "Aigle Noir", industry: "Hôtel", employee_nb: 15 })
+hotel_plage = Company.create!({ name: "La Plage", industry: "Hôtel", employee_nb: 5 })
+metropol = Company.create!({ name: "Metropol", industry: "Hôtel", employee_nb: 100 })
+radisson = Company.create!({ name: "Radisson", industry: "Hôtel", employee_nb: 50 })
 
 jeanpierre = User.create!({ name: "Jean-Pierre", position: "DFI", email: "jeanpierre@gmail.com", company: aigle_noir, password: "azerty", admin: true })
 mohamed = User.create!({ name: "Mohamed", position: "CEO", email: "mohamed@gmail.com", company: hotel_plage, password: "azerty", admin: true })
 amine = User.create!({ name: "Amine", position: "DRSE", email: "amine@gmail.com", company: metropol, password: "azerty", admin: true })
 nathanael = User.create!({ name: "Nathanaël", position: "CLO", email: "nathanael@gmail.com", company: radisson, password: "azerty", admin: true })
 
-employee_1_1 = User.create!({ name: "Claire", position: "CEO", email: "claire@gmail.com", company: aigle_noir, password: "azerty", admin: false })
-employee_1_2 = User.create!({ name: "Margot", position: "DRSE", email: "margot@gmail.com", company: aigle_noir, password: "azerty", admin: false })
-employee_1_3 = User.create!({ name: "Fred", position: "DSI", email: "fred@gmail.com", company: aigle_noir, password: "azerty", admin: false })
-employee_1_4 = User.create!({ name: "Iris", position: "Chef", email: "iris@gmail.com", company: aigle_noir, password: "azerty", admin: false })
-employee_1_5 = User.create!({ name: "Luc", position: "Commis", email: "luc@gmail.com", company: aigle_noir, password: "azerty", admin: false })
-employee_1_6 = User.create!({ name: "Flora", position: "CPO", email: "flora@gmail.com", company: aigle_noir, password: "azerty", admin: false })
+footprint_1 = Footprint.create!({ company: aigle_noir, ghg_result: { scope_1: 10_000, scope_2: 22_000, scope_3: 345_000 }, certified: true, date: "2023-02-01" })
+footprint_2 = Footprint.create!({ company: hotel_plage, ghg_result: { scope_1: 4_000, scope_2: 12_000, scope_3: 145_000 }, certified: false, date: "2023-02-01" })
+footprint_3 = Footprint.create!({ company: metropol, ghg_result: { scope_1: 17_000, scope_2: 36_000, scope_3: 645_000 }, certified: false, date: "2023-02-01" })
+footprint_4 = Footprint.create!({ company: radisson, ghg_result: { scope_1: 35_000, scope_2: 62_000, scope_3: 1_345_000 }, certified: false, date: "2023-02-01" })
 
-employee_2_1 = User.create!({ name: "Claire", position: "CEO", email: "claire@gmail.com", company: hotel_plage, password: "azerty", admin: false })
-employee_2_2 = User.create!({ name: "Margot", position: "DRSE", email: "margot@gmail.com", company: hotel_plage, password: "azerty", admin: false })
-employee_2_3 = User.create!({ name: "Fred", position: "DSI", email: "fred@gmail.com", company: hotel_plage, password: "azerty", admin: false })
-employee_2_4 = User.create!({ name: "Iris", position: "Chef", email: "iris@gmail.com", company: hotel_plage, password: "azerty", admin: false })
-employee_2_5 = User.create!({ name: "Luc", position: "Commis", email: "luc@gmail.com", company: hotel_plage, password: "azerty", admin: false })
-employee_2_6 = User.create!({ name: "Flora", position: "CPO", email: "flora@gmail.com", company: hotel_plage, password: "azerty", admin: false })
+employee_1_1 = User.create!({ name: "Claire", position: "CEO", email: "claire1@gmail.com", company: aigle_noir, password: "azerty", admin: false })
+employee_1_2 = User.create!({ name: "Margot", position: "DRSE", email: "margot1@gmail.com", company: aigle_noir, password: "azerty", admin: false })
+employee_1_3 = User.create!({ name: "Fred", position: "DSI", email: "fred1@gmail.com", company: aigle_noir, password: "azerty", admin: false })
+employee_1_4 = User.create!({ name: "Iris", position: "Chef", email: "iris1@gmail.com", company: aigle_noir, password: "azerty", admin: false })
+employee_1_5 = User.create!({ name: "Luc", position: "Commis", email: "luc1@gmail.com", company: aigle_noir, password: "azerty", admin: false })
+employee_1_6 = User.create!({ name: "Flora", position: "CPO", email: "flora1@gmail.com", company: aigle_noir, password: "azerty", admin: false })
 
-employee_3_2 = User.create!({ name: "Margot", position: "DRSE", email: "margot@gmail.com", company: metropol, password: "azerty", admin: false })
-employee_3_3 = User.create!({ name: "Fred", position: "DSI", email: "fred@gmail.com", company: metropol, password: "azerty", admin: false })
-employee_3_4 = User.create!({ name: "Iris", position: "Chef", email: "iris@gmail.com", company: metropol, password: "azerty", admin: false })
-employee_3_5 = User.create!({ name: "Luc", position: "Commis", email: "luc@gmail.com", company: metropol, password: "azerty", admin: false })
-employee_3_6 = User.create!({ name: "Flora", position: "CPO", email: "flora@gmail.com", company: metropol, password: "azerty", admin: false })
+employee_2_1 = User.create!({ name: "Claire", position: "CEO", email: "claire2@gmail.com", company: hotel_plage, password: "azerty", admin: false })
+employee_2_2 = User.create!({ name: "Margot", position: "DRSE", email: "margot2@gmail.com", company: hotel_plage, password: "azerty", admin: false })
+employee_2_3 = User.create!({ name: "Fred", position: "DSI", email: "fred2@gmail.com", company: hotel_plage, password: "azerty", admin: false })
+employee_2_4 = User.create!({ name: "Iris", position: "Chef", email: "iris2@gmail.com", company: hotel_plage, password: "azerty", admin: false })
+employee_2_5 = User.create!({ name: "Luc", position: "Commis", email: "luc2@gmail.com", company: hotel_plage, password: "azerty", admin: false })
+employee_2_6 = User.create!({ name: "Flora", position: "CPO", email: "flora3@gmail.com", company: hotel_plage, password: "azerty", admin: false })
 
-employee_4_1 = User.create!({ name: "Claire", position: "CEO", email: "claire@gmail.com", company: radisson, password: "azerty", admin: false })
-employee_4_2 = User.create!({ name: "Margot", position: "DRSE", email: "margot@gmail.com", company: radisson, password: "azerty", admin: false })
-employee_4_3 = User.create!({ name: "Fred", position: "DSI", email: "fred@gmail.com", company: radisson, password: "azerty", admin: false })
-employee_4_4 = User.create!({ name: "Iris", position: "Chef", email: "iris@gmail.com", company: radisson, password: "azerty", admin: false })
-employee_4_5 = User.create!({ name: "Luc", position: "Commis", email: "luc@gmail.com", company: radisson, password: "azerty", admin: false })
-employee_4_6 = User.create!({ name: "Flora", position: "CPO", email: "flora@gmail.com", company: radisson, password: "azerty", admin: false })
+employee_3_1 = User.create!({ name: "Claire", position: "CEO", email: "claire3@gmail.com", company: metropol, password: "azerty", admin: false })
+employee_3_2 = User.create!({ name: "Margot", position: "DRSE", email: "margot3@gmail.com", company: metropol, password: "azerty", admin: false })
+employee_3_3 = User.create!({ name: "Fred", position: "DSI", email: "fred3@gmail.com", company: metropol, password: "azerty", admin: false })
+employee_3_4 = User.create!({ name: "Iris", position: "Chef", email: "iris3@gmail.com", company: metropol, password: "azerty", admin: false })
+employee_3_5 = User.create!({ name: "Luc", position: "Commis", email: "luc3@gmail.com", company: metropol, password: "azerty", admin: false })
+employee_3_6 = User.create!({ name: "Flora", position: "CPO", email: "flora3@gmail.com", company: metropol, password: "azerty", admin: false })
 
-footprint1 = Footprint.create!({ company: aigle_noir, ghg_result: 95, step: "Simulation", certified: false, date: "2023-02-01" })
-footprint2 = Footprint.create!({ company: hotel_plage, ghg_result: 50, step: "Simulation", certified: false, date: "2023-02-01" })
-footprint3 = Footprint.create!({ company: metropol, ghg_result: 500, step: "Simulation", certified: false, date: "2023-02-01" })
-footprint4 = Footprint.create!({ company: radisson, ghg_result: 300, step: "Simulation", certified: false, date: "2023-02-01" })
+employee_4_1 = User.create!({ name: "Claire", position: "CEO", email: "claire4@gmail.com", company: radisson, password: "azerty", admin: false })
+employee_4_2 = User.create!({ name: "Margot", position: "DRSE", email: "margot4@gmail.com", company: radisson, password: "azerty", admin: false })
+employee_4_3 = User.create!({ name: "Fred", position: "DSI", email: "fred4@gmail.com", company: radisson, password: "azerty", admin: false })
+employee_4_4 = User.create!({ name: "Iris", position: "Chef", email: "iris4@gmail.com", company: radisson, password: "azerty", admin: false })
+employee_4_5 = User.create!({ name: "Luc", position: "Commis", email: "luc4@gmail.com", company: radisson, password: "azerty", admin: false })
+employee_4_6 = User.create!({ name: "Flora", position: "CPO", email: "flora4@gmail.com", company: radisson, password: "azerty", admin: false })
 
 task1_1 = Task.create!({ name: "chauffage", footprint: footprint1, ghg_contribution: 20, owner: jeanpierre })
 task1_2 = Task.create!({ name: "isolation", footprint: footprint1, ghg_contribution: 15, owner: jeanpierre })
