@@ -1,0 +1,11 @@
+class EmissionFactors
+  GAZ = 0.185
+  FIOUL = 2.68
+  ESSENCE = 2.280
+  GAZOLE = 2.51
+  ELECTRICITE = 0.04
+  CLIENTFR = 2.4
+  CLIENTINT = 0.19
+  FOURNISSEURS = 2.51
+  BATIMENTS = 11
+end
