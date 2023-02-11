@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :footprints, only: [:new, :create]
   end
 
-  resources :footprints, only: [:index, :download]
+  resources :footprints, only: [:index, :show, :download]
 
   get "dashboard", to: "pages#dashboard"
 end

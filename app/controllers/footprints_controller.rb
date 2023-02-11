@@ -11,23 +11,34 @@ class FootprintsController < ApplicationController
 
   def create
     @footprint = Footprint.new(footprint_params)
-    gaz_result = (@footprint.gaz * 0.1850) / 1000
-    fioul_result = (@footprint.fioul * 2.68) / 1000
-    essence_result = (@footprint.essence * 2.280) / 1000
-    gazole_result = (@footprint.gazole * 2.510) / 1000
-    electricite_result = (@footprint.electricite * 0.04) / 1000
-    clients_fr_result = (@footprint.clients_fr * 2.4 * 500) / 1000
-    clients_int_result = (@footprint.clients_int * 0.19 * 5000) / 1000
-    fournisseurs_result = (@footprint.fournisseurs * 2.510) / 1000
-    taille_batiments_results = (@footprint.taille_batiments * 11) / 1000
-    @footprint.ghg_result = gaz_result + fioul_result + essence_result + gazole_result + electricite_result + clients_fr_result + clients_int_result + fournisseurs_result + taille_batiments_results
+    gaz_result = (@footprint.gaz * EmissionFactors::GAZ) / 1000
+    fioul_result = (@footprint.fioul * EmissionFactors::FIOUL) / 1000
+    essence_result = (@footprint.essence * EmissionFactors::ESSENCE) / 1000
+    gazole_result = (@footprint.gazole * EmissionFactors::GAZOLE) / 1000
+    electricite_result = (@footprint.electricite * EmissionFactors::ELECTRICITE) / 1000
+    clients_fr_result = (@footprint.clients_fr * EmissionFactors::CLIENTFR * 500) / 1000
+    clients_int_result = (@footprint.clients_int * EmissionFactors::CLIENTINT * 5000) / 1000
+    fournisseurs_result = (@footprint.fournisseurs * EmissionFactors::FOURNISSEURS) / 1000
+    taille_batiments_results = (@footprint.taille_batiments * EmissionFactors::BATIMENTS) / 1000
+    @footprint.scope_1 = gaz_result + fioul_result + essence_result + gazole_result
+    @footprint.scope_2 = electricite_result
+    @footprint.scope_3 = clients_fr_result + clients_int_result + fournisseurs_result + taille_batiments_results
+    @footprint.ghg_result = @footprint.scope_1 + @footprint.scope_2 + @footprint.scope_3
     @footprint.company = @company
     if @footprint.save
-      redirect_to company_path(@company)
+      puts "tototot"
+      redirect_to footprint_path(@footprint)
     else
+      puts "test"
       render :new, status: :unprocessable_entity
     end
   end
+
+  def show
+    @footprint = Footprint.find(params[:id])
+    @company = @footprint.company
+  end
+
 
   def download
   end
