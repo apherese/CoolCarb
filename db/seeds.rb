@@ -49,13 +49,12 @@ list_data.each do |el|
   scope_1 = [el["Emissions_publication_P1_-_tCO2e"], el["Emissions_publication_P2_-_tCO2e"], el["Emissions_publication_P3_-_tCO2e"], el["Emissions_publication_P4_-_tCO2e"], el["Emissions_publication_P5_-_tCO2e"]].compact.sum
   scope_2 = [el["Emissions_publication_P6_-_tCO2e"], el["Emissions_publication_P7_-_tCO2e"]].compact.sum
   scope_3 = [el["Emissions_publication_P8_-_tCO2e"], el["Emissions_publication_P9_-_tCO2e"], el["Emissions_publication_P10_-_tCO2e"], el["Emissions_publication_P11_-_tCO2e"], el["Emissions_publication_P12_-_tCO2e"], el["Emissions_publication_P13_-_tCO2e"], el["Emissions_publication_P14_-_tCO2e"], el["Emissions_publication_P15_-_tCO2e"], el["Emissions_publication_P16_-_tCO2e"], el["Emissions_publication_P17_-_tCO2e"], el["Emissions_publication_P18_-_tCO2e"], el["Emissions_publication_P19_-_tCO2e"], el["Emissions_publication_P20_-_tCO2e"], el["Emissions_publication_P21_-_tCO2e"], el["Emissions_publication_P22_-_tCO2e"], el["Emissions_publication_P23_-_tCO2e"]].compact.sum
+  ghg_result = scope_1 + scope_2 + scope_3
 
   footprint_parameter = {
-    ghg_result: {
-      scope_1: scope_1,
-      scope_2: scope_2,
-      scope_3: scope_3
-    },
+    scope_1: scope_1,
+    scope_2: scope_2,
+    scope_3: scope_3,
     date: el["Année_de_reporting"],
     certified: true,
     company_id: company.id
@@ -73,10 +72,10 @@ mohamed = User.create!({ name: "Mohamed", position: "CEO", email: "mohamed@gmail
 amine = User.create!({ name: "Amine", position: "DRSE", email: "amine@gmail.com", company: metropol, password: "azerty", admin: true })
 nathanael = User.create!({ name: "Nathanaël", position: "CLO", email: "nathanael@gmail.com", company: radisson, password: "azerty", admin: true })
 
-footprint_1 = Footprint.create!({ company: aigle_noir, ghg_result: { scope_1: 10_000, scope_2: 22_000, scope_3: 345_000 }, certified: true, date: "2023-02-01" })
-footprint_2 = Footprint.create!({ company: hotel_plage, ghg_result: { scope_1: 4_000, scope_2: 12_000, scope_3: 145_000 }, certified: false, date: "2023-02-01" })
-footprint_3 = Footprint.create!({ company: metropol, ghg_result: { scope_1: 17_000, scope_2: 36_000, scope_3: 645_000 }, certified: false, date: "2023-02-01" })
-footprint_4 = Footprint.create!({ company: radisson, ghg_result: { scope_1: 35_000, scope_2: 62_000, scope_3: 1_345_000 }, certified: false, date: "2023-02-01" })
+footprint_1 = Footprint.create!({ company: aigle_noir, scope_1: 10_000, scope_2: 22_000, scope_3: 345_000, ghg_result: (10_000 + 22_000 + 345_000), certified: true, date: "2023-02-01" })
+footprint_2 = Footprint.create!({ company: hotel_plage, scope_1: 4_000, scope_2: 12_000, scope_3: 145_000, ghg_result: (4_000 + 12_000 + 145_000), certified: false, date: "2020-05-01" })
+footprint_3 = Footprint.create!({ company: metropol, scope_1: 17_000, scope_2: 36_000, scope_3: 645_000, ghg_result: (17_000 + 36_000 + 645_000), certified: false, date: "2021-12-01" })
+footprint_4 = Footprint.create!({ company: radisson, scope_1: 35_000, scope_2: 62_000, scope_3: 1_345_000, ghg_result: (35_000 + 62_000 + 1_345_000), certified: false, date: "2019-07-01" })
 
 employee_1_1 = User.create!({ name: "Claire", position: "CEO", email: "claire1@gmail.com", company: aigle_noir, password: "azerty", admin: false })
 employee_1_2 = User.create!({ name: "Margot", position: "DRSE", email: "margot1@gmail.com", company: aigle_noir, password: "azerty", admin: false })

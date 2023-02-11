@@ -1,3 +1,10 @@
+<%= metric = [10, 20, 30] %>
+<%= unit = "Tons" %>
+
+<div class="chart-container" data-controller="chart" data-metric="<%= metric %>" data-unit="<%= unit %>">
+ <canvas id="YOUR_ELEMENT_ID" width="400" height="400"></canvas>
+</div>
+
 <ul class="list-group">
       <li class="list-group-item"><%= "Statut du bilan #{@footprint.certified}" %></li>
       <li class="list-group-item"><%= "Scope 1 #{@footprint.scope_1}" %></li>
