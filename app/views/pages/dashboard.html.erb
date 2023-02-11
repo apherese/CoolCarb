@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>
+    <%= "Société #{@company.name}" %>
+  </h1>
+  <h2>
+    <%= "Activité : #{@company.industry}" %>
+  </h2>
+</div>
+
+<%= link_to 'Calculer précisément mon bilan carbone', new_company_footprint_path(@company) %>
+<%= link_to 'Afficher mes précédents bilans', footprints_path %>
+<%# <%= link_to 'Créer une tâche',  %> %>
