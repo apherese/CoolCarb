@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_08_214438) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_11_103403) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,15 +54,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_08_214438) do
 
   create_table "footprints", force: :cascade do |t|
     t.json "ghg_result"
-    t.string "step"
     t.boolean "certified"
     t.date "date"
     t.integer "ghg_target"
     t.integer "target_year"
-    t.boolean "target_commitment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "company_id"
+    t.integer "gaz", default: 0, null: false
+    t.integer "fioul", default: 0, null: false
+    t.integer "essence", default: 0, null: false
+    t.integer "gazole", default: 0, null: false
+    t.integer "electricite", default: 0, null: false
+    t.integer "clients_fr", default: 0, null: false
+    t.integer "clients_int", default: 0, null: false
+    t.integer "fournisseurs", default: 0, null: false
+    t.integer "taille_batiments", default: 0, null: false
     t.index ["company_id"], name: "index_footprints_on_company_id"
   end
 
