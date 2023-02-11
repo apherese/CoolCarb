@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_11_150803) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,7 +51,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_150803) do
   end
 
   create_table "footprints", force: :cascade do |t|
-    t.json "ghg_result"
     t.boolean "certified"
     t.date "date"
     t.integer "ghg_target"
@@ -68,6 +67,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_150803) do
     t.integer "clients_int", default: 0, null: false
     t.integer "fournisseurs", default: 0, null: false
     t.integer "taille_batiments", default: 0, null: false
+    t.float "scope_1", default: 0.0, null: false
+    t.float "scope_2", default: 0.0, null: false
+    t.float "scope_3", default: 0.0, null: false
+    t.float "ghg_result"
     t.index ["company_id"], name: "index_footprints_on_company_id"
   end
 
