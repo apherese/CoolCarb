@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :companies, only: [:index, :show, :new, :create] do
-    resources :footprints, only: [:new, :create, :update, :download]
+    resources :footprints, only: [:new, :create]
   end
 
+  resources :footprints, only: [:index, :download]
+
+  get "dashboard", to: "pages#dashboard"
 end

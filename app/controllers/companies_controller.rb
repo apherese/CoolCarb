@@ -10,7 +10,7 @@ class CompaniesController < ApplicationController
   def create
     @company = Company.new(company_params)
     if @company.save
-      redirect_to company_path(@company)
+      redirect_to pages_dashboard(@company)
     else
       render :new, status: :unprocessable_entity
     end

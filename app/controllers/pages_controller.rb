@@ -3,4 +3,9 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  def dashboard
+    @company = current_company
+  end
+
 end
