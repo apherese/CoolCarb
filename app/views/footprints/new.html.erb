@@ -1,7 +1,23 @@
 <div class="container">
   <h1>Un nouveau calcul de bilan carbone de <%=@company.name %></h1>
   <%= simple_form_for [@company, @footprint] do |f| %>
-    <%= f.input :certified %>
+    <h2>Scope 1</h2>
+      <h3>Bâtiments</h3>
+        <%= f.input :gaz %>
+        <%= f.input :fioul %>
+      <h3>Véhicules</h3>
+        <%= f.input :essence %>
+        <%= f.input :gazole %>
+    <h2>Scope 2</h2>
+      <h3>Electricité</h3>
+        <%= f.input :electricite %>
+    <h2>Scope 3</h2>
+      <%= f.input :clients_fr %>
+      <%= f.input :clients_int %>
+      <%= f.input :fournisseurs %>
+      <%= f.input :taille_batiments %>
+    <h2>Voulez-vous certifier votre Bilan Carbone ?</h2>
+      <%= f.input :certified %>
     <%= f.submit "Calculez le bilan carbone", class: "btn btn-primary" %>
   <% end %>
 </div>
