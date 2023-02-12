@@ -7,33 +7,42 @@ export default class extends Controller {
   static DEFAULT_OPTIONS = { responsive: true, maintainAspectRatio: false };
 
   connect() {
-    console.log("coucou from chart controller");
+    // console.log("coucou from chart controller");
     this.render();
   }
 
   render() {
-
     new Chart(
-      document.getElementById('acquisitions'),
+      document.getElementById('footprint'),
       {
         type: "bar",
         data: {
-          labels: ["Mar-2016","Apr-2016"],
+          labels: ["Mar-2023","Jan-2050"],
           datasets: [ {
-            label: "Crossville",
-            backgroundColor: "#009900",
-            data: ["2268.44","2268"],
-            stack: 2,
-          }, {
-            label: "test",
-            backgroundColor: "#ffff00",
-            data: ["181.92","181.92"],
-            stack: 2
-          },{
-            label: "benchmark",
+            label: "Benchmark",
             type: "bar",
-            backgroundColor: "#ff3300",
-            data: ["2632.29","2632.29"],
+            backgroundColor: "#D5ECC2",
+            data: ["2632.29","0"],
+            stack: 1
+          }, {
+            label: "Scope 1",
+            backgroundColor: "#DDFFBC",
+            data: [this.data.get("myValue1"),"0"],
+            stack: 3,
+          }, {
+            label: "Scope 2",
+            backgroundColor: "#FEFFDE",
+            data: [this.data.get("myValue2"),"0"],
+            stack: 3
+          }, {
+            label: "Scope 3",
+            backgroundColor: "#52734D",
+            data: [this.data.get("myValue3"),"0"],
+            stack: 3
+          }, {
+            label: "Objectif SBTi",
+            backgroundColor: "#98DDCA",
+            data: ["0",this.data.get("myValue4")],
             stack: 1
           }]
         },

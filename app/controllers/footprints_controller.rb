@@ -20,10 +20,11 @@ class FootprintsController < ApplicationController
     clients_int_result = (@footprint.clients_int * EmissionFactors::CLIENTINT * 5000) / 1000
     fournisseurs_result = (@footprint.fournisseurs * EmissionFactors::FOURNISSEURS) / 1000
     taille_batiments_results = (@footprint.taille_batiments * EmissionFactors::BATIMENTS) / 1000
-    @footprint.scope_1 = gaz_result + fioul_result + essence_result + gazole_result
-    @footprint.scope_2 = electricite_result
-    @footprint.scope_3 = clients_fr_result + clients_int_result + fournisseurs_result + taille_batiments_results
-    @footprint.ghg_result = @footprint.scope_1 + @footprint.scope_2 + @footprint.scope_3
+    @footprint.scope_1 = (gaz_result + fioul_result + essence_result + gazole_result).round(0)
+    @footprint.scope_2 = electricite_result.round(0)
+    @footprint.scope_3 = (clients_fr_result + clients_int_result + fournisseurs_result + taille_batiments_results).round(0)
+    @footprint.ghg_result = (@footprint.scope_1 + @footprint.scope_2 + @footprint.scope_3).round(0)
+    @footprint.ghg_target = (@footprint.ghg_result * 0.12).round(0)
     @footprint.company = @company
     if @footprint.save
       puts "tototot"
@@ -39,7 +40,6 @@ class FootprintsController < ApplicationController
     @company = @footprint.company
   end
 
-
   def download
   end
 
@@ -52,4 +52,5 @@ class FootprintsController < ApplicationController
   def footprint_params
     params.require(:footprint).permit(:certified, :gaz, :fioul, :essence, :gazole, :electricite, :clients_fr, :clients_int, :fournisseurs, :taille_batiments)
   end
+
 end
