@@ -1,12 +1,14 @@
-<div style="width: 800px;" class="chart-container" data-controller="chart">
-  <canvas id="acquisitions"></canvas>
+<div style="width: 800px;" class="chart-container" data-controller="chart"
+    data-chart-my-value1="<%= @footprint.scope_1 %>" data-chart-my-value2="<%= @footprint.scope_2 %>"
+    data-chart-my-value3="<%= @footprint.scope_3 %>" data-chart-my-value4="<%= @footprint.ghg_target %>">
+  <canvas id="footprint"></canvas>
 </div>
 
-
-<ul class="list-group">
+  <ul class="list-group">
       <li class="list-group-item"><%= "Statut du bilan #{@footprint.certified}" %></li>
-      <li class="list-group-item"><%= "Scope 1 #{@footprint.scope_1}" %></li>
-      <li class="list-group-item"><%= "Scope 2 #{@footprint.scope_2}" %></li>
-      <li class="list-group-item"><%= "Scope 3 #{@footprint.scope_3}" %></li>
-      <li class="list-group-item"><%= "Résultat du bilan #{@footprint.ghg_result}" %></li>
+      <li class="list-group-item"><%= "Scope 1: #{@footprint.scope_1}" %></li>
+      <li class="list-group-item"><%= "Scope 2: #{@footprint.scope_2}" %></li>
+      <li class="list-group-item"><%= "Scope 3: #{@footprint.scope_3}" %></li>
+      <li class="list-group-item"><%= "Résultat du bilan: #{@footprint.ghg_result}" %></li>
+      <li class="list-group-item"><%= "Objectif SBTi à 2050: #{@footprint.ghg_target}" %></li>
   </ul>
