@@ -1,5 +1,6 @@
 class FootprintsController < ApplicationController
   before_action :set_company, only: %i[new create]
+  before_action :compute_benchmark, only: %i[new create index]
 
   def index
     @footprints = current_company.footprints
@@ -26,11 +27,10 @@ class FootprintsController < ApplicationController
     @footprint.ghg_result = (@footprint.scope_1 + @footprint.scope_2 + @footprint.scope_3).round(0)
     @footprint.ghg_target = (@footprint.ghg_result * 0.12).round(0)
     @footprint.company = @company
+    @footprint_benchmark = 5_000
     if @footprint.save
-      puts "tototot"
       redirect_to footprint_path(@footprint)
     else
-      puts "test"
       render :new, status: :unprocessable_entity
     end
   end
@@ -53,4 +53,7 @@ class FootprintsController < ApplicationController
     params.require(:footprint).permit(:certified, :gaz, :fioul, :essence, :gazole, :electricite, :clients_fr, :clients_int, :fournisseurs, :taille_batiments)
   end
 
+  def compute_benchmark
+    @footprint_benchmark = 5_000
+  end
 end

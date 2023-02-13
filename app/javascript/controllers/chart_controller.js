@@ -22,7 +22,7 @@ export default class extends Controller {
             label: "Benchmark",
             type: "bar",
             backgroundColor: "#D5ECC2",
-            data: ["2632.29","0"],
+            data: [this.data.get("myValue0"),"0"],
             stack: 1
           }, {
             label: "Scope 1",
