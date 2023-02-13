@@ -13,26 +13,24 @@
 # benchmark_serialized = RestClient.get(url)
 # benchmark = JSON.parse(benchmark_serialized)
 
-# Seed the benchmark of hotels avec open URI
-require "json"
-
 Task.destroy_all
 Footprint.destroy_all
 User.destroy_all
 Company.destroy_all
 
-
+# liste des hôtels de l'ademe avec les paramètres nécessaires spour calcul des scopes
+# require "json"
 # require "open-uri"
+# url = "https://data.ademe.fr/data-fair/api/v1/datasets/bilans-ges/lines?select=Raison_sociale_%2F_Nom_de_l'entit%C3%A9%2CAnn%C3%A9e_de_reporting%2CNombre_de_salari%C3%A9s_%2F_d'agents%2CAPE(NAF)%2CEmissions_publication_P1_-_tCO2e%2CEmissions_publication_P2_-_tCO2e%2CEmissions_publication_P3_-_tCO2e%2CEmissions_publication_P4_-_tCO2e%2CEmissions_publication_P5_-_tCO2e%2CEmissions_publication_P6_-_tCO2e%2CEmissions_publication_P7_-_tCO2e%2CEmissions_publication_P8_-_tCO2e%2CEmissions_publication_P9_-_tCO2e%2CEmissions_publication_P10_-_tCO2e%2CEmissions_publication_P11_-_tCO2e%2CEmissions_publication_P12_-_tCO2e%2CEmissions_publication_P13_-_tCO2e%2CEmissions_publication_P14_-_tCO2e%2CEmissions_publication_P15_-_tCO2e%2CEmissions_publication_P16_-_tCO2e%2CEmissions_publication_P17_-_tCO2e%2CEmissions_publication_P18_-_tCO2e%2CEmissions_publication_P19_-_tCO2e%2CEmissions_publication_P20_-_tCO2e%2CEmissions_publication_P21_-_tCO2e%2CEmissions_publication_P22_-_tCO2e%2CEmissions_publication_P23_-_tCO2e%2CVolume_de_r%C3%A9duction_attendu_-_Scope_1_-_en_tCO2e%2CVolume_de_r%C3%A9duction_attendu_-_Scope_2_-_en_tCO2e%2CVolume_de_r%C3%A9duction_attendu_-_Scope_3_-_en_tCO2e%2CPlan_d'actions_-_Scope_1%2CPlan_d'actions_-_Scope_2%2CPlan_d'actions_-_Scope_3&qs=5510Z"
+# list_hotel_serialized = URI.open(url).read
+# @list_hotel = JSON.parse(list_hotel_serialized)
 
 # moyenne du secteur des hôtels du Poste P1
 # url = "https://data.ademe.fr/data-fair/api/v1/datasets/bilans-ges/values_agg?field=APE(NAF)&metric=avg&metric_field=Emissions_publication_P1_-_tCO2e&qs=5510Z"
 # benchmark_serialized = URI.open(url).read
 # benchmark_mean = JSON.parse(benchmark_serialized)
-# p benchmark_mean
 
-# url = "https://data.ademe.fr/data-fair/api/v1/datasets/bilans-ges/lines?select=Raison_sociale_%2F_Nom_de_l'entit%C3%A9%2CAnn%C3%A9e_de_reporting%2CNombre_de_salari%C3%A9s_%2F_d'agents%2CAPE(NAF)%2CEmissions_publication_P1_-_tCO2e%2CEmissions_publication_P2_-_tCO2e%2CEmissions_publication_P3_-_tCO2e%2CEmissions_publication_P4_-_tCO2e%2CEmissions_publication_P5_-_tCO2e%2CEmissions_publication_P6_-_tCO2e%2CEmissions_publication_P7_-_tCO2e%2CEmissions_publication_P8_-_tCO2e%2CEmissions_publication_P9_-_tCO2e%2CEmissions_publication_P10_-_tCO2e%2CEmissions_publication_P11_-_tCO2e%2CEmissions_publication_P12_-_tCO2e%2CEmissions_publication_P13_-_tCO2e%2CEmissions_publication_P14_-_tCO2e%2CEmissions_publication_P15_-_tCO2e%2CEmissions_publication_P16_-_tCO2e%2CEmissions_publication_P17_-_tCO2e%2CEmissions_publication_P18_-_tCO2e%2CEmissions_publication_P19_-_tCO2e%2CEmissions_publication_P20_-_tCO2e%2CEmissions_publication_P21_-_tCO2e%2CEmissions_publication_P22_-_tCO2e%2CEmissions_publication_P23_-_tCO2e%2CVolume_de_r%C3%A9duction_attendu_-_Scope_1_-_en_tCO2e%2CVolume_de_r%C3%A9duction_attendu_-_Scope_2_-_en_tCO2e%2CVolume_de_r%C3%A9duction_attendu_-_Scope_3_-_en_tCO2e%2CPlan_d'actions_-_Scope_1%2CPlan_d'actions_-_Scope_2%2CPlan_d'actions_-_Scope_3&qs=5510Z"
-# list_hotel_serialized = URI.open(url).read
-
+require "json"
 filepath = "data/ademe_data.json"
 data = File.read(filepath)
 list_data = JSON.parse(data)["results"]
@@ -68,9 +66,20 @@ metropol = Company.create!({ name: "Metropol", industry: "Hôtel", employee_nb: 
 radisson = Company.create!({ name: "Radisson", industry: "Hôtel", employee_nb: 50 })
 
 jeanpierre = User.create!({ name: "Jean-Pierre", position: "DFI", email: "jeanpierre@gmail.com", company: aigle_noir, password: "azerty", admin: true })
+file = URI.open("https://res.cloudinary.com/dton44gcy/image/upload/v1674321181/jpd_profile_q0gj5a.png")
+jeanpierre.photo.attach(io: file, filename: "jpd_profile.jpg", content_type: "image/jpg")
+
 mohamed = User.create!({ name: "Mohamed", position: "CEO", email: "mohamed@gmail.com", company: hotel_plage, password: "azerty", admin: true })
+file = URI.open("https://res.cloudinary.com/dton44gcy/image/upload/v1674839485/einstein_profile_pxl1ji.jpg")
+mohamed.photo.attach(io: file, filename: "einstein_profile.jpg", content_type: "image/jpg")
+
 amine = User.create!({ name: "Amine", position: "DRSE", email: "amine@gmail.com", company: metropol, password: "azerty", admin: true })
+file = URI.open("https://res.cloudinary.com/dton44gcy/image/upload/v1674248768/ybxnuoodebwxmnzewjyy.jpg")
+amine.photo.attach(io: file, filename: "amine_profile.jpg", content_type: "image/jpg")
+
 nathanael = User.create!({ name: "Nathanaël", position: "CLO", email: "nathanael@gmail.com", company: radisson, password: "azerty", admin: true })
+file = URI.open("https://res.cloudinary.com/dton44gcy/image/upload/v1674371244/yoda_profile_iis5yg.jpg")
+nathanael.photo.attach(io: file, filename: "yoda_profile.jpg", content_type: "image/jpg")
 
 footprint_1 = Footprint.create!({ company: aigle_noir, scope_1: 10_000, scope_2: 22_000, scope_3: 345_000, ghg_result: (10_000 + 22_000 + 345_000), certified: true, date: "2023-02-01" })
 footprint_2 = Footprint.create!({ company: hotel_plage, scope_1: 4_000, scope_2: 12_000, scope_3: 145_000, ghg_result: (4_000 + 12_000 + 145_000), certified: false, date: "2020-05-01" })
