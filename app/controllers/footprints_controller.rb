@@ -1,6 +1,6 @@
 class FootprintsController < ApplicationController
   before_action :set_company, only: %i[new create]
-  before_action :compute_benchmark, only: %i[new create index]
+  before_action :compute_benchmark, only: %i[new create show]
 
   def index
     @footprints = current_company.footprints
@@ -11,6 +11,7 @@ class FootprintsController < ApplicationController
   end
 
   def create
+    compute_benchmark
     @footprint = Footprint.new(footprint_params)
     gaz_result = (@footprint.gaz * EmissionFactors::GAZ) / 1000
     fioul_result = (@footprint.fioul * EmissionFactors::FIOUL) / 1000
@@ -27,7 +28,6 @@ class FootprintsController < ApplicationController
     @footprint.ghg_result = (@footprint.scope_1 + @footprint.scope_2 + @footprint.scope_3).round(0)
     @footprint.ghg_target = (@footprint.ghg_result * 0.12).round(0)
     @footprint.company = @company
-    @footprint_benchmark = 5_000
     if @footprint.save
       redirect_to footprint_path(@footprint)
     else
@@ -54,6 +54,10 @@ class FootprintsController < ApplicationController
   end
 
   def compute_benchmark
-    @footprint_benchmark = 5_000
+    @footprint_benchmark = 0
+    Footprint.all.each do |f|
+      @footprint_benchmark += f.ghg_result.round(0)
+    end
+    @footprint_benchmark = @footprint_benchmark/(Footprint.count).round(0)
   end
 end
