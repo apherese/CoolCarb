@@ -21,7 +21,7 @@ export default class extends Controller {
           datasets: [ {
             label: "Benchmark",
             type: "bar",
-            backgroundColor: "#D5ECC2",
+            backgroundColor: "#1EDD88",
             data: [this.data.get("myValue0"),"0"],
             stack: 1
           }, {
