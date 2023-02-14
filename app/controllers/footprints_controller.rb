@@ -54,10 +54,10 @@ class FootprintsController < ApplicationController
   end
 
   def compute_benchmark
-    @footprint_benchmark = 0
-    Footprint.all.each do |f|
-      @footprint_benchmark += f.ghg_result.round(0)
-    end
-    @footprint_benchmark = @footprint_benchmark/(Footprint.count).round(0)
+    # @footprint_benchmark = 0
+    # Footprint.all.each do |f|
+    #   @footprint_benchmark += f.ghg_result.round(0)
+    # end
+    # @footprint_benchmark = @footprint_benchmark/(Footprint.count).round(0)
   end
 end
