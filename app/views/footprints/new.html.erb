@@ -16,13 +16,13 @@
 
       <%# <h3>Véhicules</h3> %>
         <div class="long-form-div" data-long-form-target="screen">
-          <%= f.input :essence %>
+          <%= f.input :essence, label: "Essence (en Litres)" %>
           <span class="span" data-action="click->long-form#back">Précédent</span>
           <span class="span" data-action="click->long-form#next">Suivant</span>
         </div>
 
         <div class="long-form-div" data-long-form-target="screen">
-          <%= f.input :gazole %>
+          <%= f.input :gazole, label: "Gazole (en Litres)" %>
           <span class="span" data-action="click->long-form#back">Précédent</span>
           <span class="span" data-action="click->long-form#next">Suivant</span>
         </div>
@@ -30,41 +30,41 @@
     <%# <h2>Scope 2</h2> %>
       <%# <h3>Electricité</h3> %>
         <div class="long-form-div" data-long-form-target="screen">
-          <%= f.input :electricite %>
+          <%= f.input :electricite, label: "Electricité (en Kwh)" %>
           <span class="span" data-action="click->long-form#back">Précédent</span>
           <span class="span" data-action="click->long-form#next">Suivant</span>
         </div>
 
     <%# <h2>Scope 3</h2> %>
       <div class="long-form-div" data-long-form-target="screen">
-        <%= f.input :clients_fr %>
+        <%= f.input :clients_fr, label: "Clients nationaux (en Km)" %>
         <span class="span" data-action="click->long-form#back">Précédent</span>
         <span class="span" data-action="click->long-form#next">Suivant</span>
       </div>
 
       <div class="long-form-div" data-long-form-target="screen">
-        <%= f.input :clients_int %>
+        <%= f.input :clients_int, label: "Clients internationaux (en Km)" %>
         <span class="span" data-action="click->long-form#back">Précédent</span>
         <span class="span" data-action="click->long-form#next">Suivant</span>
       </div>
 
       <div class="long-form-div" data-long-form-target="screen">
-        <%= f.input :fournisseurs %>
+        <%= f.input :fournisseurs, label: "Fournisseurs (en Litres)" %>
         <span class="span" data-action="click->long-form#back">Précédent</span>
         <span class="span" data-action="click->long-form#next">Suivant</span>
       </div>
 
       <div class="long-form-div" data-long-form-target="screen">
-        <%= f.input :taille_batiments %>
+        <%= f.input :taille_batiments, label: "Fournisseurs (en M²)" %>
         <span class="span" data-action="click->long-form#back">Précédent</span>
         <span class="span" data-action="click->long-form#next">Suivant</span>
       </div>
 
     <%# <h2>Voulez-vous certifier votre Bilan Carbone ?</h2> %>
       <div class="long-form-div" data-long-form-target="screen">
-        <%= f.input :certified %>
+        <%= f.input :certified, label: "Voulez-vous certifier ce bilan carbone ?"%>
         <span class="span" data-action="click->long-form#back">Précédent</span>
-        <%= f.submit "Calculez le bilan carbone", class: "btn btn-primary" %>
+        <%= f.submit "Calculez le bilan carbone", class: "span" %>
       </div>
 
   <% end %>
