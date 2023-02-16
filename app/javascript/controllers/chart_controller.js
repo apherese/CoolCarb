@@ -69,17 +69,17 @@ export default class extends Controller {
           datasets: [ {
             label: "Objectif intermédiaire 2030",
             backgroundColor: "#FFD3B4",
-            data: ["500", "0", "0"],
+            data: [this.data.get("myValue4"), "0", "0"],
             stack: 1
           }, {
             label: "Objectif intermédiaire 2040",
             backgroundColor: "#FFD3B4",
-            data: ["0", "200", "0"],
+            data: ["0", this.data.get("myValue5"), "0"],
             stack: 1
           }, {
             label: "Objectif 2050 approuvé SBTi",
             backgroundColor: "#FFD3B4",
-            data: ["0", "0", "100"],
+            data: ["0", "0", this.data.get("myValue6")],
             stack: 1
           }]
         },
