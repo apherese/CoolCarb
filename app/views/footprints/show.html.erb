@@ -17,10 +17,14 @@
   <canvas id="footprint_target"></canvas>
 </div>
 
+<% @tasks.each do |task| %>
+  <%= task.ghg_contribution %>
+<% end %>
 
+<%= link_to "Voulez-vous ajouter une tâche", new_footprint_task_path(@footprint), class: "btn btn-lg btn-primary" %>
 
 <%# <ul class="list-group"> %>
-    <%# <%= li class="list-group-item"> "Action : #{@footprint.certified}"</li> %> %>
+    <%# <%= li class="list-group-item"> "Action : #{@footprint.certified}"</li> %>
     <%# <li class="list-group-item">= "Scope 1 par employé: #{@footprint.scope_1.fdiv(@company.employee_nb).round}"</li> %>
     <%# <li class="list-group-item">= "Scope 2 par employé: #{@footprint.scope_2.fdiv(@company.employee_nb).round}"</li> %>
     <%# <li class="list-group-item">= "Scope 3 par employé: #{@footprint.scope_3.fdiv(@company.employee_nb).round}"</li> %>

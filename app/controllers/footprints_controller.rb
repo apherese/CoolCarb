@@ -38,6 +38,7 @@ class FootprintsController < ApplicationController
   def show
     @footprint = Footprint.find(params[:id])
     @company = @footprint.company
+    @tasks = @footprint.tasks
   end
 
   def download
