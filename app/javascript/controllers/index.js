@@ -9,3 +9,6 @@ application.register("chart", ChartController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import LongFormController from "./long_form_controller"
+application.register("long-form", LongFormController)

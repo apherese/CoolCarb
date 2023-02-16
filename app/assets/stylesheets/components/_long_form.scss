@@ -1,0 +1,29 @@
+.long-form-div {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .form-control.is-valid {
+    border-color: black
+  }
+
+}
+.container-long-form {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.span {
+  margin-left: 20px;
+  margin-top: 15px;
+  height: 37px;
+  width: 100px;
+  border-radius: 2px;
+  background-color: #91C788;
+  color: #FFFFFF;
+  text-align: center;
+  padding-top: 4px;
+}
+// .form-control.is-valid {
+//   border-color: black;
+// }
