@@ -1,16 +1,32 @@
+
 <div style="width: 800px;" class="chart-container" data-controller="chart"
-    data-chart-my-value0="<%= @footprint_benchmark %>"
-    data-chart-my-value1="<%= @footprint.scope_1 %>" data-chart-my-value2="<%= @footprint.scope_2 %>"
-    data-chart-my-value3="<%= @footprint.scope_3 %>" data-chart-my-value4="<%= @footprint.ghg_target %>">
+    data-chart-my-value0="<%= @footprint_benchmark_per_employee.round %>"
+    data-chart-my-value1="<%= @footprint.scope_1.fdiv(@company.employee_nb).round %>" data-chart-my-value2="<%= @footprint.scope_2.fdiv(@company.employee_nb).round %>"
+    data-chart-my-value3="<%= @footprint.scope_3.fdiv(@company.employee_nb).round %>"
+    data-chart-my-value4="<%= (@footprint.ghg_result.fdiv(@company.employee_nb) * 0.55).round %>"
+    data-chart-my-value5="<%= (@footprint.ghg_result.fdiv(@company.employee_nb) * 0.23).round %>"
+    data-chart-my-value6="<%= @footprint.ghg_target.fdiv(@company.employee_nb).round %>">
   <canvas id="footprint"></canvas>
 </div>
 
-  <ul class="list-group">
-      <li class="list-group-item"><%= "Statut du bilan #{@footprint.certified}" %></li>
-      <li class="list-group-item"><%= "Scope 1: #{@footprint.scope_1}" %></li>
-      <li class="list-group-item"><%= "Scope 2: #{@footprint.scope_2}" %></li>
-      <li class="list-group-item"><%= "Scope 3: #{@footprint.scope_3}" %></li>
-      <li class="list-group-item"><%= "Résultat du bilan: #{@footprint.ghg_result}" %></li>
-      <li class="list-group-item"><%= "Objectif SBTi à 2050: #{@footprint.ghg_target}" %></li>
-      <li class="list-group-item"><%= "Benchmark: #{@footprint_benchmark}" %></li>
-  </ul>
+<div style="width: 800px;" class="chart-container" data-controller="chart">
+  <canvas id="tasks"></canvas>
+</div>
+
+<div style="width: 800px;" class="chart-container" data-controller="chart">
+  <canvas id="footprint_target"></canvas>
+</div>
+
+<ul class="list-group">
+    <li class="list-group-item"><%= "Statut du bilan #{@footprint.certified}" %></li>
+    <li class="list-group-item"><%= "Scope 1 par employé: #{@footprint.scope_1.fdiv(@company.employee_nb).round}" %></li>
+    <li class="list-group-item"><%= "Scope 2 par employé: #{@footprint.scope_2.fdiv(@company.employee_nb).round}" %></li>
+    <li class="list-group-item"><%= "Scope 3 par employé: #{@footprint.scope_3.fdiv(@company.employee_nb).round}" %></li>
+    <li class="list-group-item"><%= "Résultat du bilan par employé: #{@footprint.ghg_result.fdiv(@company.employee_nb).round}" %></li>
+    <li class="list-group-item"><%= "Objectif SBTi à 2030: #{(@footprint.ghg_result.fdiv(@company.employee_nb) * 0.55).round}" %></li>
+    <li class="list-group-item"><%= "Objectif SBTi à 2040: #{(@footprint.ghg_result.fdiv(@company.employee_nb) * 0.23).round}" %></li>
+    <li class="list-group-item"><%= "Objectif SBTi à 2050: #{@footprint.ghg_target.fdiv(@company.employee_nb).round}" %></li>
+    <li class="list-group-item"><%= "Benchmark: #{@footprint_benchmark.round}" %></li>
+    <li class="list-group-item"><%= "Benchmark (per employee): #{@footprint_benchmark_per_employee.round}" %></li>
+
+</ul>
