@@ -17,32 +17,69 @@ export default class extends Controller {
       {
         type: "bar",
         data: {
-          labels: ["Mar-2023","Jan-2050"],
+          labels: ["Mar-2023"],
           datasets: [ {
             label: "Benchmark",
             type: "bar",
             backgroundColor: "#1EDD88",
-            data: [this.data.get("myValue0"),"0"],
+            data: [this.data.get("myValue0")],
             stack: 1
           }, {
             label: "Scope 1",
             backgroundColor: "#DDFFBC",
-            data: [this.data.get("myValue1"),"0"],
-            stack: 3,
+            data: [this.data.get("myValue1")],
+            stack: 2,
           }, {
             label: "Scope 2",
             backgroundColor: "#FEFFDE",
-            data: [this.data.get("myValue2"),"0"],
-            stack: 3
+            data: [this.data.get("myValue2")],
+            stack: 2
           }, {
             label: "Scope 3",
             backgroundColor: "#52734D",
-            data: [this.data.get("myValue3"),"0"],
-            stack: 3
+            data: [this.data.get("myValue3")],
+            stack: 2
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              id: "stacked_testY",
+              type: 'linear',
+              position: "left",
+              stacked: true,
+              display: true
+            }],
+            xAxes: [{
+              position: "bottom",
+              stacked: true,
+              display: true
+            }]
+          }
+        }
+      }
+    );
+
+    new Chart(
+      document.getElementById('footprint_target'),
+      {
+        type: "bar",
+        data: {
+          labels: ["2030", "2040", "2050"],
+          datasets: [ {
+            label: "Objectif intermédiaire 2030",
+            backgroundColor: "#FFD3B4",
+            data: ["500", "0", "0"],
+            stack: 1
           }, {
-            label: "Objectif SBTi",
-            backgroundColor: "#98DDCA",
-            data: ["0",this.data.get("myValue4")],
+            label: "Objectif intermédiaire 2040",
+            backgroundColor: "#FFD3B4",
+            data: ["0", "200", "0"],
+            stack: 1
+          }, {
+            label: "Objectif 2050 approuvé SBTi",
+            backgroundColor: "#FFD3B4",
+            data: ["0", "0", "100"],
             stack: 1
           }]
         },
