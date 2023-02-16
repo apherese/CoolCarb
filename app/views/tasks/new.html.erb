@@ -1,0 +1,11 @@
+<div class="container">
+  <h1> Créez <strong>vos actions</strong> de réduction du bilan carbone</h1>
+  <%= simple_form_for [@footprint, @task] do |f| %>
+    <%= f.input :name, :label => "Nom de votre action"%>
+    <%= f.input :ghg_contribution, :label => "Impact de votre action (tonnes CO2eq/an), à la date effective de mise en oeuvre" %>
+    <%= f.input :start_date, :label => "Date de début de mise en oeuvre de l'action" %>
+    <%= f.input :end_date, :label => "Date effective de l'impact de votre action" %>
+    <%= f.input :owner_id, :label => "Désignez un membre de l'entreprise responsable de cette action" %>
+    <%= f.submit "Enregistrez votre action et réduisez votre bilan carbone!", class: "btn btn-primary" %>
+  <% end %>
+</div>

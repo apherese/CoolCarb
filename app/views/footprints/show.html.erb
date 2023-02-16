@@ -17,16 +17,17 @@
   <canvas id="footprint_target"></canvas>
 </div>
 
-<ul class="list-group">
-    <li class="list-group-item"><%= "Statut du bilan #{@footprint.certified}" %></li>
-    <li class="list-group-item"><%= "Scope 1 par employé: #{@footprint.scope_1.fdiv(@company.employee_nb).round}" %></li>
-    <li class="list-group-item"><%= "Scope 2 par employé: #{@footprint.scope_2.fdiv(@company.employee_nb).round}" %></li>
-    <li class="list-group-item"><%= "Scope 3 par employé: #{@footprint.scope_3.fdiv(@company.employee_nb).round}" %></li>
-    <li class="list-group-item"><%= "Résultat du bilan par employé: #{@footprint.ghg_result.fdiv(@company.employee_nb).round}" %></li>
-    <li class="list-group-item"><%= "Objectif SBTi à 2030: #{(@footprint.ghg_result.fdiv(@company.employee_nb) * 0.55).round}" %></li>
-    <li class="list-group-item"><%= "Objectif SBTi à 2040: #{(@footprint.ghg_result.fdiv(@company.employee_nb) * 0.23).round}" %></li>
-    <li class="list-group-item"><%= "Objectif SBTi à 2050: #{@footprint.ghg_target.fdiv(@company.employee_nb).round}" %></li>
-    <li class="list-group-item"><%= "Benchmark: #{@footprint_benchmark.round}" %></li>
-    <li class="list-group-item"><%= "Benchmark (per employee): #{@footprint_benchmark_per_employee.round}" %></li>
 
-</ul>
+
+<%# <ul class="list-group"> %>
+    <%# <%= li class="list-group-item"> "Action : #{@footprint.certified}"</li> %> %>
+    <%# <li class="list-group-item">= "Scope 1 par employé: #{@footprint.scope_1.fdiv(@company.employee_nb).round}"</li> %>
+    <%# <li class="list-group-item">= "Scope 2 par employé: #{@footprint.scope_2.fdiv(@company.employee_nb).round}"</li> %>
+    <%# <li class="list-group-item">= "Scope 3 par employé: #{@footprint.scope_3.fdiv(@company.employee_nb).round}"</li> %>
+    <%# <li class="list-group-item">= "Résultat du bilan par employé: #{@footprint.ghg_result.fdiv(@company.employee_nb).round}"</li> %>
+    <%# <li class="list-group-item">= "Objectif SBTi à 2030: #{(@footprint.ghg_result.fdiv(@company.employee_nb) * 0.55).round}"</li> %>
+    <%# <li class="list-group-item">= "Objectif SBTi à 2040: #{(@footprint.ghg_result.fdiv(@company.employee_nb) * 0.23).round}"</li> %>
+    <%# <li class="list-group-item">= "Objectif SBTi à 2050: #{@footprint.ghg_target.fdiv(@company.employee_nb).round}"</li> %>
+    <%# <li class="list-group-item">= "Benchmark: #{@footprint_benchmark.round}"</li> %>
+    <%# <li class="list-group-item">= "Benchmark (per employee): #{@footprint_benchmark_per_employee.round}"</li> %>
+<%# </ul> %>
