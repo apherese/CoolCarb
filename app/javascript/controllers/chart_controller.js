@@ -101,5 +101,47 @@ export default class extends Controller {
         }
       }
     );
+
+    new Chart(
+      document.getElementById('tasks'),
+      {
+        type: "bar",
+        data: {
+          labels: ["2013-2020"],
+          datasets: [ {
+            label: "Isoler les bâtiments",
+            backgroundColor: "#98DDCA",
+            data: ["118"],
+            stack: 1
+          }, {
+            label: "Installer une pompe à chaleur et supprimer le gaz",
+            backgroundColor: "#98DDCA",
+            data: ["250"],
+            stack: 2
+          }, {
+            label: "Contracter avec fournisseurs en circuits courts",
+            backgroundColor: "#98DDCA",
+            data: ["73"],
+            stack: 3
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              id: "stacked_testY",
+              type: 'linear',
+              position: "left",
+              stacked: true,
+              display: true
+            }],
+            xAxes: [{
+              position: "bottom",
+              stacked: true,
+              display: true
+            }]
+          }
+        }
+      }
+    );
   };
 }
