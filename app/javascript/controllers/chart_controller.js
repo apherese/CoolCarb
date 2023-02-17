@@ -111,18 +111,8 @@ export default class extends Controller {
           datasets: [ {
             label: "Isoler les bâtiments",
             backgroundColor: "#98DDCA",
-            data: ["118"],
+            data: [this.data.get("myValue7")],
             stack: 1
-          }, {
-            label: "Installer une pompe à chaleur et supprimer le gaz",
-            backgroundColor: "#98DDCA",
-            data: ["250"],
-            stack: 2
-          }, {
-            label: "Contracter avec fournisseurs en circuits courts",
-            backgroundColor: "#98DDCA",
-            data: ["73"],
-            stack: 3
           }]
         },
         options: {
