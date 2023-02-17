@@ -4,25 +4,25 @@
     <%# <h2>Scope 1</h2>
       <h3>Bâtiments</h3> %>
         <div class="long-form-div" data-long-form-target="screen">
-          <%= f.input :gaz, label: "Bâtiments : quelle consommation de gaz par an - chauffage, fours de cuisine, ... (en MWh/an) ?" %>
+          <%= f.input :gaz, label: "Bâtiments : quelle consommation de gaz par an - chauffage, fours de cuisine, ... (en MWh/an) ? Astuce : comptez 240 MWh/1000 m²/an" %>
           <span class="span" data-action="click->long-form#next">Suivant</span>
         </div>
 
         <div class="long-form-div" data-long-form-target="screen">
-          <%= f.input :fioul, label: "Bâtiments : quelle consommation de Fioul par an - chauffage (en milliers de litres/an) ?" %>
+          <%= f.input :fioul, label: "Bâtiments : quelle consommation de Fioul par an - chauffage (en milliers de litres/an) ? Astuce : comptez 2 milliers de litres/1000 m²/an" %>
           <span class="span" data-action="click->long-form#back">Précédent</span>
           <span class="span" data-action="click->long-form#next">Suivant</span>
         </div>
 
       <%# <h3>Véhicules</h3> %>
         <div class="long-form-div" data-long-form-target="screen">
-          <%= f.input :essence, label: "Véhicules d'entreprise : combien vos salariés consomment-ils de litres d'essence par an (en milliers de litres/an) ? Astuce : en moyenne comptez 1.4 milliers de litres/véhicule/an" %>
+          <%= f.input :essence, label: "Véhicules d'entreprise : combien vos salariés consomment-ils de litres d'essence par an (en milliers de litres/an) ? Astuce : comptez 1.4 milliers de litres/véhicule/an" %>
           <span class="span" data-action="click->long-form#back">Précédent</span>
           <span class="span" data-action="click->long-form#next">Suivant</span>
         </div>
 
         <div class="long-form-div" data-long-form-target="screen">
-          <%= f.input :gazole, label: "Véhicules d'entreprise : combien vos salariés consomment-ils de litres de gazole par an (en milliers de litres/an) ? Astuce : en moyenne comptez 1.2 milliers de litres/véhicule/an" %>
+          <%= f.input :gazole, label: "Véhicules d'entreprise : combien vos salariés consomment-ils de litres de gazole par an (en milliers de litres/an) ? Astuce : comptez 1.2 milliers de litres/véhicule/an" %>
           <span class="span" data-action="click->long-form#back">Précédent</span>
           <span class="span" data-action="click->long-form#next">Suivant</span>
         </div>
@@ -36,26 +36,26 @@
     <%# <h2>Scope 2</h2> %>
       <%# <h3>Electricité</h3> %>
         <div class="long-form-div" data-long-form-target="screen">
-          <%= f.input :electricite, label: "Bâtiments et véhicules : quelle consommation délectricité par an (en MWh/an) ? Astuce : en moyenne comptez 24 MWh/100m²/an" %>
+          <%= f.input :electricite, label: "Bâtiments et véhicules : quelle consommation délectricité par an (en MWh/an) ? Astuce : comptez 240 MWh/1000 m²/an" %>
           <span class="span" data-action="click->long-form#back">Précédent</span>
           <span class="span" data-action="click->long-form#next">Suivant</span>
         </div>
 
     <%# <h2>Scope 3</h2> %>
       <div class="long-form-div" data-long-form-target="screen">
-        <%= f.input :clients_fr, label: "Clients arrivant et repartant en véhicules thermiques : quelle consommation de litres de carburant par an (en milliers de litres/an)? Astuce : en moyenne comptez 1.2 milliers de litres/véhicule/an" %>
+        <%= f.input :clients_fr, label: "Pourcentage de clients venant de France (arrivant et repartant en véhicules thermiques - 300 km aller-retour)? ex: Entrez 80 pour 80%" %>
         <span class="span" data-action="click->long-form#back">Précédent</span>
         <span class="span" data-action="click->long-form#next">Suivant</span>
       </div>
 
       <div class="long-form-div" data-long-form-target="screen">
-        <%= f.input :clients_int, label: "Clients venant en avion (faisant en moyenne 2000km aller-retour) : combien de clients par an ?" %>
+        <%= f.input :clients_int, label: "Pourcentage de clients venant de l'étranger (arrivant et repartant en avion - 2 000 km aller-retour)? ex: Entrez 10 pour 10%" %>
         <span class="span" data-action="click->long-form#back">Précédent</span>
         <span class="span" data-action="click->long-form#next">Suivant</span>
       </div>
 
       <div class="long-form-div" data-long-form-target="screen">
-        <%= f.input :fournisseurs, label: "Déplacements des fournisseurs : quelle consommation de gazole par an (en milliers de litres/an) ? Astuce : en moyenne comptez 0,01 milliers de litres/fournisseur/an" %>
+        <%= f.input :fournisseurs, label: "Déplacements des fournisseurs : quelle consommation de gazole par an (en milliers de litres/an) ? Astuce : omptez 0,01 milliers de litres/fournisseur/an" %>
         <span class="span" data-action="click->long-form#back">Précédent</span>
         <span class="span" data-action="click->long-form#next">Suivant</span>
       </div>
