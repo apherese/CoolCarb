@@ -13,15 +13,15 @@ class FootprintsController < ApplicationController
 
   def create
     @footprint = Footprint.new(footprint_params)
-    gaz_result = (@footprint.gaz * EmissionFactors::GAZ) / 1000
-    fioul_result = (@footprint.fioul * EmissionFactors::FIOUL) / 1000
-    essence_result = (@footprint.essence * EmissionFactors::ESSENCE) / 1000
-    gazole_result = (@footprint.gazole * EmissionFactors::GAZOLE) / 1000
-    electricite_result = (@footprint.electricite * EmissionFactors::ELECTRICITE) / 1000
-    clients_fr_result = (@footprint.clients_fr * EmissionFactors::CLIENTFR * 500) / 1000
-    clients_int_result = (@footprint.clients_int * EmissionFactors::CLIENTINT * 5000) / 1000
-    fournisseurs_result = (@footprint.fournisseurs * EmissionFactors::FOURNISSEURS) / 1000
-    taille_batiments_results = (@footprint.taille_batiments * EmissionFactors::BATIMENTS) / 1000
+    gaz_result = (@footprint.gaz * EmissionFactors::GAZ)
+    fioul_result = (@footprint.fioul * EmissionFactors::FIOUL)
+    essence_result = (@footprint.essence * EmissionFactors::ESSENCE)
+    gazole_result = (@footprint.gazole * EmissionFactors::GAZOLE)
+    electricite_result = (@footprint.electricite * EmissionFactors::ELECTRICITE)
+    clients_fr_result = (@footprint.clients_fr * EmissionFactors::CLIENTFR * 21)
+    clients_int_result = (@footprint.clients_int * EmissionFactors::CLIENTINT)
+    fournisseurs_result = (@footprint.fournisseurs * EmissionFactors::FOURNISSEURS)
+    taille_batiments_results = (@footprint.taille_batiments * EmissionFactors::BATIMENTS)
     @footprint.scope_1 = (gaz_result + fioul_result + essence_result + gazole_result).round
     @footprint.scope_2 = electricite_result.round
     @footprint.scope_3 = (clients_fr_result + clients_int_result + fournisseurs_result + taille_batiments_results).round

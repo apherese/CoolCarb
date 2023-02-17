@@ -20,11 +20,11 @@
           <canvas id="footprint"></canvas>
         </div>
           <ul class="list-group">
-            <h2>Voici la liste <strong>des actions que vous engagez</strong> et leur impact (en tonnes CO2/an)</h2>
+            <h2>Voici la liste <strong>des actions que vous engagez</strong> et leur <strong>impact</strong> (en tonnes CO2/an par collaborateur)</h2>
             <% @tasks.each do |task| %>
-              <li class="list-group-item">Action :  "<%= task.name%>", Impact :  -<%= task.ghg_contribution %>  tonnes de CO2/an</li>
+              <li class="list-group-item">Action :  "<%= task.name%>", Impact :  -<%= task.ghg_contribution %>  tonnes de CO2/an par collaborateur</li>
             <% end %>
-            <h2>Soit au total : - <strong><%= @task_ghg_contribution_per_employee.round %></strong>  tonnes de CO2/an</h2>
+            <h2>Soit au total : - <strong><%= @task_ghg_contribution_per_employee.round %></strong>  tonnes de CO2/an par collaborateur</h2>
           </ul>
 
               <li><%= "Action : #{@footprint.certified}"%> </li>
@@ -44,7 +44,7 @@
 
     <div class="col-4">
       <div>
-        <h2>Créez <strong>vos actions</strong> de réduction du bilan carbone et engagez vos collaborateurs</h2>
+        <h2>Créez <strong>vos actions</strong> de réduction du bilan carbone et <strong>engagez</strong> vos collaborateurs</h2>
           <div class="container">
             <%= simple_form_for [@footprint, @task] do |f| %>
               <%= f.input :name, :label => "Nom de votre action"%>
