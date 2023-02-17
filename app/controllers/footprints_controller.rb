@@ -36,6 +36,7 @@ class FootprintsController < ApplicationController
   end
 
   def show
+    @task = Task.new
     @footprint = Footprint.find(params[:id])
     @company = @footprint.company
     @tasks = @footprint.tasks
