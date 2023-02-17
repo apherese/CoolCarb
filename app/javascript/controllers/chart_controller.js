@@ -17,7 +17,7 @@ export default class extends Controller {
       {
         type: "bar",
         data: {
-          labels: ["Mar-2023"],
+          labels: ["Simulation : Benchmark - Bilan - Bilan après plan d'action et les trois objectifs"],
           datasets: [ {
             label: "Benchmark",
             type: "bar",
@@ -39,48 +39,26 @@ export default class extends Controller {
             backgroundColor: "#52734D",
             data: [this.data.get("myValue3")],
             stack: 2
-          }]
-        },
-        options: {
-          scales: {
-            yAxes: [{
-              id: "stacked_testY",
-              type: 'linear',
-              position: "left",
-              stacked: true,
-              display: true
-            }],
-            xAxes: [{
-              position: "bottom",
-              stacked: true,
-              display: true
-            }]
-          }
-        }
-      }
-    );
-
-    new Chart(
-      document.getElementById('footprint_target'),
-      {
-        type: "bar",
-        data: {
-          labels: ["2030", "2040", "2050"],
-          datasets: [ {
+          }, {
+            label: "Bilan APRES le plan d'action",
+            backgroundColor: "#98DDCA",
+            data: [this.data.get("myValue7")],
+            stack: 3
+          }, {
             label: "Objectif intermédiaire 2030",
             backgroundColor: "#FFD3B4",
-            data: [this.data.get("myValue4"), "0", "0"],
-            stack: 1
+            data: [this.data.get("myValue4")],
+            stack: 4
           }, {
             label: "Objectif intermédiaire 2040",
             backgroundColor: "#FFD3B4",
-            data: ["0", this.data.get("myValue5"), "0"],
-            stack: 1
+            data: [this.data.get("myValue5")],
+            stack: 5
           }, {
             label: "Objectif 2050 approuvé SBTi",
             backgroundColor: "#FFD3B4",
-            data: ["0", "0", this.data.get("myValue6")],
-            stack: 1
+            data: [this.data.get("myValue6")],
+            stack: 6
           }]
         },
         options: {
@@ -102,36 +80,78 @@ export default class extends Controller {
       }
     );
 
-    new Chart(
-      document.getElementById('tasks'),
-      {
-        type: "bar",
-        data: {
-          labels: ["2013-2020"],
-          datasets: [ {
-            label: "Isoler les bâtiments",
-            backgroundColor: "#98DDCA",
-            data: [this.data.get("myValue7")],
-            stack: 1
-          }]
-        },
-        options: {
-          scales: {
-            yAxes: [{
-              id: "stacked_testY",
-              type: 'linear',
-              position: "left",
-              stacked: true,
-              display: true
-            }],
-            xAxes: [{
-              position: "bottom",
-              stacked: true,
-              display: true
-            }]
-          }
-        }
-      }
-    );
+    // new Chart(
+    //   document.getElementById('footprint_target'),
+    //   {
+    //     type: "bar",
+    //     data: {
+    //       labels: ["2030", "2040", "2050"],
+    //       datasets: [ {
+    //         label: "Objectif intermédiaire 2030",
+    //         backgroundColor: "#FFD3B4",
+    //         data: [this.data.get("myValue4"), "0", "0"],
+    //         stack: 1
+    //       }, {
+    //         label: "Objectif intermédiaire 2040",
+    //         backgroundColor: "#FFD3B4",
+    //         data: ["0", this.data.get("myValue5"), "0"],
+    //         stack: 1
+    //       }, {
+    //         label: "Objectif 2050 approuvé SBTi",
+    //         backgroundColor: "#FFD3B4",
+    //         data: ["0", "0", this.data.get("myValue6")],
+    //         stack: 1
+    //       }]
+    //     },
+    //     options: {
+    //       scales: {
+    //         yAxes: [{
+    //           id: "stacked_testY",
+    //           type: 'linear',
+    //           position: "left",
+    //           stacked: true,
+    //           display: true
+    //         }],
+    //         xAxes: [{
+    //           position: "bottom",
+    //           stacked: true,
+    //           display: true
+    //         }]
+    //       }
+    //     }
+    //   }
+    // );
+
+    // new Chart(
+    //   document.getElementById('tasks'),
+    //   {
+    //     type: "bar",
+    //     data: {
+    //       labels: ["2013-2020"],
+    //       datasets: [ {
+    //         label: "Isoler les bâtiments",
+    //         backgroundColor: "#98DDCA",
+    //         data: [this.data.get("myValue7")],
+    //         stack: 1
+    //       }]
+    //     },
+    //     options: {
+    //       scales: {
+    //         yAxes: [{
+    //           id: "stacked_testY",
+    //           type: 'linear',
+    //           position: "left",
+    //           stacked: true,
+    //           display: true
+    //         }],
+    //         xAxes: [{
+    //           position: "bottom",
+    //           stacked: true,
+    //           display: true
+    //         }]
+    //       }
+    //     }
+    //   }
+    // );
   };
 }
