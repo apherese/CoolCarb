@@ -6,7 +6,7 @@ export default class extends Controller {
   connect() {
     this.index = 0
     this.formTarget.addEventListener("submit", (event) => {
-      if ( this.screenTargets.lenght === this.index + 1) {
+      if ( this.screenTargets.length === this.index + 1) {
         this.formTarget.submit()
       } else {
         event.preventDefault()
@@ -28,9 +28,10 @@ export default class extends Controller {
   next() {
     this.index++
     const screen = this.screenTargets[this.index]
-    screen.scrollIntoView({behavior: "smooth"})
-    setTimeout(() => {
-      screen.querySelector("input").focus()
-    }, 500);
+      screen.scrollIntoView({behavior: "smooth"})
+      setTimeout(() => {
+        screen.querySelector("input").focus()
+      }, 500);
+
   }
 }
