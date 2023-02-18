@@ -31,7 +31,7 @@ class FootprintsController < ApplicationController
     @footprint.ghg_target = (@footprint.ghg_result * 0.12).round
     @footprint.company = @company
     if @footprint.save
-      redirect_to footprint_path(@footprint)
+      redirect_to mon_bilan_carbone_path
     else
       render :new, status: :unprocessable_entity
     end
