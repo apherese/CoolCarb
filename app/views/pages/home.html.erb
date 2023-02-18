@@ -1,9 +1,55 @@
-<%= content_for(:navbar_class, "navbar-home") %>
+<%# <%= content_for(:navbar_class, "navbar-home") %>
+<%# <div class="banner"> %>
+  <%# <div class="banner-content text-center"> %>
+    <%# <h1>La plate-forme des PME engagées pour le climat!</h1> %>
+    <%# <p>Décarbonnez votre empreinte</p> %>
+    <%# <%= link_to "Calculez facilement votre bilan carbone", new_company_url, class: "btn btn-lg btn-primary"  %>
+  <%# </div> %>
+<%# </div> %>
+    
+<div class="row">
+  <div class="navbar ml-4 mr-4 rounded border-black border">
+    <div class="container">
+      <a class="navbar-brand ml-4" href="#">
+        <%= image_tag "logo.png", class:"w-50 ps-4" %>
+      </a>
+      <a href="">Pourquoi Coolcarb?</a>
+      <a href="">Notre offre ?</a>
+      <a href="">Benchmark</a>
+      <a href="/" class="btn btn-primary">Connexion</a>
+    </div>
+  </div>
+</div>
 
-<div class="banner">
-  <div class="banner-content text-center">
-    <h1>La plate-forme des PME engagées pour le climat!</h1>
-    <p>Décarbonnez votre empreinte</p>
+<div class="container">
+
+  <div class="row justify-content-around hero-banner">
+    <div class="text-start col-4 d-flex flex-column justify-content-center">
+      <h1>La plateforme des PME engagées pour le climat</h1>
+      <p>Lorem ipsum dolor sit amet, tortor. Nulla sed nulla justo. Sed laoreet ante nunc. Mauris quis ornare eros, sed vehicula massa. Mauris vestibulum, tellus a pulvinar molestie, arcu tortor fringilla urna, eget mollis nibh enim et augue. Nam vulputate erat dignissim augue pellentesque, in vestibulum orci porta.</p>
+      <a href="/" class="btn btn-primary hero-button">Calculer mon empreinte</a>
+    </div>
+    <div class="col-6 d-flex flex-column justify-content-center">
+      <%= image_tag "image-home.png", class:" " %>
+    </div>
+  </div>
+
+  <div class="category-container">
+
+      <div class='engagement-card'>
+        <h1 class="">Engagement</h1>
+      </div>
+    <div class="sub-category">
+
+        <div class="partner-card">
+          <h1>Partenaires</h1>
+        </div>
+
+        <div class="news-card">
+          <h1>Actualités</h1>
+        </div>
+    </div>
+  
     <% if user_signed_in? %>
       <% if current_user.company == nil %>
         <%= link_to "Calculez facilement votre bilan carbone", new_company_path, class: "btn btn-lg btn-primary" %>

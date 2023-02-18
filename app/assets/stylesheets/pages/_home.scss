@@ -1,1 +1,75 @@
 // Specific CSS for your home-page
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.hero-banner {
+  height: 80vh;
+  width: 100%;
+  background-image: url(rectangle.png);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  margin-bottom: 2rem;
+}
+
+.hero-button {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.category-container {
+  width: 100%;
+  display: flex;
+  gap: 2rem;
+  margin: 0 auto 4rem auto;
+}
+
+.sub-category {
+  width: 50%;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.partner-card {
+  height: 60%;
+  width: 100%;
+  background-image: url('partenaires.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 16px;
+}
+.engagement-card {
+  height: 100%;
+  width: 50%;
+  min-height: 60vh;
+  background-image: url('engagement.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 16px;
+}
+
+.news-card {
+  height: 40%;
+  width: 100%;
+  background-image: url('actualites.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 16px;
+}
