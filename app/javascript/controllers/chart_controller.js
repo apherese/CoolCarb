@@ -21,7 +21,7 @@ export default class extends Controller {
         {
           type: "bar",
           data: {
-            labels: ["Simulation : Benchmark - Bilan - Bilan après plan d'action et les trois objectifs"],
+            labels: [" Benchmark : moyenne des meilleurs bilans carbone (tCO2/employé) de votre secteur"],
             datasets: [ {
               label: "Benchmark",
               type: "bar",

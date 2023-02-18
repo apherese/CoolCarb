@@ -1,8 +1,10 @@
 <div class="containers">
   <div class="dashboard_navbar">
     <div class="dashboard_navbar_header">
-      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" class="rounded-circle" style="width:80px; height:80px"/>
-     <p><%= "#{@current_user.name}" %></p>
+      <% if current_user.photo %>
+        <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+      <% end %>
+      <p><%= "#{@current_user.name}" %></p>
       <p><%= "#{@current_user.email}" %></p>
     </div>
     <div class="dashboard_navbar_body">
@@ -39,7 +41,7 @@
         <div class="card-product">
           <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
           <div class="card-product-infos">
-          <h2>42 employés</h2>
+          <h2><%= "#{@company.employee_nb} collaborateurs"%></h2>
           </div>
         </div>
       </div>
@@ -50,19 +52,12 @@
           <%= link_to "Calculer mon Bilan Carbone", new_company_footprint_path(@company) %>
         <% else %>
           <div style="width: 800px;" class="chart-container" data-controller="chart"
-              data-chart-my-value0="<%= @footprint_benchmark_per_employee.round %>"
-              data-chart-my-value1="<%= @footprint.scope_1.fdiv(@company.employee_nb).round %>" data-chart-my-value2="<%= @footprint.scope_2.fdiv(@company.employee_nb).round %>"
-              data-chart-my-value3="<%= @footprint.scope_3.fdiv(@company.employee_nb).round %>"
-              data-chart-my-value4="<%= (@footprint.ghg_result.fdiv(@company.employee_nb) * 0.55).round %>"
-              data-chart-my-value5="<%= (@footprint.ghg_result.fdiv(@company.employee_nb) * 0.23).round %>"
-              data-chart-my-value6="<%= @footprint.ghg_target.fdiv(@company.employee_nb).round %>"
-              @task_ghg_contribution_per_employee = 0
-              <% @task_ghg_contribution_per_employee = @footprint.tasks.sum do |task| %>
-                <% task.ghg_contribution %>
-              <% end %>
-              <% @task_ghg_contribution_per_employee = @task_ghg_contribution_per_employee.fdiv(@company.employee_nb)%>
-              <% @footprint_post_action = (@footprint.ghg_result.fdiv(@company.employee_nb) - @task_ghg_contribution_per_employee).round  %>
-              data-chart-my-value7="<%= @task_ghg_contribution_per_employee != 0 ? @footprint_post_action : 0 %>">
+            data-chart-my-value0="<%= @footprint_benchmark_per_employee.round %>"
+            data-chart-my-value1="<%= @footprint.scope_1.fdiv(@company.employee_nb).round %>" data-chart-my-value2="<%= @footprint.scope_2.fdiv(@company.employee_nb).round %>"
+            data-chart-my-value3="<%= @footprint.scope_3.fdiv(@company.employee_nb).round %>"
+            data-chart-my-value4="<%= (@footprint.ghg_result.fdiv(@company.employee_nb) * 0.55).round %>"
+            data-chart-my-value5="<%= (@footprint.ghg_result.fdiv(@company.employee_nb) * 0.23).round %>"
+            data-chart-my-value6="<%= @footprint.ghg_target.fdiv(@company.employee_nb).round %>">
             <canvas id="footprint"></canvas>
           </div>
         <% end %>

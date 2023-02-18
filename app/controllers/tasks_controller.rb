@@ -10,7 +10,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.footprint = @footprint
     if @task.save
-      redirect_to footprint_path(@footprint)
+      redirect_to targets_path
     else
       render :new, status: :unprocessable_entity
     end
