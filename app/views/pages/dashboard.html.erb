@@ -1,12 +1,90 @@
-<div class="container">
-  <h1>
-    <%= "Société #{@company.name}" %>
-  </h1>
-  <h2>
-    <%= "Activité : #{@company.industry}" %>
-  </h2>
-</div>
+<div class="containers">
+  <!--<div class="tabbable tabs-left">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#tab1" data-toggle="tab">Mon Tableau de Bord</a></li>
+      <li><a href="#tab2" data-toggle="tab">Mon Bilan Carbone</a></li>
 
-<%= link_to 'Calculer précisément mon bilan carbone', new_company_footprint_path(@company) %>
-<%= link_to 'Afficher mes précédents bilans', footprints_path %>
-<%# <%= link_to 'Créer une tâche',  %> %>
+      <li><a href="#tab3" data-toggle="tab">Mon Plan d'Action</a></li>
+    </ul>
+  </div>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <p>Je suis le Dashboard</p>
+    </div>
+    <div class="tab-pane" id="tab2">
+      <p>Je suis le Bilan</p>
+    </div>
+    <div class="tab-pane" id="tab3">
+      <p>Je suis le Plan</p>
+    </div>
+  </div>-->
+  <div class="dashboard_navbar">
+    <div class="dashboard_navbar_header">
+      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" class="rounded-circle" style="width:80px; height:80px"/>
+     <p><%= "#{@current_user.name}" %></p>
+      <p><%= "#{@current_user.email}" %></p>
+    </div>
+    <div class="dashboard_navbar_body">
+      <div class="dashboard">
+        <p>Tableau de Bord</p>
+      </div>
+      <div class="fooprint">
+        <p>Mon Bilan Carbone </p>
+      </div>
+      <div class="target">
+        <p>Mon Plan d'Action</p>
+      </div>
+    </div>
+    <div class="dashboard_navbar_footer">
+      <div class="btn btn-primary">Se déconnecter</div>
+    </div>
+  </div>
+
+  <div class="dashboard_content">
+
+      <div class="dashboard_content_header">
+        <div class="card-product">
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+          <div class="card-product-infos">
+           <h2><%= "Société #{@company.name}" %></h2>
+           </div>
+        </div>
+        <div class="card-product">
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+          <div class="card-product-infos">
+          <h2><%= "Activité : #{@company.industry}" %></h2>
+          </div>
+        </div>
+        <div class="card-product">
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+          <div class="card-product-infos">
+          <h2>42 employés</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard_content_body">
+        <div>
+          <p>Content Body</p>
+        </div>
+      </div>
+
+      <div class="dashboard_content_footer">
+        <div class="card_footer">
+          <h4>Préciser Mon Bilan Carbone</h4>
+          <p>Mesurer précisément mon empreinte</p>
+          <div class="btn btn-primary">Cliquer Ici</div>
+        </div>
+        <div class="card_footer">
+          <h4>Préciser Mon Bilan Carbone</h4>
+          <p>Mesurer précisément mon empreinte</p>
+          <div class="btn btn-primary">Cliquer Ici</div>
+        </div>
+        <div class="card_footer">
+          <h4>Préciser Mon Bilan Carbone</h4>
+          <p>Mesurer précisément mon empreinte</p>
+          <div class="btn btn-primary">Cliquer Ici</div>
+        </div>
+      </div>
+  </div>
+</div>
