@@ -1,4 +1,23 @@
 <div class="containers">
+  <!--<div class="tabbable tabs-left">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#tab1" data-toggle="tab">Mon Tableau de Bord</a></li>
+      <li><a href="#tab2" data-toggle="tab">Mon Bilan Carbone</a></li>
+
+      <li><a href="#tab3" data-toggle="tab">Mon Plan d'Action</a></li>
+    </ul>
+  </div>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <p>Je suis le Dashboard</p>
+    </div>
+    <div class="tab-pane" id="tab2">
+      <p>Je suis le Bilan</p>
+    </div>
+    <div class="tab-pane" id="tab3">
+      <p>Je suis le Plan</p>
+    </div>
+  </div>-->
   <div class="dashboard_navbar">
     <div class="dashboard_navbar_header">
       <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" class="rounded-circle" style="width:80px; height:80px"/>
@@ -8,12 +27,15 @@
     <div class="dashboard_navbar_body">
       <div class="dashboard">
         <p>Tableau de Bord</p>
+        <%= link_to "Tableau de Bord", dashboard_path %>
       </div>
-      <div class="mon_bilan_carbone">
-        <a href="/mon_bilan_carbone">Mon bilan Carbone</a>
+      <div class="fooprint">
+        <p>Mon Bilan Carbone </p>
+        <%= link_to "Mon Bilan Carbone", mon_bilan_carbone_path %>
       </div>
       <div class="target">
-        <a href="/targets">Mon Plan d'Action</a>
+        <p></p>
+        <%= link_to "Mon Plan d'Action", targets_path %>
       </div>
     </div>
     <div class="dashboard_navbar_footer">
@@ -57,13 +79,13 @@
           <div class="btn btn-primary">Cliquer Ici</div>
         </div>
         <div class="card_footer">
-          <h4>Réduire mon empreinte CO2</h4>
-          <p>Selectionnez un plan </p>
+          <h4>Préciser Mon Bilan Carbone</h4>
+          <p>Mesurer précisément mon empreinte</p>
           <div class="btn btn-primary">Cliquer Ici</div>
         </div>
         <div class="card_footer">
-          <h4>Communiquer vos résultats</h4>
-          <p>Obtenez un bilan officiel et communicable</p>
+          <h4>Préciser Mon Bilan Carbone</h4>
+          <p>Mesurer précisément mon empreinte</p>
           <div class="btn btn-primary">Cliquer Ici</div>
         </div>
       </div>
