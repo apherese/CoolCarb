@@ -1,8 +1,11 @@
 <div class="container">
     <%= simple_form_for(@company) do |f| %>
-    <%= f.input :name %>
-    <%= f.input :industry %>
-    <%= f.input :employee_nb %>
+    <%= f.input :name, :label => "Nom de votre société (ex: Les flots bleus):" %>
+    <%= f.input :industry, :label => "Activité (ex: Hôtel):" %>
+    <%= f.input :employee_nb, :label => "Nombre de collaborateurs :" %>
+    <%= f.input :room_nb, :label => "Nombre de chambres (ex: entrez 45 pour 45 chambres):" %>
+    <%= f.input :length_of_stay, :label => "Durée moyenne des séjours (ex: entrée 4,2 pour 4,2 nuitées):" %>
+    <%= f.input :load_factor, :label => "Coefficient de remplissage (ex: entrez 70 pour 70%):" %>
     <%= f.submit "Créer votre PME" %>
   <% end %>
 </div>
