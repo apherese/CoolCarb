@@ -49,7 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_17_213447) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "room_nb", default: 0.0, null: false
-    t.float "length_of_stay", default: 0.0, null: false
+    t.float "length_of_stay", default: 1.0, null: false
     t.float "load_factor", default: 0.0, null: false
   end
 

@@ -1,5 +1,6 @@
 <div class="container">
-    <%= simple_form_for(@company) do |f| %>
+  <h1>Enregistrez votre entreprise pour accéder à de nouvelles fonctionalités</h1>
+  <%= simple_form_for(@company) do |f| %>
     <%= f.input :name, :label => "Nom de votre société (ex: Les flots bleus):" %>
     <%= f.input :industry, :label => "Activité (ex: Hôtel):" %>
     <%= f.input :employee_nb, :label => "Nombre de collaborateurs :" %>
@@ -8,7 +9,4 @@
     <%= f.input :load_factor, :label => "Coefficient de remplissage (ex: entrez 70 pour 70%):" %>
     <%= f.submit "Créer votre PME" %>
   <% end %>
-  
-          <%= link_to "Calculez facilement votre bilan carbone", dashboard_path, class: "btn btn-lg btn-primary" %>
-
 </div>

@@ -17,9 +17,7 @@
       </div>
     </div>
     <div class="dashboard_navbar_footer">
-      <%= button_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "btn btn-primary"
-
-      end %>
+      <%= button_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
     </div>
   </div>
 
@@ -41,7 +39,7 @@
         <div class="card-product">
           <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
           <div class="card-product-infos">
-          <h2>42 employés</h2>
+          <h2><%= "#{@company.employee_nb} employés"%></h2>
           </div>
         </div>
       </div>
@@ -56,7 +54,7 @@
         <div class="card_footer">
           <h4>Préciser Mon Bilan Carbone</h4>
           <p>Mesurer précisément mon empreinte</p>
-          <div class="btn btn-primary">Cliquer Ici</div>
+          <%= link_to "Cliquez ici", new_company_footprint_path(@company), class: "btn btn-primary" %>
         </div>
         <div class="card_footer">
           <h4>Réduire mon empreinte CO2</h4>
