@@ -25,7 +25,10 @@
   <div class="row justify-content-around hero-banner">
     <div class="text-start col-4 d-flex flex-column justify-content-center">
       <h1><strong>La plateforme des PME engagées pour le climat</strong></h1>
-      <p class="mb-3">Lorem ipsum dolor sit amet, tortor. Nulla sed nulla justo. Sed laoreet ante nunc. Mauris quis ornare eros, sed vehicula massa. Mauris vestibulum, tellus a pulvinar molestie, arcu tortor fringilla urna, eget mollis nibh enim et augue. Nam vulputate erat dignissim augue pellentesque, in vestibulum orci porta.</p>
+      <p class="mb-3">Vous pouvez <strong>consulter</strong> le bilan carbone des meilleures sociétés!
+          Inspirez-vous de leurs <strong>actions de réduction</strong> de leur empreinte carbone!
+          Vous pouvez inscrire votre société gratuitement et <strong>calculer votre bilan carbone!</strong>
+          Vous pouvez bénéficier de nos conseils pour <strong>engager des actions et engager vos collaborateurs!</strong></p>
       <% if current_user != nil %>
       <% if current_user.company == nil %>
         <%= link_to "Calculez mon empreinte", new_company_path, class: "btn btn-primary hero-button" %>
@@ -45,6 +48,7 @@
 
       <div class='engagement-card'>
         <h1 class=""><strong>Engagement</strong></h1>
+        <%= link_to "Exemples de bilans carbone de PME et de leurs plan d'action", companies_path, class: "btn btn-lg btn-primary" %>
       </div>
     <div class="sub-category">
         <div class="partner-card">

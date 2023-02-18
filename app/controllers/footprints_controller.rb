@@ -1,4 +1,5 @@
 class FootprintsController < ApplicationController
+  include Charts
   before_action :set_company, only: %i[new create]
   before_action :compute_benchmark, only: %i[new create show]
   before_action :compute_benchmark_per_employee, only: %i[new create show]
@@ -16,12 +17,12 @@ class FootprintsController < ApplicationController
     @groups = 365 * @company.room_nb * @company.load_factor.fdiv(@company.length_of_stay)
     gaz_result = (@footprint.gaz * EmissionFactors::GAZ)
     fioul_result = (@footprint.fioul * EmissionFactors::FIOUL)
-    essence_result = (@footprint.essence * EmissionFactors::ESSENCE)
-    gazole_result = (@footprint.gazole * EmissionFactors::GAZOLE)
+    essence_result = (@footprint.essence * 1.4 * EmissionFactors::ESSENCE)
+    gazole_result = (@footprint.gazole * 1.2 * EmissionFactors::GAZOLE)
     electricite_result = (@footprint.electricite * EmissionFactors::ELECTRICITE)
     clients_fr_result = (@footprint.clients_fr.fdiv(100) * EmissionFactors::CLIENTFR * 0.0021 * @groups)
     clients_int_result = (@footprint.clients_int.fdiv(100) * EmissionFactors::CLIENTINT * @groups)
-    fournisseurs_result = (@footprint.fournisseurs * EmissionFactors::FOURNISSEURS)
+    fournisseurs_result = (@footprint.fournisseurs * 0.01 * EmissionFactors::FOURNISSEURS)
     taille_batiments_results = (@footprint.taille_batiments * EmissionFactors::BATIMENTS)
     @footprint.scope_1 = (gaz_result + fioul_result + essence_result + gazole_result).round
     @footprint.scope_2 = electricite_result.round
@@ -30,7 +31,7 @@ class FootprintsController < ApplicationController
     @footprint.ghg_target = (@footprint.ghg_result * 0.12).round
     @footprint.company = @company
     if @footprint.save
-      redirect_to footprint_path(@footprint)
+      redirect_to mon_bilan_carbone_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -67,18 +68,5 @@ class FootprintsController < ApplicationController
       end
     end
     @footprint_benchmark = @footprint_benchmark.fdiv(companies.size)
-  end
-
-  def compute_benchmark_per_employee
-    @footprint_benchmark_per_employee = 0
-    companies = Company.sector(current_company.industry)
-    @footprint_benchmark_per_employee = companies.sum do |company|
-      if company.footprints.where(certified: true).size != 0
-        company.footprints.where(certified: true).pluck(:ghg_result).sum.fdiv(company.footprints.where(certified: true).size * company.employee_nb)
-      else
-        0
-      end
-    end
-    @footprint_benchmark_per_employee = @footprint_benchmark_per_employee.fdiv(100 * companies.size)
   end
 end

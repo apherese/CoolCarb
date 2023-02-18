@@ -49,7 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_17_213447) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "room_nb", default: 0.0, null: false
-    t.float "length_of_stay", default: 0.0, null: false
+    t.float "length_of_stay", default: 1.0, null: false
     t.float "load_factor", default: 0.0, null: false
   end
 
@@ -61,15 +61,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_17_213447) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "company_id"
-    t.integer "gaz", default: 0, null: false
-    t.integer "fioul", default: 0, null: false
-    t.integer "essence", default: 0, null: false
-    t.integer "gazole", default: 0, null: false
-    t.integer "electricite", default: 0, null: false
-    t.integer "clients_fr", default: 0, null: false
-    t.integer "clients_int", default: 0, null: false
-    t.integer "fournisseurs", default: 0, null: false
-    t.integer "taille_batiments", default: 0, null: false
+    t.integer "gaz"
+    t.integer "fioul"
+    t.integer "essence"
+    t.integer "gazole"
+    t.integer "electricite"
+    t.integer "clients_fr"
+    t.integer "clients_int"
+    t.integer "fournisseurs"
+    t.integer "taille_batiments"
     t.float "scope_1", default: 0.0, null: false
     t.float "scope_2", default: 0.0, null: false
     t.float "scope_3", default: 0.0, null: false

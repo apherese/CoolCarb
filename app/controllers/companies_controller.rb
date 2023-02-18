@@ -1,4 +1,6 @@
 class CompaniesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [ :index ]
+
   def show
     @company = Company.find(params[:id])
   end

@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-8">
       <div>
-      <h2>Visualisez <strong>votre bilan carbone</strong> et l'impact de votre plan d'action</h2>
+      <h4>Visualisez <strong>votre bilan carbone</strong> et l'impact de votre plan d'action</h4>
         <div style="width: 800px;" class="chart-container" data-controller="chart"
             data-chart-my-value0="<%= @footprint_benchmark_per_employee.round %>"
             data-chart-my-value1="<%= @footprint.scope_1.fdiv(@company.employee_nb).round %>" data-chart-my-value2="<%= @footprint.scope_2.fdiv(@company.employee_nb).round %>"
@@ -43,19 +43,44 @@
       </div>
 
     <div class="col-4">
-      <div>
-        <h2>Créez <strong>vos actions</strong> de réduction du bilan carbone et <strong>engagez</strong> vos collaborateurs</h2>
-          <div class="container">
-            <%= simple_form_for [@footprint, @task] do |f| %>
-              <%= f.input :name, :label => "Nom de votre action"%>
-              <%= f.input :ghg_contribution, :label => "Impact de votre action (tonnes CO2eq/an), à la date effective de mise en oeuvre" %>
-              <%= f.input :start_date, :label => "Date de début de mise en oeuvre de l'action" %>
-              <%= f.input :end_date, :label => "Date effective de l'impact de votre action" %>
-              <%= f.input :owner_id, :label => "Désignez un membre de l'entreprise responsable de cette action" %>
-              <%= f.submit "Enregistrez votre action et réduisez votre bilan carbone!", class: "btn btn-primary" %>
-            <% end %>
+
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Passez à l'action !
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Liste des actions</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>1 - Voici quelques actions que nous vous suggerons</p>
+                CETTE FEATURE ARRIVE BIENTOT !
+              <p>2 - Créez <strong>vos actions</strong> de réduction du bilan carbone et <strong>engagez</strong> vos collaborateurs</p>
+              <div class="container">
+                <%= simple_form_for [@footprint, @task] do |f| %>
+                  <%= f.input :name, :label => "Nom de votre action"%>
+                  <%= f.input :ghg_contribution, :label => "Impact de votre action (tonnes CO2eq/an), à la date effective de mise en oeuvre" %>
+                  <%= f.input :start_date, :label => "Date de début de mise en oeuvre de l'action" %>
+                  <%= f.input :end_date, :label => "Date effective de l'impact de votre action" %>
+                  <%= f.association :owner, :label => "Désignez un membre de l'entreprise responsable de cette action", collection: current_user.company.users.all.order(name: :desc), :prompt => "Responsable" %>
+                  <%= f.submit "Enregistrez votre action et réduisez votre bilan carbone!", class: "btn btn-primary" %>
+                <% end %>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+              <%# <button type="button" class="btn btn-primary">Save changes</button> %>
+            </div>
           </div>
+        </div>
       </div>
+
     </div>
   </div>
 </div>
