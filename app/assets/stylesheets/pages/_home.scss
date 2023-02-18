@@ -1,5 +1,9 @@
 // Specific CSS for your home-page
 
+body {
+  background-color: #FDFBF6;
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -7,7 +11,7 @@
 }
 
 .hero-banner {
-  height: 80vh;
+  height: 90vh;
   width: 100%;
   background-image: url(rectangle.png);
   background-repeat: no-repeat;
@@ -56,7 +60,7 @@
   background-size: cover;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: end;
   text-align: center;
   border-radius: 16px;
 }
@@ -72,4 +76,17 @@
   align-items: center;
   text-align: center;
   border-radius: 16px;
+}
+
+.btn {
+  border-radius: 50px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-decoration-color: #CCF7BB;
 }
