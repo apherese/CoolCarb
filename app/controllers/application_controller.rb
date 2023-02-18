@@ -3,6 +3,14 @@ class ApplicationController < ActionController::Base
 
   def current_company
     return nil unless user_signed_in?
-    current_user.company
+    @company = current_user.company
+  end
+
+  def after_sign_in_path_for(resource)
+    if current_user.company != nil
+      "/dashboard"
+    else
+      "/companies/new"
+    end
   end
 end
