@@ -1,7 +1,9 @@
 <div class="containers">
   <div class="dashboard_navbar">
     <div class="dashboard_navbar_header">
-      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" class="rounded-circle" style="width:80px; height:80px"/>
+      <% if current_user.photo %>
+        <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+      <% end %>
      <p><%= "#{@current_user.name}" %></p>
       <p><%= "#{@current_user.email}" %></p>
     </div>
@@ -39,7 +41,7 @@
       <div class="card-product">
         <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
         <div class="card-product-infos">
-        <h2>42 employés</h2>
+        <h2><%= "#{@company.employee_nb} collaborateurs"%></h2>
         </div>
       </div>
     </div>
@@ -66,6 +68,51 @@
             <canvas id="tasks"></canvas>
           </div>
         <% end %>
+
+         <!-- Button trigger modal -->
+      <div class="col-4">
+
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Passez à l'action : voici nos suggestions !
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Liste des actions</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>1 - Voici quelques actions que nous vous suggerons</p>
+                CETTE FEATURE ARRIVE BIENTOT !
+                <%= simple_form_for [@footprint, @task] do |f| %>
+                  <%= f.input :start_date, :label => "Date de début de mise en oeuvre de l'action" %>
+                  <%= f.input :end_date, :label => "Date effective de l'impact de votre action" %>
+                  <%= f.association :owner, :label => "Désignez un membre de l'entreprise responsable de cette action", collection: current_user.company.users.all.order(name: :desc), :prompt => "Responsable" %>
+                  <%= f.submit "Enregistrez votre action et réduisez votre bilan carbone!", class: "btn btn-primary" %>
+                <% end %>
+              <p>2 - Créez <strong>vos actions</strong> de réduction du bilan carbone et <strong>engagez</strong> vos collaborateurs</p>
+              <div class="container">
+                <%= simple_form_for [@footprint, @task] do |f| %>
+                  <%= f.input :name, :label => "Nom de votre action"%>
+                  <%= f.input :ghg_contribution, :label => "Impact de votre action (tonnes CO2eq/an), à la date effective de mise en oeuvre" %>
+                  <%= f.input :start_date, :label => "Date de début de mise en oeuvre de l'action" %>
+                  <%= f.input :end_date, :label => "Date effective de l'impact de votre action" %>
+                  <%= f.association :owner, :label => "Désignez un membre de l'entreprise responsable de cette action", collection: current_user.company.users.all.order(name: :desc), :prompt => "Responsable" %>
+                  <%= f.submit "Enregistrez votre action et réduisez votre bilan carbone!", class: "btn btn-primary" %>
+                <% end %>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+              <%# <button type="button" class="btn btn-primary">Save changes</button> %>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

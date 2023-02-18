@@ -17,6 +17,7 @@ class PagesController < ApplicationController
 
   def targets
     @company = current_company
+    @task = Task.new
   end
 
   private
@@ -24,5 +25,4 @@ class PagesController < ApplicationController
   def set_footprint
     @footprint = current_company.footprints.last
   end
-
 end
