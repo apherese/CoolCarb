@@ -9,10 +9,10 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    if current_user.company != nil
-      "/dashboard"
+    if current_user.belongs_to_company?
+      dashboard_path
     else
-      "/companies/new"
+      root_path
     end
   end
 
@@ -21,6 +21,7 @@ class ApplicationController < ActionController::Base
   def redirect_users_without_company
     # On sort de cette méthode sans meme l'executer si l'utilisateur appartient a une societe
     return if current_user.belongs_to_company?
+    return if devise_controller?
     return if current_controller == "companies" && current_action == "new"
     return if current_controller == "companies" && current_action == "create"
     return if current_controller == "pages" && current_action == "home"

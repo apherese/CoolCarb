@@ -1,23 +1,24 @@
 <%= content_for(:navbar_class, "navbar-home") %>
 
-<%# if current_user.nil? %>
-  <%# url_path = new_company_url %>
-<%# else %>
-  <%# url_path = dashboard_url %>
-<%# end %>
-
 <div class="banner">
   <div class="banner-content text-center">
     <h1>La plate-forme des PME engagées pour le climat!</h1>
     <p>Décarbonnez votre empreinte</p>
-    <% if current_user != nil %>
+    <% if user_signed_in? %>
       <% if current_user.company == nil %>
         <%= link_to "Calculez facilement votre bilan carbone", new_company_path, class: "btn btn-lg btn-primary" %>
+        <%= link_to "Exemples de bilans carbone de PME et de leurs plan d'action", companies_path, class: "btn btn-lg btn-primary" %>
       <% else %>
         <%= link_to "Calculez facilement votre bilan carbone", dashboard_path, class: "btn btn-lg btn-primary" %>
+        <%= link_to "Exemples de bilans carbone de PME et de leurs plan d'action", companies_path, class: "btn btn-lg btn-primary" %>
       <% end %>
     <% else %>
+     <div class="row" style="padding:20px">
         <%= link_to "Calculez facilement votre bilan carbone", new_user_session_path, class: "btn btn-lg btn-primary" %>
+     </div>
+     <div class="row">
+        <%= link_to "Exemples de bilans carbone de PME et de leurs plan d'action", companies_path, class: "btn btn-lg btn-primary" %>
+     </div>
     <% end %>
   </div>
 </div>
