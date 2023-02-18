@@ -6,7 +6,7 @@
     <%# <%= link_to "Calculez facilement votre bilan carbone", new_company_url, class: "btn btn-lg btn-primary"  %>
   <%# </div> %>
 <%# </div> %>
-
+    
 <div class="row">
   <div class="navbar ml-4 mr-4 rounded border-black border">
     <div class="container">
@@ -49,14 +49,22 @@
           <h1>Actualités</h1>
         </div>
     </div>
-    <% if current_user != nil %>
+  
+    <% if user_signed_in? %>
       <% if current_user.company == nil %>
         <%= link_to "Calculez facilement votre bilan carbone", new_company_path, class: "btn btn-lg btn-primary" %>
+        <%= link_to "Exemples de bilans carbone de PME et de leurs plan d'action", companies_path, class: "btn btn-lg btn-primary" %>
       <% else %>
         <%= link_to "Calculez facilement votre bilan carbone", dashboard_path, class: "btn btn-lg btn-primary" %>
+        <%= link_to "Exemples de bilans carbone de PME et de leurs plan d'action", companies_path, class: "btn btn-lg btn-primary" %>
       <% end %>
     <% else %>
+     <div class="row" style="padding:20px">
         <%= link_to "Calculez facilement votre bilan carbone", new_user_session_path, class: "btn btn-lg btn-primary" %>
+     </div>
+     <div class="row">
+        <%= link_to "Exemples de bilans carbone de PME et de leurs plan d'action", companies_path, class: "btn btn-lg btn-primary" %>
+     </div>
     <% end %>
   </div>
 </div>

@@ -71,8 +71,8 @@ file = URI.open("https://res.cloudinary.com/dton44gcy/image/upload/v1674321181/j
 jeanpierre.photo.attach(io: file, filename: "jpd_profile.jpg", content_type: "image/jpg")
 
 greta = User.create!({ name: "Greta", position: "CEO", email: "greta@gmail.com", password: "azerty", admin: false })
-file = URI.open("https://res.cloudinary.com/dton44gcy/image/upload/v1674321181/jpd_profile_q0gj5a.png")
-greta.photo.attach(io: file, filename: "jpd_profile.jpg", content_type: "image/jpg")
+file = URI.open("https://res.cloudinary.com/dton44gcy/image/upload/v1676715950/greta_avatar_rwex34.webp")
+greta.photo.attach(io: file, filename: "greta_avatar.jpg", content_type: "image/jpg")
 
 mohamed = User.create!({ name: "Mohamed", position: "CEO", email: "mohamed@gmail.com", company: hotel_plage, password: "azerty", admin: true })
 file = URI.open("https://res.cloudinary.com/dton44gcy/image/upload/v1674839485/einstein_profile_pxl1ji.jpg")
