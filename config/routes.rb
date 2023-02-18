@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   end
 
   get "dashboard", to: "pages#dashboard"
+  get "mon_bilan_carbone", to: "pages#mon_bilan_carbone"
+  get "targets", to: "pages#targets"
+
 end
