@@ -12,9 +12,8 @@
   </head>
 
   <body>
-    <%= render "shared/navbar" unless params[:controller] == "footprints" && params[:action] == "new" %>
+    <%= render "shared/navbar" unless params[:controller] == "footprints" && params[:action] == "new" || params[:controller] == "pages" && params[:action] == "dashboard" %>
     <%= render "shared/flashes" %>
-
     <%= yield %>
   </body>
 </html>
