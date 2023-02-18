@@ -24,33 +24,31 @@
 
 <div class="container">
 
-  <div class="row justify-content-around">
-    <div class="text-start col-4 d-flex flex-column justify-content-between">
+  <div class="row justify-content-around hero-banner">
+    <div class="text-start col-4 d-flex flex-column justify-content-center">
       <h1>La plateforme des PME engagées pour le climat</h1>
       <p>Lorem ipsum dolor sit amet, tortor. Nulla sed nulla justo. Sed laoreet ante nunc. Mauris quis ornare eros, sed vehicula massa. Mauris vestibulum, tellus a pulvinar molestie, arcu tortor fringilla urna, eget mollis nibh enim et augue. Nam vulputate erat dignissim augue pellentesque, in vestibulum orci porta.</p>
-      <a href="/" class="btn btn-primary">Calculer mon empreinte</a>
+      <a href="/" class="btn btn-primary hero-button">Calculer mon empreinte</a>
     </div>
-    <div class="col-6">
-      <%= image_tag "landing-page-background.png", class:"w-100" %>
-    </div>
-  </div>
-
-    <div class="row">
-    <div class="col-6">
-      <div class="position-relative" style="height:80vh;border-radius:2rem;">
-        <%= image_tag "engagement.png", class:"w-50 ml-6 mt-3 mb-2 ps-4" %>
-        <h1 class="position-absolute bottom-0 text-center w-100">Engagement</h1>
-      </div>
-    </div>
-    <div class="col-6">
-      <div class="row">
-        <%= image_tag "engagement.png", class:"w-50 ml-6 mt-3 mb-2 ps-4" %>
-        <h1>Partenaires</h1>
-        <%= image_tag "actualites.png", class:"w-50 ml-6 mt-3 mb-2 ps-4" %>
-        <h1>Actualités</h1>
-      </div>
+    <div class="col-6 d-flex flex-column justify-content-center">
+      <%= image_tag "image-home.png", class:" " %>
     </div>
   </div>
 
+  <div class="category-container">
 
+      <div class='engagement-card'>
+        <h1 class="">Engagement</h1>
+      </div>
+    <div class="sub-category">
+
+        <div class="partner-card">
+          <h1>Partenaires</h1>
+        </div>
+
+        <div class="news-card">
+          <h1>Actualités</h1>
+        </div>
+    </div>
+  </div>
 </div>
