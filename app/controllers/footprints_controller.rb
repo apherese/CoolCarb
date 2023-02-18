@@ -16,12 +16,12 @@ class FootprintsController < ApplicationController
     @groups = 365 * @company.room_nb * @company.load_factor.fdiv(@company.length_of_stay)
     gaz_result = (@footprint.gaz * EmissionFactors::GAZ)
     fioul_result = (@footprint.fioul * EmissionFactors::FIOUL)
-    essence_result = (@footprint.essence * EmissionFactors::ESSENCE)
-    gazole_result = (@footprint.gazole * EmissionFactors::GAZOLE)
+    essence_result = (@footprint.essence * 1.4 * EmissionFactors::ESSENCE)
+    gazole_result = (@footprint.gazole * 1.2 * EmissionFactors::GAZOLE)
     electricite_result = (@footprint.electricite * EmissionFactors::ELECTRICITE)
     clients_fr_result = (@footprint.clients_fr.fdiv(100) * EmissionFactors::CLIENTFR * 0.0021 * @groups)
     clients_int_result = (@footprint.clients_int.fdiv(100) * EmissionFactors::CLIENTINT * @groups)
-    fournisseurs_result = (@footprint.fournisseurs * EmissionFactors::FOURNISSEURS)
+    fournisseurs_result = (@footprint.fournisseurs * 0.01 * EmissionFactors::FOURNISSEURS)
     taille_batiments_results = (@footprint.taille_batiments * EmissionFactors::BATIMENTS)
     @footprint.scope_1 = (gaz_result + fioul_result + essence_result + gazole_result).round
     @footprint.scope_2 = electricite_result.round
