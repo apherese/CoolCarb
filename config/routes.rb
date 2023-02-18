@@ -10,7 +10,12 @@ Rails.application.routes.draw do
     resources :footprints, only: [:new, :create]
   end
 
-  resources :footprints, only: [:index, :download]
+  resources :footprints, only: [:index, :show, :download] do
+    resources :tasks, only: [:new, :create]
+  end
 
   get "dashboard", to: "pages#dashboard"
+  get "mon_bilan_carbone", to: "pages#mon_bilan_carbone"
+  get "targets", to: "pages#targets"
+
 end
