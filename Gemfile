@@ -54,7 +54,6 @@ gem "rest-client"
 #Cloudinary
 gem "cloudinary"
 
-
 gem "devise"
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"

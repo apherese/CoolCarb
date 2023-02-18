@@ -1,13 +1,23 @@
 .long-form-div {
+  font-size: larger;
+  font-weight: bold;
+  // position: relative;
+
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
+
   .form-control.is-valid {
     border-color: black
   }
-
 }
+.inner-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container-long-form {
   height: 100vh;
   overflow: hidden;
@@ -24,6 +34,10 @@
   text-align: center;
   padding-top: 4px;
 }
-// .form-control.is-valid {
-//   border-color: black;
-// }
+
+.astuce {
+  font-style: italic;
+  font-size: smaller;
+  font-weight: lighter;
+  text-align: center;
+}
