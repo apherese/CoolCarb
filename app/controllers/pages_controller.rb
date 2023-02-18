@@ -25,5 +25,4 @@ class PagesController < ApplicationController
     @footprint = current_company.footprints.last
   end
 
-
 end
