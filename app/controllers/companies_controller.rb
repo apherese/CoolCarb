@@ -9,6 +9,7 @@ class CompaniesController < ApplicationController
 
   def create
     @company = Company.new(company_params)
+    @company.load_factor = @company.load_factor.fdiv(100)
     if @company.save
       current_user.update(admin: true, company_id: @company.id)
       redirect_to dashboard_path
@@ -24,6 +25,6 @@ class CompaniesController < ApplicationController
   private
 
   def company_params
-    params.require(:company).permit(:name, :industry, :employee_nb, :admin)
+    params.require(:company).permit(:name, :industry, :employee_nb, :length_of_stay, :load_factor, :room_nb, :admin)
   end
 end
