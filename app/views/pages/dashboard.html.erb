@@ -66,8 +66,12 @@
 
     <div class="dashboard_content_body">
       <div>
-        <% if @footprint.ghg_result.nil? %>
+        <% if @footprint.nil?   %>
           <%= link_to "Calculer mon Bilan Carbone", new_company_footprint_path(@company) %>
+            <div style="width: 800px;" class="chart-container" data-controller="chart"
+                data-chart-my-value0="<%= @footprint_benchmark_per_employee.round %>">
+              <canvas id="benchmark"></canvas>
+            </div>
         <% else %>
           <div style="width: 800px;" class="chart-container" data-controller="chart"
               data-chart-my-value0="<%= @footprint_benchmark_per_employee.round %>"
