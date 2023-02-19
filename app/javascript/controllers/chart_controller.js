@@ -31,20 +31,26 @@ export default class extends Controller {
             }]
           },
           options: {
-            scales: {
-              yAxes: [{
-                id: "stacked_testY",
-                type: 'linear',
-                position: "left",
-                stacked: true,
-                display: true
-              }],
-              xAxes: [{
-                position: "bottom",
-                stacked: true,
-                display: true
-              }]
-            }
+            plugins: {
+              legend: {
+                  display: true,
+                  position: 'bottom'
+              },
+              scales: {
+                yAxes: [{
+                  id: "stacked_testY",
+                  type: 'linear',
+                  position: "left",
+                  stacked: true,
+                  display: true
+                }],
+                xAxes: [{
+                  position: "bottom",
+                  stacked: true,
+                  display: true
+                }]
+              }
+          }
           }
         }
       );

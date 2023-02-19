@@ -4,7 +4,7 @@
       <% if current_user.photo %>
         <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
       <% end %>     <p><%= "#{@current_user.name}" %></p>
-      <p><%= "#{@current_user.email}" %></p>
+      <p><%= "#{@current_user.position}" %></p>
     </div>
     <div class="dashboard_navbar_body">
       <div class="dashboard">
@@ -53,7 +53,7 @@
         <canvas id="benchmark"></canvas>
       </div>
     </div>
-    
+
     <div class="dashboard_content_footer">
       <div class="card_footer">
         <h4>Préciser Mon Bilan Carbone</h4>
