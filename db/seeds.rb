@@ -66,23 +66,23 @@ hotel_plage = Company.create!({ name: "La Plage", industry: "Hôtel", employee_n
 metropol = Company.create!({ name: "Metropol", industry: "Hôtel", employee_nb: 100, room_nb: 250, length_of_stay: 2.1, load_factor: 0.70 })
 radisson = Company.create!({ name: "Radisson", industry: "Hôtel", employee_nb: 50, room_nb: 160, length_of_stay: 3.3, load_factor: 0.75 })
 
-jeanpierre = User.create!({ name: "Jean-Pierre", position: "DFI", email: "jeanpierre@gmail.com", company: aigle_noir, password: "azerty", admin: true })
+jeanpierre = User.create!({ name: "Jean-Pierre", position: "Directeur financier", email: "jeanpierre@gmail.com", company: aigle_noir, password: "azerty", admin: true })
 file = URI.open("https://res.cloudinary.com/dton44gcy/image/upload/v1674321181/jpd_profile_q0gj5a.png")
 jeanpierre.photo.attach(io: file, filename: "jpd_profile.jpg", content_type: "image/jpg")
 
-greta = User.create!({ name: "Greta", position: "CEO", email: "greta@gmail.com", password: "azerty", admin: false })
+greta = User.create!({ name: "Greta", position: "Présidente", email: "greta@gmail.com", password: "azerty", admin: false })
 file = URI.open("https://res.cloudinary.com/dton44gcy/image/upload/v1676715950/greta_avatar_rwex34.webp")
 greta.photo.attach(io: file, filename: "greta_avatar.jpg", content_type: "image/jpg")
 
-mohamed = User.create!({ name: "Mohamed", position: "CEO", email: "mohamed@gmail.com", company: hotel_plage, password: "azerty", admin: true })
+mohamed = User.create!({ name: "Mohamed", position: "Directeur général", email: "mohamed@gmail.com", company: hotel_plage, password: "azerty", admin: true })
 file = URI.open("https://res.cloudinary.com/dton44gcy/image/upload/v1674839485/einstein_profile_pxl1ji.jpg")
 mohamed.photo.attach(io: file, filename: "einstein_profile.jpg", content_type: "image/jpg")
 
-amine = User.create!({ name: "Amine", position: "DRSE", email: "amine@gmail.com", company: metropol, password: "azerty", admin: true })
+amine = User.create!({ name: "Amine", position: "Directeur RSE", email: "amine@gmail.com", company: metropol, password: "azerty", admin: true })
 file = URI.open("https://res.cloudinary.com/dton44gcy/image/upload/v1674248768/ybxnuoodebwxmnzewjyy.jpg")
 amine.photo.attach(io: file, filename: "amine_profile.jpg", content_type: "image/jpg")
 
-nathanael = User.create!({ name: "Nathanaël", position: "CLO", email: "nathanael@gmail.com", company: radisson, password: "azerty", admin: true })
+nathanael = User.create!({ name: "Nathanaël", position: "Directeur juridique", email: "nathanael@gmail.com", company: radisson, password: "azerty", admin: true })
 file = URI.open("https://res.cloudinary.com/dton44gcy/image/upload/v1674371244/yoda_profile_iis5yg.jpg")
 nathanael.photo.attach(io: file, filename: "yoda_profile.jpg", content_type: "image/jpg")
 

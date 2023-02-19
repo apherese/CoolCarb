@@ -12,10 +12,10 @@
       <a class="navbar-brand ml-4" href="#">
         <%= image_tag "logo.png", class:"w-50 ps-4" %>
       </a>
-      <a href="">Pourquoi Coolcarb?</a>
-      <a href="">Notre offre ?</a>
-      <a href="">Benchmark</a>
-      <a href="/" class="btn btn-primary">Connexion</a>
+      <a href="" class= "btn btn-info">Pourquoi Coolcarb?</a>
+      <a href="" class= "btn btn-info">Notre offre ?</a>
+      <%= link_to "Benchmarks", companies_path, class: "btn btn-info" %>
+      <%= link_to "Connexion", new_user_session_path, class: "btn btn-primary" %>
     </div>
   </div>
 
