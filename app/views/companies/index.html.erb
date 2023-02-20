@@ -1,17 +1,44 @@
-<div class="container">
-  <% @companies.each do |company| %>
-    <li>Nom : <%= company.name %></li>
-  <% end %>
-
-      <% if user_signed_in? %>
-      <% if current_user.company == nil %>
-        <%= link_to "Calculez facilement votre bilan carbone", new_company_path, class: "btn btn-lg btn-primary" %>
-      <% else %>
-        <%= link_to "Calculez facilement votre bilan carbone", dashboard_path, class: "btn btn-lg btn-primary" %>
+<div class="containers">
+  <div class="dashboard_navbar">
+    <div class="dashboard_navbar_header">
+      <% if current_user.photo %>
+        <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
       <% end %>
-    <% else %>
-     <div class="row" style="padding:20px">
-        <%= link_to "Calculez facilement votre bilan carbone", new_user_session_path, class: "btn btn-lg btn-primary" %>
-     </div>
+     <p><%= "#{@current_user.name}" %></p>
+      <p><%= "#{@current_user.position}" %></p>
+    </div>
+    <div class="dashboard_navbar_body">
+      <div class="dashboard">
+        <%= link_to "Tableau de Bord", dashboard_path, data: {turbo: false} %>
+      </div>
+      <div class="fooprint">
+        <%= link_to "Mon Bilan Carbone", mon_bilan_carbone_path, data: {turbo: false} %>
+      </div>
+      <div class="target">
+        <%= link_to "Mon Plan d'Action", targets_path, data: {turbo: false} %>
+      </div>
+    </div>
+    <div class="dashboard_navbar_footer">
+      <div class="btn btn-primary">Se déconnecter</div>
+    </div>
+  </div>
+
+  <div class="dashboard_content">
+    <h1>Réussites de sociétés de votre secteur qui ont utilisé CoolCarb :</h1>
+    <% @companies.each do |company| %>
+      <li>Nom : <%= company.name %></li>
     <% end %>
+
+        <% if user_signed_in? %>
+        <% if current_user.company == nil %>
+          <%= link_to "Calculez facilement votre bilan carbone", new_company_path, class: "btn btn-lg btn-primary" %>
+        <% else %>
+          <%= link_to "Calculez facilement votre bilan carbone", dashboard_path, class: "btn btn-lg btn-primary" %>
+        <% end %>
+      <% else %>
+      <div class="row" style="padding:20px">
+          <%= link_to "Calculez facilement votre bilan carbone", new_user_session_path, class: "btn btn-lg btn-primary" %>
+      </div>
+      <% end %>
+  </div>
 </div>
