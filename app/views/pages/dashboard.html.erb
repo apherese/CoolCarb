@@ -14,7 +14,6 @@
         <%= link_to "Mon Bilan Carbone", mon_bilan_carbone_path, data: {turbo: false} %>
       </div>
       <div class="target">
-        <p></p>
         <%= link_to "Mon Plan d'Action", targets_path, data: {turbo: false} %>
       </div>
     </div>
@@ -47,26 +46,37 @@
       </div>
 
     <div class="dashboard_content_body">
-      <%= link_to "Calculer mon Bilan Carbone", new_company_footprint_path(@company) %>
       <div style="width: 800px;" class="chart-container" data-controller="chart"
           data-chart-my-value0="<%= @footprint_benchmark_per_employee.round %>">
         <canvas id="benchmark"></canvas>
+      </div>
+      <div style="width: 800px;" class="chart-container">
+        <ul>
+          <h3><strong>Voici nos conseils :</strong></h3>
+          <h5>Vous n'avez pas encore évalué votre empreinte carbone :</h5>
+          <p> Vous pouvez attirer de nouveaux clients et engager vos collaborateurs
+              dans un projet qui donne du sens à leur travail en vous engageant dans
+              une démarche de réduction de votre empreinte carbone. Pour cela il faut
+              d'abord évaluer votre empreinte actuelle et la comparer aux meilleurs de
+              votre secteur.
+          </p>
+        </ul>
       </div>
     </div>
 
     <div class="dashboard_content_footer">
       <div class="card_footer">
-        <h4>Préciser Mon Bilan Carbone</h4>
+        <h4>Evaluer Mon Bilan Carbone</h4>
         <p>Mesurer précisément mon empreinte</p>
         <%= link_to "Cliquez ici", new_company_footprint_path(@company), class: "btn btn-primary" %>
       </div>
       <div class="card_footer">
-        <h4>Préciser Mon Bilan Carbone</h4>
+        <h4>Evaluer Mon Bilan Carbone</h4>
         <p>Mesurer précisément mon empreinte</p>
         <div class="btn btn-primary">Cliquer Ici</div>
       </div>
       <div class="card_footer">
-        <h4>Préciser Mon Bilan Carbone</h4>
+        <h4>Evaluer Mon Bilan Carbone</h4>
         <p>Mesurer précisément mon empreinte</p>
         <div class="btn btn-primary">Cliquer Ici</div>
       </div>

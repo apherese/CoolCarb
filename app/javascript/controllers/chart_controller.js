@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { start } from "@popperjs/core";
 import Chart from 'chart.js/auto';
 
 // Connects to data-controller="chart"
@@ -14,6 +15,7 @@ export default class extends Controller {
     const benchmarkCanva = document.querySelector('canvas#benchmark')
     const footprintCanva = document.querySelector('canvas#footprint')
     const tasksCanva = document.querySelector('canvas#tasks')
+    Chart.defaults.font.size = 28;
 
     if (benchmarkCanva) {
       new Chart(
@@ -21,7 +23,7 @@ export default class extends Controller {
         {
           type: "bar",
           data: {
-            labels: [" Benchmark : moyenne des meilleurs bilans carbone (tCO2/employé) de votre secteur"],
+            labels: ["Les meilleurs de votre secteur"],
             datasets: [ {
               label: "Benchmark",
               type: "bar",
@@ -32,9 +34,25 @@ export default class extends Controller {
           },
           options: {
             plugins: {
+                title: {
+                display: true,
+                align: "start",
+                color: "#1D4728",
+                text: 'Tonnes de CO2/collaborateur',
+                padding: {
+                  top: 10,
+                  bottom: 40
+                },
+              },
               legend: {
-                  display: true,
-                  position: 'bottom'
+                  display: false,
+                  position: 'bottom',
+                  labels: {
+                    // This more specific font property overrides the global property
+                    font: {
+                        size: 18
+                    },
+                  },
               },
               scales: {
                 yAxes: [{
@@ -50,7 +68,7 @@ export default class extends Controller {
                   display: true
                 }]
               }
-          }
+            }
           }
         }
       );
@@ -62,7 +80,7 @@ export default class extends Controller {
         {
           type: "bar",
           data: {
-            labels: ["Simulation : Benchmark - Bilan - Bilan après plan d'action et les trois objectifs"],
+            labels: ["Benchmark - Bilan - Objectifs 2030-40-50"],
             datasets: [ {
               label: "Benchmark",
               type: "bar",
@@ -102,19 +120,41 @@ export default class extends Controller {
             }]
           },
           options: {
-            scales: {
-              yAxes: [{
-                id: "stacked_testY",
-                type: 'linear',
-                position: "left",
-                stacked: true,
-                display: true
-              }],
-              xAxes: [{
-                position: "bottom",
-                stacked: true,
-                display: true
-              }]
+            plugins: {
+              title: {
+              display: true,
+              align: "start",
+              color: "#1D4728",
+              text: 'Tonnes de CO2/collaborateur',
+              padding: {
+                top: 10,
+                bottom: 40
+              },
+            },
+              legend: {
+                  display: false,
+                  position: 'bottom',
+                  labels: {
+                    // This more specific font property overrides the global property
+                    font: {
+                        size: 18
+                    },
+                  },
+              },
+              scales: {
+                yAxes: [{
+                  id: "stacked_testY",
+                  type: 'linear',
+                  position: "left",
+                  stacked: true,
+                  display: true
+                }],
+                xAxes: [{
+                  position: "bottom",
+                  stacked: true,
+                  display: true
+                }]
+              }
             }
           }
         }
@@ -127,7 +167,7 @@ export default class extends Controller {
         {
           type: "bar",
           data: {
-            labels: ["Simulation : Benchmark - Bilan - Bilan après plan d'action et les trois objectifs"],
+            labels: ["Benchmark - Bilan - Bilan après actions - Objectifs 2030-40-50"],
             datasets: [ {
               label: "Benchmark",
               type: "bar",
@@ -172,19 +212,41 @@ export default class extends Controller {
             }]
           },
           options: {
-            scales: {
-              yAxes: [{
-                id: "stacked_testY",
-                type: 'linear',
-                position: "left",
-                stacked: true,
-                display: true
-              }],
-              xAxes: [{
-                position: "bottom",
-                stacked: true,
-                display: true
-              }]
+            plugins: {
+              title: {
+              display: true,
+              align: "start",
+              color: "#1D4728",
+              text: 'Tonnes de CO2/collaborateur',
+              padding: {
+                top: 10,
+                bottom: 40
+              },
+            },
+              legend: {
+                  display: false,
+                  position: 'bottom',
+                  labels: {
+                    // This more specific font property overrides the global property
+                    font: {
+                        size: 18
+                    },
+                  },
+              },
+              scales: {
+                yAxes: [{
+                  id: "stacked_testY",
+                  type: 'linear',
+                  position: "left",
+                  stacked: true,
+                  display: true
+                }],
+                xAxes: [{
+                  position: "bottom",
+                  stacked: true,
+                  display: true
+                }]
+              }
             }
           }
         }
