@@ -7,17 +7,17 @@
   <%# </div> %>
 <%# </div> %>
 
-  <div class="navbar navbar-expand-sm navbar-light ml-4 mr-4 rounded border-black border">
-    <div class="container-fluid">
-      <a class="navbar-brand ml-4" href="#">
-        <%= image_tag "logo.png", class:"w-50 ps-4" %>
-      </a>
-      <a href="" class= "btn btn-info">Pourquoi Coolcarb?</a>
-      <a href="" class= "btn btn-info">Notre offre ?</a>
-      <%= link_to "Benchmarks", companies_path, class: "btn btn-info" %>
-      <%= link_to "Connexion", new_user_session_path, class: "btn btn-primary" %>
-    </div>
+<div class="navbar navbar-expand-sm navbar-light ml-4 mr-4 rounded border-black border">
+  <div class="container-fluid">
+    <a class="navbar-brand ml-4" href="#">
+      <%= image_tag "logo.png", class:"w-50 ps-4" %>
+    </a>
+    <a href="" class= "btn">Pourquoi Coolcarb?</a>
+    <a href="" class= "btn">Notre offre ?</a>
+    <%= link_to "Benchmarks", companies_path, class: "btn" %>
+    <%= link_to "Connexion", new_user_session_path, class: "btn btn-primary", style:"color:white"%>
   </div>
+</div>
 
 
 <div class="container">
@@ -31,12 +31,12 @@
           Vous pouvez bénéficier de nos conseils pour <strong>engager des actions et engager vos collaborateurs!</strong></p>
       <% if current_user != nil %>
       <% if current_user.company == nil %>
-        <%= link_to "Calculez mon empreinte", new_company_path, class: "btn btn-primary hero-button" %>
+        <%= link_to "Calculez mon empreinte", new_company_path, class: "btn btn-primary hero-button", style:"color:white" %>
       <% else %>
-        <%= link_to "Calculez mon empreinte", dashboard_path, class: "btn btn-primary hero-button" %>
+        <%= link_to "Calculez mon empreinte", dashboard_path, class: "btn btn-primary hero-button", style:"color:white" %>
       <% end %>
       <% else %>
-        <%= link_to "Calculez mon empreinte", new_user_session_path, class: "btn btn-primary hero-button" %>
+        <%= link_to "Calculez mon empreinte", new_user_session_path, class: "btn btn-primary hero-button", style:"color:white" %>
       <% end %>
     </div>
     <div class="col-6 d-flex flex-column justify-content-center">

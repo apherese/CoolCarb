@@ -3,18 +3,21 @@
     <div class="dashboard_navbar_header">
       <% if current_user.photo %>
         <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-      <% end %>     <p><%= "#{@current_user.name}" %></p>
-      <p><%= "#{@current_user.position}" %></p>
+      <% end %>
+      <div>
+        <p><%= "#{@current_user.name}" %></p>
+        <p><%= "#{@current_user.position}" %></p>
+      </div>
     </div>
     <div class="dashboard_navbar_body">
       <div class="dashboard">
-        <%= link_to "Tableau de Bord", dashboard_path, data: {turbo: false} %>
+        <%= link_to "Tableau de Bord", dashboard_path, data: {turbo: false}, class: "btn btn-primary" %>
       </div>
       <div class="fooprint">
-        <%= link_to "Mon Bilan Carbone", mon_bilan_carbone_path, data: {turbo: false} %>
+        <%= link_to "Mon Bilan Carbone", mon_bilan_carbone_path, data: {turbo: false}, class: "btn btn-primary"%>
       </div>
       <div class="target">
-        <%= link_to "Mon Plan d'Action", targets_path, data: {turbo: false} %>
+        <%= link_to "Mon Plan d'Action", targets_path, data: {turbo: false}, class: "btn btn-primary" %>
       </div>
     </div>
     <div class="dashboard_navbar_footer">
@@ -66,17 +69,17 @@
 
     <div class="dashboard_content_footer">
       <div class="card_footer">
-        <h4>Evaluer Mon Bilan Carbone</h4>
+        <h4>Nouveau Bilan Carbone ?</h4>
         <p>Mesurer précisément mon empreinte</p>
         <%= link_to "Cliquez ici", new_company_footprint_path(@company), class: "btn btn-primary" %>
       </div>
       <div class="card_footer">
-        <h4>Evaluer Mon Bilan Carbone</h4>
+        <h4>Nouveau Bilan Carbone ?</h4>
         <p>Mesurer précisément mon empreinte</p>
         <div class="btn btn-primary">Cliquer Ici</div>
       </div>
       <div class="card_footer">
-        <h4>Evaluer Mon Bilan Carbone</h4>
+        <h4>Nouveau Bilan Carbone ?</h4>
         <p>Mesurer précisément mon empreinte</p>
         <div class="btn btn-primary">Cliquer Ici</div>
       </div>
