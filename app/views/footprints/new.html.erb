@@ -89,10 +89,12 @@
 
     <%# <h2>Voulez-vous certifier votre Bilan Carbone ?</h2> %>
       <div class="long-form-div" data-long-form-target="screen">
-        <div class="inner-form">
+        <div class="inner-form-certified">
           <%= f.input :certified, label: "Voulez-vous certifier ce bilan carbone ?"%>
           <span class="span" data-action="click->long-form#back">Précédent</span>
-          <%= f.submit "Calculez le bilan carbone", class: "span" %>
+        </div>
+        <div class="astuce">
+          <%= f.submit "Calculez le bilan carbone", class: "btn btn-primary" %>
         </div>
       </div>
 
