@@ -98,26 +98,47 @@
               <h1 class="modal-title fs-5" id="exampleModalLabel">Liste des actions</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+
             <div class="modal-body">
-              <p>1 - Voici quelques actions que nous vous suggerons</p>
-                CETTE FEATURE ARRIVE BIENTOT !
-                <%= simple_form_for [@footprint, @task] do |f| %>
-                  <%= f.input :start_date, :label => "Date de début de mise en oeuvre de l'action" %>
-                  <%= f.input :end_date, :label => "Date effective de l'impact de votre action" %>
-                  <%= f.association :owner, :label => "Désignez un membre de l'entreprise responsable de cette action", collection: current_user.company.users.all.order(name: :desc), :prompt => "Responsable" %>
-                  <%= f.submit "Enregistrez votre action et réduisez votre bilan carbone!", class: "btn btn-primary" %>
-                <% end %>
-              <p>2 - Créez <strong>vos actions</strong> de réduction du bilan carbone et <strong>engagez</strong> vos collaborateurs</p>
-              <div class="container">
-                <%= simple_form_for [@footprint, @task] do |f| %>
-                  <%= f.input :name, :label => "Nom de votre action"%>
-                  <%= f.input :ghg_contribution, :label => "Impact de votre action (tonnes CO2eq/an), à la date effective de mise en oeuvre" %>
-                  <%= f.input :start_date, :label => "Date de début de mise en oeuvre de l'action" %>
-                  <%= f.input :end_date, :label => "Date effective de l'impact de votre action" %>
-                  <%= f.association :owner, :label => "Désignez un membre de l'entreprise responsable de cette action", collection: current_user.company.users.all.order(name: :desc), :prompt => "Responsable" %>
-                  <%= f.submit "Enregistrez votre action et réduisez votre bilan carbone!", class: "btn btn-primary" %>
-                <% end %>
+              <p>
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                  1 - Actions que nous vous suggerons
+                </button>
+              </p>
+              <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                  <%= simple_form_for [@footprint, @task] do |f| %>
+                    <%= f.input :start_date, :label => "Date de début de mise en oeuvre de l'action" %>
+                    <%= f.input :end_date, :label => "Date effective de l'impact de votre action" %>
+                    <%= f.association :owner, :label => "Désignez un membre de l'entreprise responsable de cette action", collection: current_user.company.users.all.order(name: :desc), :prompt => "Responsable" %>
+                    <%= f.submit "Enregistrez votre action et réduisez votre bilan carbone!", class: "btn btn-primary" %>
+                  <% end %>
+                </div>
               </div>
+
+              <p>
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                  2 - Créez <strong>vos actions</strong> de réduction et <strong>engagez</strong> vos collaborateurs
+                </button>
+              </p>
+              <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                  <div class="container">
+                    <%= simple_form_for [@footprint, @task] do |f| %>
+                      <%= f.input :name, :label => "Nom de votre action"%>
+                      <%= f.input :ghg_contribution, :label => "Impact de votre action (tonnes CO2eq/an), à la date effective de mise en oeuvre" %>
+                      <%= f.input :start_date, :label => "Date de début de mise en oeuvre de l'action" %>
+                      <%= f.input :end_date, :label => "Date effective de l'impact de votre action" %>
+                      <%= f.association :owner, :label => "Désignez un membre de l'entreprise responsable de cette action", collection: current_user.company.users.all.order(name: :desc), :prompt => "Responsable" %>
+                      <%= f.submit "Enregistrez votre action et réduisez votre bilan carbone!", class: "btn btn-primary" %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+              <%# <button type="button" class="btn btn-primary">Save changes</button> %>
             </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
