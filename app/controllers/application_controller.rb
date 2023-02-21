@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
 
   def current_company
     return nil unless user_signed_in?
-
     @company = current_user.company
   end
 
