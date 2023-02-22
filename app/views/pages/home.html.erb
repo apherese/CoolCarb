@@ -1,16 +1,9 @@
-<%# <%= content_for(:navbar_class, "navbar-home") %>
-<%# <div class="banner"> %>
-  <%# <div class="banner-content text-center"> %>
-    <%# <h1>La plate-forme des PME engagées pour le climat!</h1> %>
-    <%# <p>Décarbonnez votre empreinte</p> %>
-    <%# <%= link_to "Calculez facilement votre bilan carbone", new_company_url, class: "btn btn-lg btn-primary"  %>
-  <%# </div> %>
-<%# </div> %>
 
 <div class="navbar navbar-expand-sm navbar-light ml-4 mr-4 rounded border-black border">
   <div class="container-fluid">
     <a class="navbar-brand ml-4" href="#">
       <%= image_tag "logo.png", class:"w-50 ps-4" %>
+    <p>Réduisez votre empreinte carbone!</p>
     </a>
     <a href="" class= "btn">Pourquoi Coolcarb?</a>
     <a href="" class= "btn">Notre offre ?</a>
@@ -30,13 +23,13 @@
           Vous pouvez inscrire votre société gratuitement et <strong>calculer votre bilan carbone!</strong>
           Vous pouvez bénéficier de nos conseils pour <strong>engager des actions et engager vos collaborateurs!</strong></p>
       <% if current_user != nil %>
-      <% if current_user.company == nil %>
-        <%= link_to "Calculez mon empreinte", new_company_path, class: "btn btn-primary hero-button", style:"color:white" %>
+        <% if current_user.company == nil %>
+          <%= link_to "Mon bilan carbone", new_company_path, class: "btn btn-primary hero-button", style:"color:white" %>
+        <% else %>
+          <%= link_to "Mon bilan carbone", dashboard_path, class: "btn btn-primary hero-button", style:"color:white" %>
+        <% end %>
       <% else %>
-        <%= link_to "Calculez mon empreinte", dashboard_path, class: "btn btn-primary hero-button", style:"color:white" %>
-      <% end %>
-      <% else %>
-        <%= link_to "Calculez mon empreinte", new_user_session_path, class: "btn btn-primary hero-button", style:"color:white" %>
+          <%= link_to "Mon bilan carbone", new_user_session_path, class: "btn btn-primary hero-button", style:"color:white" %>
       <% end %>
     </div>
     <div class="col-6 d-flex flex-column justify-content-center">
@@ -46,23 +39,42 @@
 
   <div class="category-container">
 
-      <div class='engagement-card'>
-        <h1>
-          <strong><%= link_to "Exemples de bilans carbone de PME et de leurs plan d'action", companies_path, class: "" %></strong>
-        </h1>
-      </div>
+    <div class='engagement-card'>
+      <h1>
+        <strong><%= link_to "Exemples de bilans carbone de PME et de leurs plan d'action", companies_path, class: "" %></strong>
+      </h1>
+    </div>
     <div class="sub-category">
        <div class="news-card">
-          <h1><strong>Actualités</strong></h1>
-          <div class="col-6 d-flex flex-column justify-content-center">
-            <%#= cl_image_tag "https://res.cloudinary.com/dton44gcy/image/upload/v1676975758/Scopes123_b6fru7.png", class: "" %>
-            <%= cl_image_tag "https://res.cloudinary.com/dton44gcy/image/upload/v1676985850/infographie-scope-1-2-3_my4599.png", class: "" %>
+          <div class="d-flex align-items-center flex-column">
+            <h1 class="mb-5"><strong>Actualités</strong></h1>
+            <%= link_to "L'ADEME vient de fixer ses priorités stratégiques:",  "https://presse.ademe.fr/2023", class: "mb-1" %>
+            <p class="mb-3">Afin d’accompagner l’ensemble de ses partenaires
+                à relever les défis d’une transition écologique solidaire, l’ADEME a élaboré une
+                stratégie « 2023-2027, Agir maintenant, collectivement ! ». Elle y explicite les
+                priorités pour s’adapter sur le long terme aux conséquences du changement climatique
+                et elle précise comment l’ADEME se positionne comme opérateur public au service de
+                la transition écologique adaptée aux évolutions du climat.</p>
           </div>
         </div>
-        <%# <div class="partner-card">
-          <h1><strong>Partenaires</strong></h1>
-        </div> %>
+        <div class="partner-card d-flex align-items-center flex-column">
+          <h1 class="mb-5"><strong>Partenaires</strong></h1>
+          <div class="flex center px-4">
+            <%= link_to "ADEME",  "https://ademe.fr", class: "btn btn-success" %>
+            <%= link_to "The Shift Project",  "https://theshiftproject.org", class: "btn btn-success" %>
+            <%= link_to "Fondation Thunberg",  "https://thegretathunbergfoundation.org/", class: "btn btn-success" %>
+            <%= link_to "Carbone 4",  "https://www.carbone4.com", class: "btn btn-success" %>
+          </div>
+        </div>
     </div>
+  </div>
+
+  <div class="category-container">
+
+    <div class='scope-card'>
+      <h1><strong>Un bilan Carbone additionne les émissions de trois 'Scopes'</strong></h1>
+    </div>
+
   </div>
 </div>
 
