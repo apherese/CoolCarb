@@ -24,6 +24,12 @@
   </div>
 
   <div class="dashboard_content">
+    <div class="container-fluid navbar justify-content-end green-wave-top">
+        <a class="navbar-brand ml-4" href="#">
+          <%= image_tag "logo.png", class:"w-50 ps-4" %>
+        <p>Réduisez votre empreinte carbone!</p>
+        </a>
+    </div>
     <h1>Réussites de sociétés de votre secteur qui ont utilisé CoolCarb :</h1>
     <% @companies.each do |company| %>
       <li>Nom : <%= company.name %></li>
