@@ -32,9 +32,13 @@
     </div>
     <div class="container-fluid justify-content-start">
       <div class="card-product">
-        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+        <i class="fa-solid fa-hotel px-5 fs-1"></i>
         <div class="card-product-infos">
-        <h2><%= "#{@company.name}, #{@company.employee_nb} collaborateurs" %></h2>
+        <ul>
+          <h2><%= "#{@company.name}" %></h2>
+          <h2><%= "#{@company.industry}" %></h2>
+          <h2><%= "#{@company.employee_nb} collaborateurs" %></h2>
+        </ul>
       </div>
     </div>
 
