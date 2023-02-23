@@ -26,27 +26,19 @@
   </div>
 
   <div class="dashboard_content">
-
-      <div class="dashboard_content_header">
-        <div class="card-product">
-          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-          <div class="card-product-infos">
-           <h2><%= "Société #{@company.name}" %></h2>
-           </div>
-        </div>
-        <div class="card-product">
-          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-          <div class="card-product-infos">
-          <h2><%= "Activité : #{@company.industry}" %></h2>
-          </div>
-        </div>
-        <div class="card-product">
-          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-          <div class="card-product-infos">
-          <h2><%= "#{@company.employee_nb} collaborateurs"%></h2>
-          </div>
-        </div>
+    <div class="container-fluid navbar justify-content-end green-wave-top">
+        <a class="navbar-brand ml-4" href="#">
+          <%= image_tag "logo.png", class:"w-50 ps-4" %>
+        <p>Réduisez votre empreinte carbone!</p>
+        </a>
+    </div>
+    <div class="container-fluid justify-content-start">
+      <div class="card-product">
+        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+        <div class="card-product-infos">
+        <h2><%= "#{@company.name}, #{@company.employee_nb} collaborateurs" %></h2>
       </div>
+    </div>
 
     <div class="dashboard_content_body">
       <div style="width: 800px;" class="chart-container" data-controller="chart"
