@@ -21,7 +21,9 @@ class CompaniesController < ApplicationController
   end
 
   def index
-    @companies = Company.all
+    if params[:query].present?
+      @companies = Company.where(industry: params[:query])
+    end
   end
 
   private
