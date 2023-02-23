@@ -31,6 +31,9 @@ class CompaniesController < ApplicationController
       [company, company_details]
     end
     @companies = @companies.select { |_, company_details| company_details }
+    if params[:query].present?
+      @companies = Company.where(industry: params[:query])
+    end
   end
 
   private
