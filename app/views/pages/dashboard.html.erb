@@ -32,13 +32,14 @@
         <p>Réduisez votre empreinte carbone!</p>
         </a>
     </div>
-    <div class="container-fluid justify-content-start">
+    <div class="container-fluid">
       <div class="card-product">
-        <i class="fa-solid fa-hotel px-5 fs-1"></i>
-        <div class="card-product-infos">
+      <ul>
+        <i class="fa-solid fa-hotel px-5 fs-1 pt-4 text-center"><h2><%= "#{@company.industry}" %></h2></i>
+      </ul>
+      <div class="card-product-infos">
         <ul>
           <h2><%= "#{@company.name}" %></h2>
-          <h2><%= "#{@company.industry}" %></h2>
           <h2><%= "#{@company.employee_nb} collaborateurs" %></h2>
         </ul>
       </div>
