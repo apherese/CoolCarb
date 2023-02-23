@@ -50,11 +50,31 @@
 }
 
 .dashboard_content_body {
-  height: 517px;
+  height: 90%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: $body-bg;
+}
+
+.dashboard_content_graph {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  padding: 20px 20px 20px 20px;
+  justify-content: left;
+  align-items: center;
+  background: $body-bg;
+}
+
+.dashboard_content_advise {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  padding: 20px 20px 20px 20px;
+  justify-content: center;
+  align-items: top;
   background: $body-bg;
 }
 
