@@ -7,12 +7,12 @@
   background-size: cover;
   background-position: center;
   h1 {
-    color: white;
+    color: $my-body-bg;
     font-weight: bold;
     font-size: 45px;
   }
   p {
-    color: white;
+    color: $my-body-bg;
     opacity: .8;
     font-size: 25px;
     font-weight: lighter;
