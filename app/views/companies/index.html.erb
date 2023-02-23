@@ -14,13 +14,16 @@
       <%= submit_tag "Search", class: "btn btn-primary" %>
     <% end %>
 
-    <div id="resultats">
+    <div id="resultats" class="cards">
       <% if @companies %>
-        <% @companies.each do |company| %>
-          <li>Nom : <%= company.name %></li>
-        <% end %>
+        <% @companies.each do |company, company_details| %>
+          <div class="card-category">
+           <p><h3><%= company.name %></h3></p>
+           <p><h3>Année de reporting : <%=company_details["Année_de_reporting"]%></h3></p>
+          </div>
       <% end %>
     </div>
+
     <% if user_signed_in? %>
       <% if current_user.company == nil %>
         <%= link_to "Calculez facilement votre bilan carbone", new_company_path, class: "btn btn-lg btn-primary" %>
