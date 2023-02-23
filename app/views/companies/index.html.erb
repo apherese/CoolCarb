@@ -9,18 +9,24 @@
     <h1>Réussites de sociétés de votre secteur qui ont utilisé CoolCarb :</h1>
     <label for="secteur">Sélectionnez votre secteur d'activité:</label>
     <select id="secteur">
-		<option value="informatique">Restauration</option>
-		<option value="finance">Hotelerie</option>
-		<option value="santé">Santé</option>
-		<option value="construction">Construction</option>
-	</select>
-	<button id="ok">OK</button>
-  <%= javascript_include_tag 'script' %>
-	<div id="resultats">
-    <% @companies.each do |company| %>
-      <li>Nom : <%= company.name %></li>
+      <option value="informatique">Restauration</option>
+      <option value="finance">Hotelerie</option>
+      <option value="santé">Santé</option>
+      <option value="construction">Construction</option>
+	  </select>
+	  <button id="ok">OK</button>
+
+  <div class="cards">
+    <% @companies.each do |company, company_details| %>
+      <div class="card-category">
+        <p><h3><%= company.name %></h3></p>
+        <p><h3>Année de reporting : <%=company_details["Année_de_reporting"]%></h3></p>
+      </div>
     <% end %>
   </div>
+
+  <%# <div id="resultats">
+  </div> %>
         <% if user_signed_in? %>
         <% if current_user.company == nil %>
           <%= link_to "Calculez facilement votre bilan carbone", new_company_path, class: "btn btn-lg btn-primary" %>
