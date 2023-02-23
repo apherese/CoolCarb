@@ -1,3 +1,5 @@
+require "json"
+
 class CompaniesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index ]
 
@@ -21,7 +23,14 @@ class CompaniesController < ApplicationController
   end
 
   def index
-    @companies = Company.all
+    filepath = "data/ademe_data.json"
+    data = File.read(filepath)
+    list_data = JSON.parse(data)["results"]
+    @companies = Company.all.to_h do |company|
+      company_details = list_data.find { |data_set| data_set["Raison_sociale_/_Nom_de_l'entité"] == company.name }
+      [company, company_details]
+    end
+    @companies = @companies.select { |_, company_details| company_details }
   end
 
   private
