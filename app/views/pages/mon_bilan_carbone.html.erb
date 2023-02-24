@@ -8,28 +8,27 @@
       <p><%= "#{@current_user.position}" %></p>
     </div>
     <div class="dashboard_navbar_body">
-      <div class="dashboard">
-        <%= link_to "Tableau de Bord", dashboard_path, data: {turbo: false}, class: "btn btn-primary" %>
+      <div class="ms-4 mt-4 mb-4 extended-content-container">
+        <%= link_to "Tableau de Bord", dashboard_path, data: {turbo: false}, class: "btn-middle-pervenche-navbar" %>
       </div>
-      <div class="fooprint">
-        <%= link_to "Mon Bilan Carbone", mon_bilan_carbone_path, data: {turbo: false}, class: "btn btn-primary" %>
+      <div class="ms-4 mt-4 mb-4 extended-content-container">
+        <%= link_to "Bilan Carbone", mon_bilan_carbone_path, data: {turbo: false}, class: "btn-middle-white-navbar" %>
       </div>
-      <div class="target">
-        <%= link_to "Mon Plan d'Action", targets_path, data: {turbo: false}, class: "btn btn-primary" %>
+      <div class="ms-4 mt-4 mb-4 extended-content-container">
+        <%= link_to "Plan d'Action", targets_path, data: {turbo: false}, class: "btn-middle-pervenche-navbar" %>
       </div>
     </div>
     <div class="dashboard_navbar_footer">
-      <div class="btn btn-primary">Se déconnecter</div>
+      <div class="btn-bottom-navbar">Se déconnecter</div>
     </div>
   </div>
 
   <div class="dashboard_content">
-
     <div class="container-fluid navbar justify-content-end green-wave-top">
-      <a class="navbar-brand ml-4" href="#">
-        <%= image_tag "logo.png", class:"w-50 ps-4" %>
-      <p>Réduisez votre empreinte carbone!</p>
-      </a>
+        <a class="navbar-brand ml-4" href="#">
+          <%= image_tag "logo.png", class:"w-50 ps-4" %>
+        <p>Réduisez votre empreinte carbone!</p>
+        </a>
     </div>
     <div class="container-fluid">
       <div class="card-product">
@@ -37,15 +36,13 @@
         <i class="fa-solid fa-hotel px-5 fs-1 pt-4 text-center"><h2><%= "#{@company.industry}" %></h2></i>
       </ul>
       <div class="card-product-infos">
-        <ul>
-          <h2><%= "#{@company.name}" %></h2>
-          <h2><%= "#{@company.employee_nb} collaborateurs" %></h2>
-        </ul>
+        <h2><%= "#{@company.name}" %></h2>
+        <h2><%= "#{@company.employee_nb} collaborateurs" %></h2>
       </div>
     </div>
 
     <div class="dashboard_content_body">
-      <div>
+      <div class="dashboard_content_graph">
         <% if @footprint.ghg_result.nil? %>
           <%= link_to "Calculer mon Bilan Carbone", new_company_footprint_path(@company) %>
         <% else %>
@@ -60,20 +57,16 @@
           </div>
         <% end %>
       </div>
+      <div class="dashboard_content_advise flex-column">
+        <h1><strong>Voici nos conseils :</strong></h1>
         <ul>
-          <h3>Voici nos conseils :</h3>
-          <h5>Votre position par rapport à vos objectifs :</h5>
-            <%= "Vous n'avez pas encore engagé de plan d'action et ne pourrez pas atteindre vos objectifs de réduction de vos émissions en 2030 : cliquez sur \passez à l'action\"" %>
-          <h5>Votre position par rapport aux meilleurs :</h5>
-            <%= @footprint.ghg_result.fdiv(@company.employee_nb) > ((@footprint_benchmark_per_employee.round) * 1.05) ? "Votre bilan carbone est supérieur aux meilleurs. Pas de stress, nous vous suggérons des actions d'améliorations (\"passez à l'action\")" : "Bravo, vous vous comparez aux meilleurs. Vous pouvez tout de même être le leader en testant nos suggestions d'actions" %>
+          <li><h5>Votre position par rapport à vos objectifs :</h5></li>
+          <%="Bravo, vous avez créé votre bilan carbone! Vous pouvez maintenant créer un plan d'action afin d'atteindre vos objectifs de réduction de vos émissions en 2030 : cliquez sur \"Plan d'Action\""%>
         </ul>
-      </div>
-      <div class="dashboard_content_footer">
-        <div class="card_footer">
-          <h4>Nouveau Bilan Carbone ?</h4>
-          <p>Mesurer précisément mon empreinte</p>
-          <%= link_to "Cliquez ici", new_company_footprint_path(@company), class: "btn btn-primary" %>
-        </div>
+        <ul>
+          <li><h5>Votre position par rapport aux meilleurs :</h5></li>
+          <%= @footprint.ghg_result.fdiv(@company.employee_nb) > ((@footprint_benchmark_per_employee.round) * 1.05) ? "Votre bilan carbone est supérieur aux meilleurs. Pas de stress, nous vous suggérons des actions d'améliorations (\"passez à l'action\")" : "Bravo, vous vous comparez aux meilleurs. Vous pouvez tout de même être le leader en testant nos suggestions d'actions" %>
+        </ul>
       </div>
     </div>
   </div>
