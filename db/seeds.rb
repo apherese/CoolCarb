@@ -86,10 +86,10 @@ nathanael = User.create!({ name: "Nathanaël", position: "Directeur juridique", 
 file = URI.open("https://res.cloudinary.com/dton44gcy/image/upload/v1674371244/yoda_profile_iis5yg.jpg")
 nathanael.photo.attach(io: file, filename: "yoda_profile.jpg", content_type: "image/jpg")
 
-footprint_1 = Footprint.create!({ company: aigle_noir, scope_1: 10_000, scope_2: 22_000, scope_3: 345_000, ghg_result: (10_000 + 22_000 + 345_000), certified: true, date: "2023-02-01" })
-footprint_2 = Footprint.create!({ company: hotel_plage, scope_1: 4_000, scope_2: 12_000, scope_3: 145_000, ghg_result: (4_000 + 12_000 + 145_000), certified: false, date: "2020-05-01" })
-footprint_3 = Footprint.create!({ company: metropol, scope_1: 17_000, scope_2: 36_000, scope_3: 645_000, ghg_result: (17_000 + 36_000 + 645_000), certified: false, date: "2021-12-01" })
-footprint_4 = Footprint.create!({ company: radisson, scope_1: 35_000, scope_2: 62_000, scope_3: 1_345_000, ghg_result: (35_000 + 62_000 + 1_345_000), certified: false, date: "2019-07-01" })
+# footprint_1 = Footprint.create!({ company: aigle_noir, scope_1: 10_000, scope_2: 22_000, scope_3: 345_000, ghg_result: (10_000 + 22_000 + 345_000), certified: true, date: "2023-02-01" })
+# footprint_2 = Footprint.create!({ company: hotel_plage, scope_1: 4_000, scope_2: 12_000, scope_3: 145_000, ghg_result: (4_000 + 12_000 + 145_000), certified: false, date: "2020-05-01" })
+# footprint_3 = Footprint.create!({ company: metropol, scope_1: 17_000, scope_2: 36_000, scope_3: 645_000, ghg_result: (17_000 + 36_000 + 645_000), certified: false, date: "2021-12-01" })
+# footprint_4 = Footprint.create!({ company: radisson, scope_1: 35_000, scope_2: 62_000, scope_3: 1_345_000, ghg_result: (35_000 + 62_000 + 1_345_000), certified: false, date: "2019-07-01" })
 
 employee_1_1 = User.create!({ name: "Claire", position: "CEO", email: "claire1@gmail.com", company: aigle_noir, password: "azerty", admin: false })
 employee_1_2 = User.create!({ name: "Margot", position: "DRSE", email: "margot1@gmail.com", company: aigle_noir, password: "azerty", admin: false })
