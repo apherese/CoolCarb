@@ -2,16 +2,60 @@
   padding: 15px 50px;
 }
 
-.btn-white {
-  color: #B2BAEB;
-  border: 1px solid #B2BAEB;
-  padding: 8px 24px;
-  border-radius: 50px;
-  font-weight: lighter;
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
+.extended-content-container {
+  width: 120%;
 }
 
-.btn-white:hover {
-  opacity: 1;
+.btn-middle-pervenche-navbar {
+  color: $my-body-bg;
+  padding: 8px 140px 8px 24px;
+  border-radius: 20px;
+  background:  #778AFB;
+  transition: background 0.3s ease;
+}
+
+.btn-middle-pervenche-navbar:hover {
+  background: $my-body-bg;
+  color: #778AFB;
+}
+
+.btn-middle-white-navbar {
+  color: #778AFB;
+  padding: 8px 140px 8px 24px;
+  border-radius: 20px;
+  background: $my-body-bg;
+  transition: background 0.3s ease;
+}
+
+.btn-middle-white-navbar:hover {
+  background: #778AFB;
+  color: $my-body-bg;
+}
+
+.btn-bottom-navbar {
+  color: #778AFB;
+  padding: 8px 24px;
+  border-radius: 20px;
+  border-color: #778AFB;
+  background: $my-body-bg;
+  transition: background 0.3s ease;
+}
+
+.btn-bottom-navbar:hover {
+  background: #778AFB;
+  color: $my-body-bg;
+}
+
+.btn-bottom-pervenche-content {
+  color: $my-body-bg;
+  padding: 8px 8px 8px 8px;
+  border-radius: 20px;
+  background:  #778AFB;
+  transition: background 0.3s ease;
+  font-weight: bold;
+}
+
+.btn-bottom-pervenche-content:hover {
+  background: $my-body-bg;
+  color: #778AFB;
 }
