@@ -8,18 +8,18 @@
       <p><%= "#{@current_user.position}" %></p>
     </div>
     <div class="dashboard_navbar_body">
-      <div class="dashboard">
-        <%= link_to "Tableau de Bord", dashboard_path, data: {turbo: false}, class: "btn btn-primary" %>
+      <div class="ms-4 mt-4 mb-4 extended-content-container">
+        <%= link_to "Tableau de Bord", dashboard_path, data: {turbo: false}, class: "btn-middle-pervenche-navbar" %>
       </div>
-      <div class="fooprint">
-        <%= link_to "Mon Bilan Carbone", mon_bilan_carbone_path, data: {turbo: false}, class: "btn btn-primary" %>
+      <div class="ms-4 mt-4 mb-4 extended-content-container">
+        <%= link_to "Bilan Carbone", mon_bilan_carbone_path, data: {turbo: false}, class: "btn-middle-pervenche-navbar" %>
       </div>
-      <div class="target">
-        <%= link_to "Mon Plan d'Action", targets_path, data: {turbo: false}, class: "btn btn-primary" %>
+      <div class="ms-4 mt-4 mb-4 extended-content-container">
+        <%= link_to "Plan d'Action", targets_path, data: {turbo: false}, class: "btn-middle-white-navbar" %>
       </div>
     </div>
     <div class="dashboard_navbar_footer">
-      <div class="btn-white btn-body-bg">Se déconnecter</div>
+      <div class="btn-bottom-navbar">Se déconnecter</div>
     </div>
   </div>
 
@@ -36,10 +36,8 @@
         <i class="fa-solid fa-hotel px-5 fs-1 pt-4 text-center"><h2><%= "#{@company.industry}" %></h2></i>
       </ul>
       <div class="card-product-infos">
-        <ul>
-          <h2><%= "#{@company.name}" %></h2>
-          <h2><%= "#{@company.employee_nb} collaborateurs" %></h2>
-        </ul>
+        <h2><%= "#{@company.name}" %></h2>
+        <h2><%= "#{@company.employee_nb} collaborateurs" %></h2>
       </div>
     </div>
 
@@ -67,22 +65,23 @@
         <% end %>
       </div>
 
-      <div class="dashboard_content_advise">
+      <div class="dashboard_content_advise flex-column">
+        <h1><strong>Voici nos conseils :</strong></h1>
         <ul>
-          <h2><strong>Voici nos conseils :</strong></h2>
-          <h5>Votre position par rapport à vos objectifs :</h5>
-            <% if @footprint_post_action != 0 %>
-              <%= @footprint_post_action > ((@footprint.ghg_result.fdiv(@company.employee_nb) * 0.55).round * 1.4) ? "Il vous reste des actions à entreprendre pour être sur vos objectifs SBTi! Continuez à tester nos idées d'actions" : "Bravo ! votre plan d'action vous permettrait d'atteeindre vos objectifs en 2030. Ne relâchez pas vos effforts et mesurez vos résultats en continu. Continuez à suivre nos conseils!" %>
-            <% else %>
-              <%= "Vous n'avez pas encore engagé de plan d'action et ne pourrez pas atteindre vos objectifs de réduction de vos émissions en 2030 : cliquez sur \passez à l'action\"" %>
-            <% end %>
-          <h5>Votre position par rapport aux meilleurs :</h5>
-            <%= @footprint.ghg_result.fdiv(@company.employee_nb) > ((@footprint_benchmark_per_employee.round) * 1.05) ? "Votre bilan carbone est supérieur aux meilleurs. Pas de stress, nous vous suggérons des actions d'améliorations (\"passez à l'action\")" : "Bravo, vous vous comparez aux meilleurs. Vous pouvez tout de même être le leader en testant nos suggestions d'actions" %>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Passez à l'action : voici nos suggestions !
-          </button>
+          <li><h5>Votre position par rapport à vos objectifs :</h5></li>
+          <% if @footprint_post_action != 0 %>
+            <%= @footprint_post_action > ((@footprint.ghg_result.fdiv(@company.employee_nb) * 0.55).round * 1.4) ? "Il vous reste des actions à entreprendre pour être sur vos objectifs SBTi! Continuez à tester nos idées d'actions" : "Bravo ! votre plan d'action vous permettrait d'atteeindre vos objectifs en 2030. Ne relâchez pas vos effforts et mesurez vos résultats en continu. Continuez à suivre nos conseils!" %>
+          <% else %>
+            <%= "Vous n'avez pas encore engagé de plan d'action et ne pourrez pas atteindre vos objectifs de réduction de vos émissions en 2030 : cliquez sur \passez à l'action\"" %>
+          <% end %>
+        </ul>
+        <ul>
+          <li><h5>Votre position par rapport aux meilleurs :</h5></li>
+          <%= @footprint.ghg_result.fdiv(@company.employee_nb) > ((@footprint_benchmark_per_employee.round) * 1.05) ? "Votre bilan carbone est supérieur aux meilleurs. Pas de stress, nous vous suggérons des actions d'améliorations (\"passez à l'action\")" : "Bravo, vous vous comparez aux meilleurs. Vous pouvez tout de même être le leader en testant nos suggestions d'actions" %>
         </ul>
       </div>
+
+
         <!-- Button trigger modal -->
 
         <!-- Modal -->
@@ -142,5 +141,10 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="dashboard_content_footer">
+        <button class="btn-bottom-pervenche-content" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Passez à l'action : voici nos suggestions !
+        </button>
   </div>
 </div>
