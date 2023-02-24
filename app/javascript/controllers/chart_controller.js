@@ -16,7 +16,14 @@ export default class extends Controller {
     const benchmarkCanva = document.querySelector('canvas#benchmark')
     const footprintCanva = document.querySelector('canvas#footprint')
     const tasksCanva = document.querySelector('canvas#tasks')
-    Chart.defaults.font.size = 28;
+
+    Chart.defaults.font.size = 16;
+    Chart.defaults.font.color = "#40497E";
+    Chart.defaults.font.family = "Quicksand", "sans-serif";
+    Chart.defaults.plugins.legend.display = false;
+    Chart.defaults.datasets.bar.maxBarThickness = 50;
+    Chart.defaults.datasets.bar.maxBarThickness = 50;
+
 
     if (benchmarkCanva) {
       new Chart(
@@ -61,12 +68,20 @@ export default class extends Controller {
                   type: 'linear',
                   position: "left",
                   stacked: true,
-                  display: true
+                  display: true,
+                  gridLines: {
+                    display: false
+                  },
                 }],
                 xAxes: [{
                   position: "bottom",
                   stacked: true,
-                  display: true
+                  display: true,
+                  barThickness: 6,  // number (pixels) or 'flex'
+                  maxBarThickness: 8, // number (pixels)
+                  gridLines: {
+                    display: false
+                  },
                 }]
               }
             }
@@ -148,12 +163,18 @@ export default class extends Controller {
                   type: 'linear',
                   position: "left",
                   stacked: true,
-                  display: true
+                  display: true,
+                  gridLines: {
+                    display: false
+                  },
                 }],
                 xAxes: [{
                   position: "bottom",
                   stacked: true,
-                  display: true
+                  display: true,
+                  gridLines: {
+                    display: false
+                  },
                 }]
               }
             }
@@ -169,7 +190,7 @@ export default class extends Controller {
         {
           type: "bar",
           data: {
-            labels: ["benchmark", "bilan", "bilan amélioré", "Obj. 2030", "Obj. 2040", "Obj. 2050"],
+            labels: ["Les meilleurs du secteur", "bilan carbone", "Bilan après le plan d'action", "Objectif 2030", "Objectif 2040", "Objectif 2050"],
             datasets: [{
               backgroundColor:  "#CCF7BB",
               data: [this.data.get("myValue0"), 0, 0, this.data.get("myValue4"), this.data.get("myValue5"), this.data.get("myValue6") ],
@@ -214,6 +235,20 @@ export default class extends Controller {
           },
           options: {
             plugins: {
+              title: {
+                display: true,
+                align: "center",
+                color: "#40497E",
+                text: 'Vos résultats, avant / après vos actions',
+                font: {
+                  size: 40,
+                  style: "bold",
+                },
+                padding: {
+                  top: 10,
+                  bottom: 40
+                },
+              },
               datalabels: {
                 color: 'white',
                 display: true,
