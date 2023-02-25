@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home ]
   before_action :compute_benchmark_per_employee, only: %i[dashboard targets mon_bilan_carbone]
   before_action :set_footprint, only: %i[dashboard targets mon_bilan_carbone]
+  before_action :check_footprint, only: [:mon_bilan_carbone]
 
   def home
   end
@@ -21,6 +22,11 @@ class PagesController < ApplicationController
   end
 
   private
+  def check_footprint
+    if @footprint.nil?
+      redirect_to new_company_footprint_path(current_company)
+    end
+  end
 
   def set_footprint
     @footprint = current_company.footprints.last
