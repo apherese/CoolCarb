@@ -16,8 +16,9 @@
   width: 100%;
   background: transparent;
   box-shadow: none;
-  .navbar-wagon-link {
-    color: white;
-    font-weight: bold;
-  }
+}
+
+.navbar-link:hover {
+  text-decoration: underline;
+  text-decoration-color: $my-home-green;
 }
