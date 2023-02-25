@@ -30,7 +30,7 @@
             <% @companies_with_details.each do |company, company_details| %>
               <div class="ag-courses_item">
                 <a href="<%=company_details["url"]%>" class="ag-courses-item_link">
-                  <div class="ag-courses-item_bg"></div>
+                  <div class="ag-courses-item_bg <%= company_details["Secteur"].parameterize %>"></div>
 
                   <div class="ag-courses-item_title">
                     <%= company.name %>
