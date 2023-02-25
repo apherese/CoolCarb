@@ -14,15 +14,51 @@
       <%= submit_tag "Search", class: "btn btn-primary" %>
     <% end %>
 
+
     <div id="resultats" class="cards">
-      <% if @companies %>
-        <% @companies.each do |company, company_details| %>
-          <div class="card-category">
-           <p><h3><%= company.name %></h3></p>
-           <p><h3>Année de reporting : <%=company_details["Année_de_reporting"]%></h3></p>
-          </div>
-      <% end %>
+      <div class="ag-format-container">
+        <div class="ag-courses_box">
+
+          <% if @companies %>
+            <% @companies.each do |company, company_details| %>
+              <div class="ag-courses_item">
+                <a href="#" class="ag-courses-item_link">
+                  <div class="ag-courses-item_bg"></div>
+
+                  <div class="ag-courses-item_title">
+                    <%= company.name %>
+                  </div>
+
+                  <div class="ag-courses-item_date-box">
+                    Année de reporting:
+                    <span class="ag-courses-item_date">
+                      <%=company_details["Année_de_reporting"]%>
+                    </span>
+                  </div>
+
+                  <div class="ag-courses-item_date-box">
+                    Nombre de salariés:
+                    <span class="ag-courses-item_date">
+                      <%= company.employee_nb %>
+                    </span>
+                  </div>
+
+                  <div class="ag-courses-item_date-box">
+                    Emissions:
+                    <span class="ag-courses-item_date">
+                      <%= company.footprints.find_by(certified: true).ghg_result %>
+                    </span>
+                  </div>
+
+                </a>
+              </div>
+            <% end %>
+          <% end %>
+
+        </div>
+      </div>
     </div>
+
 
     <% if user_signed_in? %>
       <% if current_user.company == nil %>

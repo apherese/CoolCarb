@@ -32,6 +32,5 @@ export default class extends Controller {
       setTimeout(() => {
         screen.querySelector("input").focus()
       }, 500);
-
   }
 }
