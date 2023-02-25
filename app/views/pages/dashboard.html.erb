@@ -25,40 +25,70 @@
 
   <div class="dashboard_content">
     <div class="container-fluid navbar justify-content-end green-wave-top">
-        <a class="navbar-brand ml-4" href="#">
-          <%= image_tag "logo.png", class:"w-50 ps-4" %>
+      <%= link_to root_path do %>
+        <%= image_tag "logo.png", class:"w-50 ps-4" %>
         <p>Réduisez votre empreinte carbone!</p>
-        </a>
-    </div>
-    <div class="container-fluid">
-      <div class="card-product">
-      <ul>
-        <i class="fa-solid fa-hotel px-5 fs-1 pt-4 text-center"><h2><%= "#{@company.industry}" %></h2></i>
-      </ul>
-      <div class="card-product-infos">
-        <h2><%= "#{@company.name}" %></h2>
-        <h2><%= "#{@company.employee_nb} collaborateurs" %></h2>
-      </div>
+      <% end %>
     </div>
 
-    <div class="dashboard_content_body">
-     <div class="dashboard_content_graph">
-        <div style="width: 800px;" class="chart-container" data-controller="chart"
-            data-chart-my-value0="<%= @footprint_benchmark_per_employee.round %>">
-            <canvas id="benchmark"></canvas>
+    <div class="container">
+      <div class="dashboard-company-infos">
+        <div class="dashboard-company-icon">
+          <i class="fa-solid fa-hotel text-center me-5">
+            <h2><%= "#{@company.industry}" %></h2>
+          </i>
+        </div>
+        <div class="d-flex align-items-end">
+          <h1 class="mb-0"><%= "#{@company.name}" %></h1>
+          <p class="mb-2"><%= "#{@company.employee_nb} collaborateurs" %></p>
         </div>
       </div>
-      <div class="dashboard_content_advise flex-column">
-        <h1><strong>Voici nos conseils :</strong></h1>
-        <ul>
-          <li><h5>Vous pouvez attirer de nouveaux clients et engager vos collaborateurs
-              dans un projet qui donne du sens à leur travail en vous engageant dans
-              une démarche de réduction de votre empreinte carbone. Pour cela il faut
-              d'abord évaluer votre empreinte actuelle et la comparer aux meilleurs de
-              votre secteur : cliquez sur "Bilan Carbone" pour calculer votre bilan carbone</h5></li>
-          <li><h5>Une fois votre bilan carbone établi, vous pourrez cliquer sur "Plan d'Action" pour créer des actions qui réduiront votre empreinte carbone</h5>
-        </ul>
-      </div>
+
+      <% if @company.footprints.blank? && @company.footprints.flat_map(&:tasks).blank? %>
+
+        <div class="dashboard_content_graph">
+          <div style="width: 800px;" class="chart-container" data-controller="chart"
+              data-chart-my-value0="<%= @footprint_benchmark_per_employee.round %>">
+            <canvas id="benchmark"></canvas>
+          </div>
+        </div>
+
+        <div class="dashboard_content_advise flex-column">
+          <h1><strong>Voici nos conseils :</strong></h1>
+          <ul>
+            <li>
+              <h5>
+                Vous pouvez attirer de nouveaux clients et engager vos collaborateurs
+                dans un projet qui donne du sens à leur travail en vous engageant dans
+                une démarche de réduction de votre empreinte carbone. Pour cela il faut
+                d'abord évaluer votre empreinte actuelle et la comparer aux meilleurs de
+                votre secteur : cliquez sur "Bilan Carbone" pour calculer votre bilan carbone
+              </h5>
+            </li>
+            <li>
+              <h5>
+                Une fois votre bilan carbone établi, vous pourrez cliquer sur "Plan d'Action" pour créer des actions qui réduiront votre empreinte carbone
+              </h5>
+            </li>
+          </ul>
+        </div>
+      <% elsif @company.footprints.present? && @company.footprints.flat_map(&:tasks).blank? %>
+        <div class="dashboard-company-summary">
+          <div class="dashboard-company-summary__figure">
+            <h1><%= 'Benchmark figure' %></h1>
+          </div>
+          <div class="dashboard-company-summary__footprint">
+            <h1><%= 'Footprint figure' %></h1>
+          </div>
+        </div>
+
+        <div class="card_action_plan">
+            <h1><%= "Plan d'action" %></h1>
+            <h3><%= "N'attendez plus pour passer à l'action et réaliser vos objectifs ! Avec un plan d'action clair et bien défini, vous êtes prêt à avancer vers la réussite." %></h3>
+        </div>
+      <% elsif @company.footprints.present? && @company.footprints.flat_map(&:tasks).present? %>
+        <%= 'BC et PA' %>
+      <% end %>
     </div>
   </div>
 </div>
