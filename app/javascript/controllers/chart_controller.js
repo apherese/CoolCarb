@@ -1,6 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
-import { start } from "@popperjs/core";
 import Chart from 'chart.js/auto';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+
+Chart.register(ChartDataLabels);
+
 
 // Connects to data-controller="chart"
 export default class extends Controller {
@@ -250,7 +253,7 @@ export default class extends Controller {
                 },
               },
               datalabels: {
-                color: 'white',
+                color: "#FDFBF6",
                 display: true,
                 font: {
                   weight: 'bold'
@@ -279,12 +282,19 @@ export default class extends Controller {
               }
             },
             scales: {
-              x: {
-                stacked: true
-              },
               y: {
-                stacked: true
-              }
+                display: false,
+                stacked: true,
+                grid: {
+                  display: false
+                }
+              },
+              x: {
+                stacked: true,
+                grid: {
+                  display: false
+                }
+              },
             }
           }
         }
