@@ -253,8 +253,12 @@ export default class extends Controller {
                 },
               },
               datalabels: {
-                color: "#FDFBF6",
-                display: true,
+                color: function(context) {
+                  return context.dataset.backgroundColor==="#CCF7BB" ? "#40497E" : "#FDFBF6" ;
+                },
+                display: function(context) {
+                  return context.dataset.data[context.dataIndex] > 1;
+                },
                 font: {
                   weight: 'bold'
                 },
