@@ -25,4 +25,26 @@ class PagesController < ApplicationController
   def set_footprint
     @footprint = current_company.footprints.last
   end
+
+  def compute_benchmark_per_employee
+    @footprint_benchmark_per_employee = 0
+    companies = Company.sector(current_company.industry)
+    @company_benchmark_size = companies.size
+    @footprint_benchmark_per_employee = companies.sum do |company|
+      if company.footprints.where(certified: true).size != 0
+        company_ghg_result = company.footprints.where(certified: true).pluck(:ghg_result).sum.fdiv(company.footprints.where(certified: true).size )
+        company_ghg_result_per_employee = company_ghg_result.fdiv(company.employee_nb)
+        if company_ghg_result_per_employee < EmissionBenchmark::HOTEL_MAX_EMISSION_BENCH
+          company_ghg_result_per_employee
+        else
+          @company_benchmark_size = @company_benchmark_size - 1
+          0
+        end
+      else
+        @company_benchmark_size = @company_benchmark_size - 1
+        0
+      end
+    end
+    @footprint_benchmark_per_employee = @footprint_benchmark_per_employee.fdiv(@company_benchmark_size)
+  end
 end
