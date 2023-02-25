@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="dashboard_navbar_footer">
-      <div class="btn-bottom-navbar">Se déconnecter</div>
+      <%= button_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: "btn-bottom-navbar" %>
     </div>
   </div>
 
