@@ -45,15 +45,13 @@
       </div>
 
       <% if @company.footprints.blank? && @company.footprints.flat_map(&:tasks).blank? %>
-
-        <div class="dashboard_content_graph">
-          <div style="width: 800px;" class="chart-container" data-controller="chart"
-              data-chart-my-value0="<%= @footprint_benchmark_per_employee.round %>">
-            <canvas id="benchmark"></canvas>
+        <div class="dashboard-company-summary">
+          <div class="dashboard-company-summary__figure">
+            <h1><strong><%=  @footprint_benchmark_per_employee.round(1)%></strong></h1>
+            <h2><%= "la moyenne du secteur" %></h2>
+            <h2><%= "#{@company.industry}" %></h2>
           </div>
-        </div>
-
-        <div class="dashboard_content_advise flex-column">
+          <div class="dashboard-company-summary__footprint">
           <h1><strong>Voici nos conseils :</strong></h1>
           <ul>
             <li>
@@ -71,11 +69,19 @@
               </h5>
             </li>
           </ul>
+          </div>
+        </div>
+
+        <div class="card_action_plan">
+            <h1><strong><%= "Plan d'action" %></strong></h1>
+            <h3><%= "N'attendez plus pour passer à l'action et réaliser vos objectifs ! Avec un plan d'action clair et bien défini, vous êtes prêt à avancer vers la réussite." %></h3>
         </div>
       <% elsif @company.footprints.present? && @company.footprints.flat_map(&:tasks).blank? %>
         <div class="dashboard-company-summary">
           <div class="dashboard-company-summary__figure">
-            <h1><%= 'Benchmark figure' %></h1>
+            <h1><strong><%=  @footprint_benchmark_per_employee.round(1)%></strong></h1>
+            <h2><%= "la moyenne du secteur" %></h2>
+            <h2><%= "#{@company.industry}" %></h2>
           </div>
           <div class="dashboard-company-summary__footprint">
             <h1><%= 'Footprint figure' %></h1>
@@ -83,11 +89,26 @@
         </div>
 
         <div class="card_action_plan">
-            <h1><%= "Plan d'action" %></h1>
+            <h1><strong><%= "Plan d'action" %></strong></h1>
             <h3><%= "N'attendez plus pour passer à l'action et réaliser vos objectifs ! Avec un plan d'action clair et bien défini, vous êtes prêt à avancer vers la réussite." %></h3>
         </div>
       <% elsif @company.footprints.present? && @company.footprints.flat_map(&:tasks).present? %>
-        <%= 'BC et PA' %>
+        <div class="dashboard-company-summary">
+          <div class="dashboard-company-summary__figure">
+            <h1><strong><%=  @footprint_benchmark_per_employee.round(1)%></strong></h1>
+            <h2><%= "la moyenne du secteur" %></h2>
+            <h2><%= "#{@company.industry}" %></h2>
+          </div>
+          <div class="dashboard-company-summary__footprint">
+            <h1><strong><%= 'Mon bilan carbone' %></strong></h1>
+            <h2><%= "#{@company_ghg_result_per_employee}" %></h2>
+          </div>
+        </div>
+
+        <div class="card_action_plan">
+            <h1><strong><%= "Mon plan d'action" %></strong></h1>
+            <h3><%= "blablabla." %></h3>
+        </div>
       <% end %>
     </div>
   </div>
