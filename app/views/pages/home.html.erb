@@ -5,8 +5,8 @@
       <%= image_tag "logo.png", class:"w-50 ps-4" %>
     <p>Réduisez votre empreinte carbone!</p>
     </a>
-    <a href="" class= "btn">Pourquoi Coolcarb?</a>
-    <a href="" class= "btn">Notre offre ?</a>
+    <%= link_to "Pourquoi Coolcarb?", class: "btn" %>
+    <%= link_to "Notre offre?", "#offre", class: "btn"%>
     <%= link_to "Benchmarks", companies_path, class: "btn" %>
     <%= link_to "Connexion", new_user_session_path, class: "btn btn-primary", style:"color:white"%>
   </div>
@@ -71,7 +71,7 @@
 
   <div class="category-container">
 
-    <div class='scope-card'>
+    <div id="offre" class='scope-card'>
       <h1><strong>Un bilan Carbone additionne les émissions de trois 'Scopes'</strong></h1>
     </div>
 
