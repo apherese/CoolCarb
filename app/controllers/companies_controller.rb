@@ -28,11 +28,12 @@ class CompaniesController < ApplicationController
     list_data = JSON.parse(data)["results"]
 
     if params[:query].present?
-      company_scope = Company.where(industry: params[:query])
+      @compagnies = Company.where(industry: params[:query])
     else
-      company_scope = Company.all
+      @compagnies = Company.all
     end
-    @companies_with_details = company_scope.to_h do |company|
+
+    @companies_with_details = @compagnies.map do |company|
       company_details = list_data.find { |data_set| data_set["Raison_sociale_/_Nom_de_l'entité"] == company.name }
       [company, company_details]
     end

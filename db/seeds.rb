@@ -38,7 +38,7 @@ list_data = JSON.parse(data)["results"]
 list_data.each do |el|
   hotel_parameter = {
     name: el["Raison_sociale_/_Nom_de_l'entité"],
-    industry: "Hôtel",
+    industry: el["Secteur"],
     employee_nb: el["Nombre_de_salariés_/_d'agents"]
   }
 
