@@ -61,6 +61,8 @@ list_data.each do |el|
   Footprint.create(footprint_parameter)
 end
 
+
+
 aigle_noir = Company.create!({ name: "Aigle Noir", industry: "Hôtel", employee_nb: 15, room_nb: 80, length_of_stay: 4.2, load_factor: 0.8 })
 hotel_plage = Company.create!({ name: "La Plage", industry: "Hôtel", employee_nb: 5, room_nb: 20, length_of_stay: 5.3, load_factor: 0.9 })
 metropol = Company.create!({ name: "Metropol", industry: "Hôtel", employee_nb: 100, room_nb: 250, length_of_stay: 2.1, load_factor: 0.70 })
