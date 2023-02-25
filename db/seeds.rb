@@ -1,3 +1,5 @@
+require "pry"
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -35,6 +37,7 @@ filepath = "data/ademe_data.json"
 data = File.read(filepath)
 list_data = JSON.parse(data)["results"]
 
+
 list_data.each do |el|
   hotel_parameter = {
     name: el["Raison_sociale_/_Nom_de_l'entité"],
@@ -60,8 +63,6 @@ list_data.each do |el|
   }
   Footprint.create(footprint_parameter)
 end
-
-
 
 aigle_noir = Company.create!({ name: "Aigle Noir", industry: "Hôtel", employee_nb: 15, room_nb: 80, length_of_stay: 4.2, load_factor: 0.8 })
 hotel_plage = Company.create!({ name: "La Plage", industry: "Hôtel", employee_nb: 5, room_nb: 20, length_of_stay: 5.3, load_factor: 0.9 })

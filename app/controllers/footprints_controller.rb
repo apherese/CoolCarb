@@ -2,7 +2,6 @@ class FootprintsController < ApplicationController
   include Charts
   before_action :set_company, only: %i[new create]
   before_action :compute_benchmark, only: %i[new create show]
-  before_action :compute_benchmark_per_employee, only: %i[new create show]
 
   def index
     @footprints = current_company.footprints
