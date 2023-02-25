@@ -26,14 +26,17 @@ class CompaniesController < ApplicationController
     filepath = "data/ademe_data.json"
     data = File.read(filepath)
     list_data = JSON.parse(data)["results"]
-    @companies = Company.all.to_h do |company|
+
+    if params[:query].present?
+      company_scope = Company.where(industry: params[:query])
+    else
+      company_scope = Company.all
+    end
+    @companies_with_details = company_scope.to_h do |company|
       company_details = list_data.find { |data_set| data_set["Raison_sociale_/_Nom_de_l'entité"] == company.name }
       [company, company_details]
     end
-    @companies = @companies.select { |_, company_details| company_details }
-    if params[:query].present?
-      @companies = Company.where(industry: params[:query])
-    end
+    @companies_with_details = @companies_with_details.select { |_, company_details| company_details }
   end
 
   private
