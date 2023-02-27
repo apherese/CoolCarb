@@ -3,6 +3,10 @@ body {
   background-color: $my-body-bg;
 }
 
+p{
+  text-align: justify;
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -19,17 +23,12 @@ body {
 
 .hero-banner {
   height: 90vh;
-  width: 100%;
+  // width: 100%;
   background-image: url(rectangle.png);
   background-repeat: no-repeat;
   background-position: bottom;
   margin-bottom: 2rem;
-}
-
-.hero-button {
-  width: 60%;
-  margin: 0 auto;
-  font-weight: bold;
+   border-radius: 16px;
 }
 
 .category-container {
@@ -88,6 +87,10 @@ body {
 }
 
 .news-card {
+  p{
+    text-align: justify;
+    padding: 0px 60px 0px 60px;
+  }
   height: 100%;
   width: 100%;
   background-image: url('actualites.png');
@@ -98,31 +101,4 @@ body {
   align-items: center;
   text-align: center;
   border-radius: 16px;
-}
-
-.btn-home {
-  border-radius: 20px;
-  p {
-    font-weight: bold;
-    color: $body-color;
-  }
-}
-
-.btn-home:hover {
-  text-decoration: underline;
-  text-decoration-color: #CCF7BB;
-}
-
-a {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-  text-decoration-color: #CCF7BB;
-}
-
-p{
-  text-align: justify;
-  padding: 0px 25px 0px 25px;
 }

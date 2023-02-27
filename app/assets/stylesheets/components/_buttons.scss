@@ -7,6 +7,84 @@
   width: 120%;
 }
 
+
+// Home Navbar
+
+.btn-home {
+  border-radius: 20px;
+  margin: 0 auto;
+  font-weight: bold;
+}
+
+.btn-home:hover {
+  text-decoration: underline;
+  text-decoration-color: #CCF7BB;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-decoration-color: #CCF7BB;
+}
+
+// Home Banner
+
+.hero-button {
+  border-radius: 20px;
+  width: 60%;
+  margin: 0 auto;
+  font-weight: bold;
+}
+
+// Home Exemples de PME
+
+.btn-sme {
+  color: $my-body-bg;
+  padding: 8px 8px 8px 12px;
+  border-radius: 20px;
+  background: $my-dark-pervenche;
+  transition: background 0.3s ease;
+  font-weight: bold;
+}
+
+.btn-sme:hover {
+  background: $my-body-bg;
+  color: $my-dark-pervenche;
+}
+
+// Home news
+
+.btn-home-news {
+  border-radius: 20px;
+  margin: 0 auto;
+  font-weight: bold;
+}
+
+.btn-home-news:hover {
+  text-decoration: underline;
+  text-decoration-color: #40497E;
+}
+// Home Partenaires
+
+.btn-partners {
+  color: #778AFB;
+  padding: 8px 8px 8px 12px;
+  border-radius: 20px;
+  background: $my-body-bg;
+  transition: background 0.3s ease;
+  font-weight: bold;
+}
+
+.btn-partners:hover {
+  background: #778AFB;
+  color: $my-body-bg;
+}
+
+// Dashboard - bilan - Plan d'action
+
 .btn-middle-pervenche-navbar {
   color: $my-body-bg;
   padding: 8px 140px 8px 24px;
