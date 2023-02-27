@@ -30,12 +30,30 @@ a:hover {
   text-decoration-color: #CCF7BB;
 }
 
+// Home companies-index
+
+.hero-button-companies {
+  border-radius: 20px;
+  width: 100%;
+  margin: 0 auto;
+  font-weight: bold;
+}
+
 // Home Banner
 
 .hero-button {
   border-radius: 20px;
   width: 60%;
   margin: 0 auto;
+  font-weight: bold;
+}
+
+// Bilan
+
+.hero-button-bilan {
+  border-radius: 20px;
+  width: 20%;
+  margin: 200px 0px 0px 0px;
   font-weight: bold;
 }
 
