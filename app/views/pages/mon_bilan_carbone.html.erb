@@ -67,7 +67,7 @@
         <ul>
           <li><h5>Votre position par rapport aux meilleurs :</h5></li>
             <% if @footprint.nil? %>
-              <%= link_to "Calculer mon Bilan Carbone", new_company_footprint_path(@company) %>
+              <%= "Vous n'avez pas encore calculé votre bilan carbone. Afin de prendre conscience de votre bilan, commencez par un brouillon que vous pourrez améliorer!" %>
             <% else %>
               <%= @footprint.ghg_result.fdiv(@company.employee_nb) > ((@footprint_benchmark_per_employee.round) * 1.05) ? "Votre bilan carbone est supérieur aux meilleurs. Pas de stress, nous vous suggérons des actions d'améliorations (\"passez à l'action\")" : "Bravo, vous vous comparez aux meilleurs. Vous pouvez tout de même être le leader en testant nos suggestions d'actions" %>
             <% end %>
@@ -75,4 +75,13 @@
       </div>
     </div>
   </div>
+      <% if current_user != nil %>
+          <% if current_user.company == nil %>
+            <%= link_to "Calculez un nouveau bilan carbone", new_company_path, class: "btn btn-primary hero-button-bilan", style:"color:white" %>
+          <% else %>
+            <%= link_to "Calculez un nouveau bilan carbone", new_company_footprint_path(@company), class: "btn btn-primary hero-button-bilan", style:"color:white" %>
+          <% end %>
+        <% else %>
+            <%= link_to "Calculez un nouveau bilan carbone", new_user_session_path, class: "btn btn-primary hero-button-bilan", style:"color:white" %>
+      <% end %>
 </div>

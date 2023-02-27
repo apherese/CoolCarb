@@ -1,25 +1,41 @@
 <div class="containers">
   <div class="dashboard_content">
     <div class="container-fluid navbar justify-content-end green-wave-top">
-        <a class="navbar-brand ml-4" href="#">
-          <%= image_tag "logo.png", class:"w-50 ps-4" %>
+      <%= link_to root_path do %>
+        <%= image_tag "logo.png", class:"w-50 ps-4" %>
         <p>Réduisez votre empreinte carbone!</p>
-        </a>
+      <% end %>
     </div>
-    <h1 class="mb-5 mt-4"><strong>Les plus belles réussites de CoolCarb par secteur d'activité</strong> </h1>
-    <p class="text-start mt-4">Chez <strong>CoolCarb</strong> , nous sommes fiers de vous présenter une liste d'entreprises qui ont réussi à réduire leur empreinte carbone grâce à notre outil de calcul de l'empreinte carbone. Nous sommes convaincus que chaque entreprise peut <strong>contribuer à la protection de l'environnement</strong>  en prenant des <strong>mesures concrètes</strong>  pour réduire ses émissions de gaz à effet de serre.</p>
-    <p class="text-start">En explorant cette liste, vous pourrez découvrir des <strong>profils d'entreprises dans votre secteur</strong>  d'activité ont réussi à réduire leur empreinte carbone grâce à CoolCarb. De l'hôtellerie à la restauration, en passant par la santé et la construction, les entreprises ayant utilisé notre outil ont réussi à réduire leurs émissions de manière significative, tout en réalisant des économies sur leurs coûts énergétiques.</p>
-    <p class="text-start">Nous espérons que cette liste vous inspirera à prendre des mesures pour réduire votre propre empreinte carbone. En tant qu'utilisateur de CoolCarb, vous pouvez facilement calculer votre propre empreinte carbone et accéder à un dashboard personnalisé qui vous proposera des plans d'action concrets pour réduire vos émissions et améliorer votre impact environnemental.</p>
-    <p class="text-start mb-5" style="width:100%">Alors n'hésitez pas à <strong>explorer notre liste d'entreprises</strong>  ayant réussi à réduire leur empreinte carbone et à prendre des mesures dès aujourd'hui pour un avenir plus durable.</p>
-    <div class="d-flex justify-content-center align-items-center" >
+    <h1 class="mb-3 mt-3"><strong>Les plus belles réussites de CoolCarb par secteur d'activité</strong> </h1>
+    <div class="container-fluid flex-column ", style="width: 75rem;">
+      <p class="text-start mt-4">Chez <strong>CoolCarb</strong> , nous sommes fiers de vous présenter une liste d'entreprises qui ont réussi à réduire leur empreinte carbone grâce à notre outil de calcul de l'empreinte carbone. Nous sommes convaincus que chaque entreprise peut <strong>contribuer à la protection de l'environnement</strong>  en prenant des <strong>mesures concrètes</strong>  pour réduire ses émissions de gaz à effet de serre.</p>
+      <p class="text-start">En explorant cette liste, vous pourrez découvrir des <strong>profils d'entreprises dans votre secteur</strong>  d'activité ont réussi à réduire leur empreinte carbone grâce à CoolCarb. De l'hôtellerie à la restauration, en passant par la santé et la construction, les entreprises ayant utilisé notre outil ont réussi à réduire leurs émissions de manière significative, tout en réalisant des économies sur leurs coûts énergétiques.</p>
+      <p class="text-start">Nous espérons que cette liste vous inspirera à prendre des mesures pour réduire votre propre empreinte carbone. En tant qu'utilisateur de CoolCarb, vous pouvez facilement calculer votre propre empreinte carbone et accéder à un dashboard personnalisé qui vous proposera des plans d'action concrets pour réduire vos émissions et améliorer votre impact environnemental.</p>
+      <p class="text-start mb-5" style="width:100%">Alors n'hésitez pas à <strong>explorer notre liste d'entreprises</strong>  ayant réussi à réduire leur empreinte carbone et à prendre des mesures dès aujourd'hui pour un avenir plus durable.</p>
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center">
       <h4 class="align-self-center mb-0 mr-2">Selectionnez votre secteur d'activité</h4>
       <%= form_with url: companies_path, method: :get, class: "d-flex" do %>
         <%= select_tag :query,
-          options_for_select(["","Hôtel", "Santé", "Construction"]), class: "form-select m-2 rounded-5 text-center"
+          options_for_select(["","Hôtellerie", "Santé", "Construction"]), class: "form-select m-2 rounded-5 text-center"
         %>
-        <%= submit_tag "Search", class: "btn btn-primary m-2" %>
+        <%= submit_tag "Search", class: "btn btn-primary hero-button-companies", style:"color:white" %>
       <% end %>
+      <h4 class="align-self-center mb-0 mr-2">ou calculez votre bilan carbone :</h4>
+      <div class="row" style="padding:20px">
+        <% if user_signed_in? %>
+          <% if current_user.company == nil %>
+            <%= link_to "Mon bilan carbone", new_company_path, class: "btn btn-primary hero-button-companies", style:"color:white" %>
+          <% else %>
+            <%= link_to "Mon bilan carbone", dashboard_path, class: "btn btn-primary hero-button-companies", style:"color:white" %>
+          <% end %>
+        <% else %>
+            <%= link_to "Mon bilan carbone", new_user_session_path, class: "btn btn-primary hero-button-companies", style:"color:white" %>
+        <% end %>
+      </div>
     </div>
+
 
 
     <div id="resultats" class="cards">
@@ -78,18 +94,15 @@
         </div>
       </div>
     </div>
-
-
-    <% if user_signed_in? %>
-      <% if current_user.company == nil %>
-        <%= link_to "Calculez facilement votre bilan carbone", new_company_path, class: "btn btn-lg btn-primary" %>
+    <div class="row" style="padding:20px">
+      <% if user_signed_in? %>
+        <% if current_user.company == nil %>
+          <%= link_to "Mon bilan carbone", new_company_path, class: "btn btn-primary hero-button-companies", style:"color:white" %>
+        <% else %>
+          <%= link_to "Mon bilan carbone", dashboard_path, class: "btn btn-primary hero-button-companies", style:"color:white" %>
+        <% end %>
       <% else %>
-        <%= link_to "Calculez facilement votre bilan carbone", dashboard_path, class: "btn btn-lg btn-primary" %>
+          <%= link_to "Mon bilan carbone", new_user_session_path, class: "btn btn-primary hero-button-companies", style:"color:white" %>
       <% end %>
-    <% else %>
-      <div class="row" style="padding:20px">
-        <%= link_to "Calculez facilement votre bilan carbone", new_user_session_path, class: "btn btn-lg btn-primary" %>
-      </div>
-    <% end %>
   </div>
 </div>

@@ -1,93 +1,93 @@
-
-<div class="navbar navbar-expand-sm navbar-light ml-4 mr-4 rounded border-black border">
-  <div class="container-fluid">
-    <a class="navbar-brand ml-4" href="#">
-      <%= image_tag "logo.png", class:"w-50 ps-4" %>
-    <p>Réduisez votre empreinte carbone!</p>
-    </a>
-    <%= link_to "Pourquoi Coolcarb?", companies_path,  class: "btn-home" %>
-    <%= link_to "Notre offre?", "#offre", class: "btn-home" %>
-    <%= link_to "Benchmarks", companies_path, class: "btn-home" %>
-    <%= link_to "Connexion", new_user_session_path, class: "btn btn-primary", style:"color:white"%>
+<div class="containers flex-column">
+  <div class="navbar navbar-expand-sm navbar-light ml-4 mr-4 rounded border-black border">
+    <div class="container-fluid">
+      <a class="navbar-brand ml-4" href="#">
+        <%= image_tag "logo.png", class:"w-50 ps-4" %>
+      <p>Réduisez votre empreinte carbone!</p>
+      </a>
+      <%= link_to "Pourquoi Coolcarb?", companies_path,  class: "btn-home" %>
+      <%= link_to "Notre offre?", "#offre", class: "btn-home" %>
+      <%= link_to "Benchmarks", companies_path, class: "btn-home" %>
+      <%= link_to "Connexion", new_user_session_path, class: "btn btn-primary", style:"color:white"%>
+    </div>
   </div>
-</div>
 
+  <div class="container">
 
-<div class="container">
-
-  <div class="row justify-content-around hero-banner">
-    <div class="text-start p-0 col-4 d-flex flex-column justify-content-center">
-      <h1><strong>La plateforme des PME engagées pour le climat</strong></h1>
-      <ul class="p-0">
-        <p class="mb-3"><strong>Consultez</strong> le bilan carbone de sociétés de tous secteurs d'activité.</p>
-        <p class="mb-3">Inspirez-vous de leurs <strong>actions de réduction</strong> de leur empreinte carbone!</p>
-        <p class="mb-3">Inscrivez votre société gratuitement sur CoolCarb et <strong>calculer votre bilan carbone.</strong></p>
-        <p class="mb-3">Bénéficier de nos conseils pour <strong>engager des actions, gagner des clients et engager vos collaborateurs!</strong></p>
-      </ul>
-      <% if current_user != nil %>
-        <% if current_user.company == nil %>
-          <%= link_to "Mon bilan carbone", new_company_path, class: "btn btn-primary hero-button", style:"color:white" %>
+    <div class="row justify-content-around hero-banner">
+      <div class="text-start p-0 col-4 d-flex flex-column justify-content-center">
+        <h1><strong>La plateforme des PME engagées pour le climat</strong></h1>
+        <ul class="p-0">
+          <p class="mb-3"><strong>Consultez</strong> le bilan carbone de sociétés de tous secteurs d'activité.</p>
+          <p class="mb-3">Inspirez-vous de leurs <strong>actions de réduction</strong> de leur empreinte carbone!</p>
+          <p class="mb-3">Inscrivez votre société gratuitement sur CoolCarb et <strong>calculer votre bilan carbone.</strong></p>
+          <p class="mb-3">Bénéficier de nos conseils pour <strong>engager des actions, gagner des clients et engager vos collaborateurs!</strong></p>
+        </ul>
+        <% if current_user != nil %>
+          <% if current_user.company == nil %>
+            <%= link_to "Mon bilan carbone", new_company_path, class: "btn btn-primary hero-button", style:"color:white" %>
+          <% else %>
+            <%= link_to "Mon bilan carbone", dashboard_path, class: "btn btn-primary hero-button", style:"color:white" %>
+          <% end %>
         <% else %>
-          <%= link_to "Mon bilan carbone", dashboard_path, class: "btn btn-primary hero-button", style:"color:white" %>
+            <%= link_to "Mon bilan carbone", new_user_session_path, class: "btn btn-primary hero-button", style:"color:white" %>
         <% end %>
-      <% else %>
-          <%= link_to "Mon bilan carbone", new_user_session_path, class: "btn btn-primary hero-button", style:"color:white" %>
-      <% end %>
+      </div>
+      <div class="col-6 d-flex flex-column justify-content-center">
+        <%= image_tag "image-home.png", class:" " %>
+      </div>
     </div>
-    <div class="col-6 d-flex flex-column justify-content-center">
-      <%= image_tag "image-home.png", class:" " %>
-    </div>
-  </div>
 
-  <div class="category-container">
+    <div class="category-container">
 
-    <div class='engagement-card'>
-      <p class='m-5'>
-        <strong><%= link_to "Exemples: bilans carbone et plan d'action de PME", companies_path, class: "btn-sme" %></strong>
-      </p>
-    </div>
-    <div class="sub-category">
-       <div class="news-card">
-          <div class="d-flex align-items-center flex-column">
-            <h1 class="mb-5"><strong>Actualités</strong></h1>
-            <%= link_to "L'ADEME vient de fixer ses priorités stratégiques:",  "https://presse.ademe.fr/2023", class: "btn-home-news mb-1 fw-bold" %>
-            <p class="mb-3">Afin d’accompagner l’ensemble de ses partenaires
-                à relever les défis d’une transition écologique solidaire, <strong>l’ADEME a élaboré une
-                stratégie « 2023-2027, Agir maintenant, collectivement ! ». Elle y explicite les
-                priorités pour s’adapter sur le long terme aux conséquences du changement climatique</strong>
-                et elle précise comment l’ADEME se positionne comme opérateur public au service de
-                la transition écologique adaptée aux évolutions du climat.</p>
+      <div class='engagement-card'>
+        <p class='m-5'>
+          <strong><%= link_to "Exemples: bilans carbone et plan d'action de PME", companies_path, class: "btn-sme" %></strong>
+        </p>
+      </div>
+      <div class="sub-category">
+        <div class="news-card">
+            <div class="d-flex align-items-center flex-column">
+              <h1 class="mb-5"><strong>Actualités</strong></h1>
+              <%= link_to "L'ADEME vient de fixer ses priorités stratégiques:",  "https://presse.ademe.fr/2023", class: "btn-home-news mb-1 fw-bold" %>
+              <p class="mb-3">Afin d’accompagner l’ensemble de ses partenaires
+                  à relever les défis d’une transition écologique solidaire, <strong>l’ADEME a élaboré une
+                  stratégie « 2023-2027, Agir maintenant, collectivement ! ». Elle y explicite les
+                  priorités pour s’adapter sur le long terme aux conséquences du changement climatique</strong>
+                  et elle précise comment l’ADEME se positionne comme opérateur public au service de
+                  la transition écologique adaptée aux évolutions du climat.</p>
+            </div>
           </div>
-        </div>
-        <div class="partner-card d-flex align-items-center flex-column">
-          <h1 class="mb-5"><strong>Partenaires</strong></h1>
-          <div class="flex center px-4">
-            <%= link_to "ADEME",  "https://ademe.fr", class: "btn-partners" %>
-            <%= link_to "The Shift Project",  "https://theshiftproject.org", class: "btn-partners" %>
-            <%= link_to "Carbone 4",  "https://www.carbone4.com", class: "btn-partners" %>
+          <div class="partner-card d-flex align-items-center flex-column">
+            <h1 class="mb-5"><strong>Partenaires</strong></h1>
+            <div class="flex center px-4">
+              <%= link_to "ADEME",  "https://ademe.fr", class: "btn-partners" %>
+              <%= link_to "The Shift Project",  "https://theshiftproject.org", class: "btn-partners" %>
+              <%= link_to "Carbone 4",  "https://www.carbone4.com", class: "btn-partners" %>
+            </div>
           </div>
-        </div>
+      </div>
+    </div>
+
+    <div class="category-container flex-column">
+
+      <div id="offre" class='scope-card'>
+      </div>
+      <h1><strong>Les émissions les plus importantes sont souvent dues aux clients et fournisseurs -scope 3- mais sont aussi plus difficiles à calculer</strong></h1>
+
     </div>
   </div>
 
-  <div class="category-container flex-column">
-
-    <div id="offre" class='scope-card'>
+  <div class="footer text-center">
+    <div class="footer-links">
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
     </div>
-    <h1><strong>Les émissions les plus importantes sont souvent dues aux clients et fournisseurs -scope 3- mais sont aussi plus difficiles à calculer</strong></h1>
-
-  </div>
-</div>
-
-<div class="footer text-center">
-  <div class="footer-links">
-    <a href="#"><i class="fab fa-github"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
-  </div>
-  <div class="footer-copyright">
-    This footer is made with <i class="fas fa-heart"></i> at Le Wagon
+    <div class="footer-copyright">
+      This footer is made with <i class="fas fa-heart"></i> at Le Wagon
+    </div>
   </div>
 </div>
