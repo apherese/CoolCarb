@@ -1,5 +1,4 @@
 <div class="container-long-form" data-controller="long-form">
-  <%# <h1>Un nouveau calcul de bilan carbone de <%=@company.name %></h1>
   <%= simple_form_for [@company, @footprint], html: {data: {long_form_target: "form"}} do |f| %>
     <%# <h2>Scope 1</h2>
       <h3>Bâtiments</h3> %>
@@ -36,7 +35,7 @@
             <span class="span" data-action="click->long-form#back">Précédent</span>
             <span class="span" data-action="click->long-form#next">Suivant</span>
           </div>
-          <div class="astuce">Astuce : la moyenne est de 1,4 milliers de litres/véhicule/an</div>
+          <div class="astuce"></div>
         </div>
 
         <div class="long-form-div" data-long-form-target="screen">
@@ -45,7 +44,7 @@
             <span class="span" data-action="click->long-form#back">Précédent</span>
             <span class="span" data-action="click->long-form#next">Suivant</span>
           </div>
-          <div class="astuce">Astuce : comptez 1,2 milliers de litres/véhicule/an</div>
+          <div class="astuce"></div>
         </div>
 
     <%# <h2>Scope 2</h2> %>
@@ -84,7 +83,7 @@
           <span class="span" data-action="click->long-form#back">Précédent</span>
           <span class="span" data-action="click->long-form#next">Suivant</span>
         </div>
-        <div class="astuce">Astuce : comptez 0,01 milliers de litres/fournisseur/an</div>
+        <div class="astuce"></div>
       </div>
 
     <%# <h2>Voulez-vous certifier votre Bilan Carbone ?</h2> %>
