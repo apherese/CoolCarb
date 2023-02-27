@@ -48,7 +48,8 @@
         <% else %>
           <div style="width: 800px;" class="chart-container" data-controller="chart"
             data-chart-my-value0="<%= @footprint_benchmark_per_employee.round %>"
-            data-chart-my-value1="<%= @footprint.scope_1.fdiv(@company.employee_nb).round %>" data-chart-my-value2="<%= @footprint.scope_2.fdiv(@company.employee_nb).round %>"
+            data-chart-my-value1="<%= @footprint.scope_1.fdiv(@company.employee_nb).round %>"
+            data-chart-my-value2="<%= @footprint.scope_2.fdiv(@company.employee_nb).round %>"
             data-chart-my-value3="<%= @footprint.scope_3.fdiv(@company.employee_nb).round %>"
             data-chart-my-value4="<%= (@footprint.ghg_result.fdiv(@company.employee_nb) * 0.77).round %>"
             data-chart-my-value5="<%= (@footprint.ghg_result.fdiv(@company.employee_nb) * 0.45).round %>"
