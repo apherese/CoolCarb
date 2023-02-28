@@ -20,7 +20,7 @@
         <%= select_tag :query,
           options_for_select(["","Hôtellerie", "Santé", "Construction"]), class: "form-select m-2 rounded-5 text-center"
         %>
-        <%= submit_tag "Search", class: "btn btn-primary hero-button-companies", style:"color:white" %>
+        <%= submit_tag "Search", class: "btn btn-primary hero-button-companies m-2", style:"color:white" %>
       <% end %>
       <h4 class="align-self-center mb-0 mr-2">ou calculez votre bilan carbone :</h4>
       <div class="row" style="padding:20px">
@@ -94,7 +94,7 @@
         </div>
       </div>
     </div>
-    <div class="row" style="padding:20px">
+    <div class="row pb-5" style="padding:20px">
       <% if user_signed_in? %>
         <% if current_user.company == nil %>
           <%= link_to "Mon bilan carbone", new_company_path, class: "btn btn-primary hero-button-companies", style:"color:white" %>
@@ -105,4 +105,20 @@
           <%= link_to "Mon bilan carbone", new_user_session_path, class: "btn btn-primary hero-button-companies", style:"color:white" %>
       <% end %>
   </div>
+
+
+  <div class="footer text-center pb-3">
+    <div class="footer-links">
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <div class="footer-copyright">
+      This footer is made with <i class="fas fa-heart"></i> at Le Wagon
+    </div>
+  </div>
+
+
 </div>
