@@ -206,7 +206,7 @@
   &__footprint {
     height: 100%;
     width: calc(60% - 0.5rem);
-    background-image: url('Partenaires.png');
+    border: 3px solid #778afb;
     background-repeat: no-repeat;
     background-size: cover;
     // justify-content: center;
@@ -214,5 +214,18 @@
     // text-align: center;
     border-radius: 1rem;
 
+  }
+}
+
+.dashboard-header{
+  position: relative;
+  height: 10rem;
+  svg{
+    position: absolute;
+    top: 0;
+  }
+  a{
+    position: absolute;
+    top: 2rem;
   }
 }
