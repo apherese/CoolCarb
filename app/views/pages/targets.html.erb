@@ -30,14 +30,15 @@
         <p>Réduisez votre empreinte carbone!</p>
         <% end %>
     </div>
-    <div class="container-fluid">
-      <div class="card-product">
-      <ul>
-        <i class="fa-solid fa-hotel px-5 fs-1 pt-4 text-center"><h2><%= "#{@company.industry}" %></h2></i>
-      </ul>
-      <div class="card-product-infos">
-        <h2><%= "#{@company.name}" %></h2>
-        <h2><%= "#{@company.employee_nb} collaborateurs" %></h2>
+    <div class="container dashboard-company-infos">
+      <div class="dashboard-company-icon">
+        <i class="fa-solid fa-hotel text-center me-5">
+          <h2><%= "#{@company.industry}" %></h2>
+        </i>
+      </div>
+      <div class="d-flex align-items-end">
+        <h1 class="mb-0"><%= "#{@company.name}" %></h1>
+        <p class="mb-2"><%= "#{@company.employee_nb} collaborateurs" %></p>
       </div>
     </div>
 
@@ -79,7 +80,8 @@
             <% @limit_to_be_on_track = (( 1 - ( 0.88 / 27 ) * ( 2050 - @furthest_end_date )) * (@footprint.ghg_result.fdiv(@company.employee_nb))) %>
 
             <%# compare emission post actions with the limit and set the warning or bravo message %>
-            <%= @footprint_post_action > (@footprint.ghg_result.fdiv(@company.employee_nb) * 0.77).round ? "Il vous reste des actions à entreprendre pour être sur vos objectifs SBTi! Continuez à tester nos idées d'actions" : "Bravo ! votre plan d'action vous permettrait d'atteindre vos objectifs en 2030. Ne relâchez pas vos effforts et mesurez vos résultats en continu. Continuez à suivre nos conseils!" %>
+
+            <strong><%= @footprint_post_action > (@footprint.ghg_result.fdiv(@company.employee_nb) * 0.77).round ? "Il vous reste des actions à entreprendre pour être sur vos objectifs SBTi! Continuez à tester nos idées d'actions" : "Bravo ! votre plan d'action vous permettrait d'atteindre vos objectifs en 2030. Ne relâchez pas vos effforts et mesurez vos résultats en continu. Continuez à suivre nos conseils!" %></strong>
 
 
           <% else %>
@@ -113,6 +115,7 @@
               <div class="collapse" id="collapseExample">
                 <div class="card card-body">
                   <%= simple_form_for [@footprint, @task] do |f| %>
+                    <%#= l(task.created_at) %>
                     <%= f.input :name, include_blank: true, collection: ["Remplacer la cuve fioul par une pompe à chaleur", "Electricité intelligente du bâtiment", "Proposer une réduction aux clients venant en train"], input_html: {style: "font-weight: bold"} %>
                     <%= f.input_field :start_date, hidden: true, value: Date.today, :label => "Date de début de mise en oeuvre de l'action" %>
                     <%= f.input :end_date, :label => "Date effective de l'impact de votre action" %>
@@ -136,7 +139,7 @@
                       <%= f.input :start_date, :label => "Date de début de mise en oeuvre de l'action" %>
                       <%= f.input :end_date, :label => "Date effective de l'impact de votre action" %>
                       <%= f.association :owner, :label => "Désignez un membre de l'entreprise responsable de cette action", collection: current_user.company.users.all.order(name: :desc), :prompt => "Responsable" %>
-                      <%= f.submit "Enregistrez votre action et réduisez votre bilan carbone!", class: "btn btn-primary" %>
+                    <%= f.submit "Enregistrez votre action et réduisez votre bilan carbone!", class: "btn-bottom-pervenche-content" %>
                     <% end %>
                   </div>
                 </div>
@@ -150,7 +153,7 @@
       </div>
     </div>
   </div>
-  <div class="dashboard_content_footer">
+  <div class="dashboard_content_footer m-5">
         <button class="btn-bottom-pervenche-content" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Passez à l'action: créez un nouveau plan!
         </button>

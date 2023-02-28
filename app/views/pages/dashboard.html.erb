@@ -85,6 +85,17 @@
           </div>
           <div class="dashboard-company-summary__footprint">
             <h1><%= 'Footprint figure' %></h1>
+            <div class="d-flex align-items-baseline">
+              <% if current_user != nil %>
+                <% if current_user.company == nil %>
+                  <%= link_to "Calculez un nouveau bilan carbone", new_company_path, class: "btn hero-button-dashboard" %>
+                <% else %>
+                  <%= link_to "Calculez un nouveau bilan carbone", new_company_footprint_path(@company), class: "btn hero-button-dashboard" %>
+                <% end %>
+              <% else %>
+                <%= link_to "Calculez un nouveau bilan carbone", new_user_session_path, class: "btn hero-button-bilan" %>
+              <% end %>
+            </div>
           </div>
         </div>
 

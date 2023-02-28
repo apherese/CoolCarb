@@ -1,4 +1,11 @@
-<div class="container">
+<div class="container-fluid navbar justify-content-end green-wave-top">
+  <%= link_to root_path do %>
+    <%= image_tag "logo.png", class:"w-50 ps-4" %>
+    <p>Réduisez votre empreinte carbone!</p>
+  <% end %>
+</div>
+
+<div class="container long-form-div-company">
   <h1>Enregistrez votre entreprise pour accéder à de nouvelles fonctionalités</h1>
   <%= simple_form_for(@company) do |f| %>
     <%= f.input :name, :label => "Nom de votre société (ex: Les flots bleus):" %>
@@ -7,6 +14,6 @@
     <%= f.input :room_nb, :label => "Nombre de chambres (ex: entrez 45 pour 45 chambres):" %>
     <%= f.input :length_of_stay, :label => "Durée moyenne des séjours (ex: entrée 4,2 pour 4,2 nuitées):" %>
     <%= f.input :load_factor, :label => "Coefficient de remplissage (ex: entrez 70 pour 70%):" %>
-    <%= f.submit "Créer votre PME" %>
+    <%= f.submit "Créer votre PME", class: "btn-bottom-pervenche-content" %>
   <% end %>
 </div>
