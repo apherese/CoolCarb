@@ -1,0 +1,17 @@
+.long-form-div-company {
+  font-size: larger;
+  font-weight: bold;
+  font-family: $body-font;
+  color: #40497E;
+  // position: relative;
+  width: 50%;
+ // height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-image: url(image-home.png);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  margin-bottom: 2rem;
+  border-radius: 16px;
+}
