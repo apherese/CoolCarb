@@ -31,6 +31,6 @@ export default class extends Controller {
       screen.scrollIntoView({behavior: "smooth"})
       setTimeout(() => {
         screen.querySelector("input").focus()
-      }, 500);
+      }, 1000);
   }
 }
