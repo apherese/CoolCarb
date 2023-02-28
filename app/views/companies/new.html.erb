@@ -5,15 +5,17 @@
   <% end %>
 </div>
 
-<div class="container long-form-div-company">
-  <h1>Enregistrez votre entreprise pour accéder à de nouvelles fonctionalités</h1>
-  <%= simple_form_for(@company) do |f| %>
+<div class="container">
+  <h1><strong>Enregistrez votre entreprise pour accéder à de nouvelles fonctionalités</h1></strong></h1>
+</div>
+<div class="container d-flex justify-content-center">
+  <%= simple_form_for(@company, html: { class: 'mt-5 long-form-div-company' }) do |f| %>
     <%= f.input :name, :label => "Nom de votre société (ex: Les flots bleus):" %>
     <%= f.input :industry, :label => "Activité (ex: Hôtel):" %>
     <%= f.input :employee_nb, :label => "Nombre de collaborateurs :" %>
     <%= f.input :room_nb, :label => "Nombre de chambres (ex: entrez 45 pour 45 chambres):" %>
     <%= f.input :length_of_stay, :label => "Durée moyenne des séjours (ex: entrée 4,2 pour 4,2 nuitées):" %>
     <%= f.input :load_factor, :label => "Coefficient de remplissage (ex: entrez 70 pour 70%):" %>
-    <%= f.submit "Créer votre PME", class: "btn-bottom-pervenche-content" %>
+    <%= f.submit "Créer votre PME", class: "btn-bottom-pervenche-content btn btn-primary hero-button-companies" %>
   <% end %>
 </div>
