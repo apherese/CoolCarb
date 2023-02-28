@@ -24,9 +24,12 @@
   </div>
 
   <div class="dashboard_content">
-    <div class="container-fluid navbar justify-content-end green-wave-top">
+    <div class="dashboard-header container-fluid navbar justify-content-end">
+    <svg width="1139" height="258" viewBox="0 0 1139 258" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M1138.91 256.946C936.4 260.941 757.59 199.115 571.904 134.912C396.086 74.1216 214.103 11.1991 0 0H1138.91V256.946Z" fill="#CCF7BB"/>
+</svg>
       <%= link_to root_path do %>
-        <%= image_tag "logo.png", class:"w-50 ps-4" %>
+        <%= image_tag "logo.png", class:"w-75 ps-4" %>
         <p>Réduisez votre empreinte carbone!</p>
       <% end %>
     </div>
@@ -38,7 +41,7 @@
             <h2><%= "#{@company.industry}" %></h2>
           </i>
         </div>
-        <div class="d-flex align-items-end">
+        <div class="d-flex flex-column">
           <h1 class="mb-0"><%= "#{@company.name}" %></h1>
           <p class="mb-2"><%= "#{@company.employee_nb} collaborateurs" %></p>
         </div>
@@ -46,45 +49,39 @@
 
       <% if @company.footprints.blank? && @company.footprints.flat_map(&:tasks).blank? %>
         <div class="dashboard-company-summary">
-          <div class="dashboard-company-summary__figure">
-            <h1><strong><%=  @footprint_benchmark_per_employee.round(1)%></strong></h1>
+          <div class="dashboard-company-summary__figure align-items-center d-flex flex-column justify-content-center">
+            <h1><strong><%=  @footprint_benchmark_per_employee.round(1)%> t</strong>/employé</h1>
             <h2><%= "la moyenne du secteur" %></h2>
             <h2><%= "#{@company.industry}" %></h2>
           </div>
-          <div class="dashboard-company-summary__footprint">
+          <div class="dashboard-company-summary__footprint align-items-center d-flex flex-column justify-content-center">
           <h1><strong>Voici nos conseils :</strong></h1>
-          <ul>
-            <li>
-              <h5>
-                Vous pouvez attirer de nouveaux clients et engager vos collaborateurs
-                dans un projet qui donne du sens à leur travail en vous engageant dans
-                une démarche de réduction de votre empreinte carbone. Pour cela il faut
-                d'abord évaluer votre empreinte actuelle et la comparer aux meilleurs de
-                votre secteur : cliquez sur "Bilan Carbone" pour calculer votre bilan carbone
-              </h5>
-            </li>
-            <li>
-              <h5>
-                Une fois votre bilan carbone établi, vous pourrez cliquer sur "Plan d'Action" pour créer des actions qui réduiront votre empreinte carbone
-              </h5>
-            </li>
-          </ul>
+            <p class="px-3">
+              Vous pouvez attirer de nouveaux clients et engager vos collaborateur
+              dans un projet qui donne du sens à leur travail en vous engageant dans
+              une démarche de réduction de votre empreinte carbone. Pour cela il faut
+              d'abord évaluer votre empreinte actuelle et la comparer aux meilleurs de
+              votre secteur : cliquez sur "Bilan Carbone" pour calculer votre bilan carbone
+            </p>
+              <%= link_to "Calculer mon bilan carbone", new_company_footprint_path(@company), class: "btn btn-primary hero-button", style:"color:white" %>
           </div>
         </div>
 
-        <div class="card_action_plan">
+        <div class="card_action_plan align-items-center d-flex flex-column justify-content-center">
             <h1><strong><%= "Plan d'action" %></strong></h1>
-            <h3><%= "N'attendez plus pour passer à l'action et réaliser vos objectifs ! Avec un plan d'action clair et bien défini, vous êtes prêt à avancer vers la réussite." %></h3>
+            <h3><%= "Une fois votre bilan carbone établi, vous pourrez cliquer sur 'Plan d'Action' pour créer des actions qui réduiront votre empreinte carbone" %></h3>
         </div>
       <% elsif @company.footprints.present? && @company.footprints.flat_map(&:tasks).blank? %>
         <div class="dashboard-company-summary">
           <div class="dashboard-company-summary__figure">
-            <h1><strong><%=  @footprint_benchmark_per_employee.round(1)%></strong></h1>
+            <h1><strong><%=  @footprint_benchmark_per_employee.round(1)%></strong>t/employé</h1>
             <h2><%= "la moyenne du secteur" %></h2>
             <h2><%= "#{@company.industry}" %></h2>
           </div>
           <div class="dashboard-company-summary__footprint">
-            <h1><%= 'Footprint figure' %></h1>
+            <h1><strong><%= "Mon bilan carbon"%></strong></h1>
+            <h3> <%= @company_ghg_result_per_employee.round(1) %>t/employé</h3>
+            <h3>soit <%= @company_ghg_result.round(1) %>t/an</h3>
             <div class="d-flex align-items-baseline">
               <% if current_user != nil %>
                 <% if current_user.company == nil %>
@@ -102,23 +99,35 @@
         <div class="card_action_plan">
             <h1><strong><%= "Plan d'action" %></strong></h1>
             <h3><%= "N'attendez plus pour passer à l'action et réaliser vos objectifs ! Avec un plan d'action clair et bien défini, vous êtes prêt à avancer vers la réussite." %></h3>
+            <%= link_to "Définir mon plan d'action", targets_path, class: "btn hero-button-bilan" %>
         </div>
       <% elsif @company.footprints.present? && @company.footprints.flat_map(&:tasks).present? %>
         <div class="dashboard-company-summary">
           <div class="dashboard-company-summary__figure">
-            <h1><strong><%=  @footprint_benchmark_per_employee.round(1)%></strong></h1>
+            <h1><strong><%=  @footprint_benchmark_per_employee.round(1)%></strong>t/employé</h1>
             <h2><%= "la moyenne du secteur" %></h2>
             <h2><%= "#{@company.industry}" %></h2>
           </div>
           <div class="dashboard-company-summary__footprint">
-            <h1><strong><%= 'Mon bilan carbone' %></strong></h1>
-            <h2><%= "#{@company_ghg_result_per_employee}" %></h2>
+            <h1><strong><%= "Mon bilan carbon"%></strong></h1>
+            <h3> <%= @company_ghg_result_per_employee.round(1) %>t/employé</h3>
+            <h3>soit <%= @company_ghg_result.round(1) %>t/an</h3>
+            <div class="d-flex align-items-baseline">
+              <% if current_user != nil %>
+                <% if current_user.company == nil %>
+                  <%= link_to "Calculez un nouveau bilan carbone", new_company_path, class: "btn hero-button-dashboard" %>
+                <% else %>
+                  <%= link_to "Calculez un nouveau bilan carbone", new_company_footprint_path(@company), class: "btn hero-button-dashboard" %>
+                <% end %>
+              <% else %>
+                <%= link_to "Calculez un nouveau bilan carbone", new_user_session_path, class: "btn hero-button-bilan" %>
+              <% end %>
+            </div>
           </div>
         </div>
-
         <div class="card_action_plan">
             <h1><strong><%= "Mon plan d'action" %></strong></h1>
-            <h3><%= "blablabla." %></h3>
+            <h3><%= "Demander à JP/ Nath comment récuperer les actions pour importer une liste" %></h3>
         </div>
       <% end %>
     </div>
