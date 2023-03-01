@@ -37,7 +37,6 @@ filepath = "data/ademe_data.json"
 data = File.read(filepath)
 list_data = JSON.parse(data)["results"]
 
-
 list_data.each do |el|
   hotel_parameter = {
     name: el["Raison_sociale_/_Nom_de_l'entité"],
