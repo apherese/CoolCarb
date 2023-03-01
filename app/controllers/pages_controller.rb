@@ -22,6 +22,7 @@ class PagesController < ApplicationController
   end
 
   private
+
   def check_footprint
     if @footprint.nil?
       redirect_to new_company_footprint_path(current_company)

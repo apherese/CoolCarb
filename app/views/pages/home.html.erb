@@ -8,7 +8,11 @@
       <%= link_to "Pourquoi Coolcarb?", companies_path,  class: "btn-home" %>
       <%= link_to "Notre offre?", "#offre", class: "btn-home" %>
       <%= link_to "Benchmarks", companies_path, class: "btn-home" %>
-      <%= link_to "Connexion", new_user_session_path, class: "btn btn-primary", style:"color:white"%>
+      <% if current_user = nil %>
+        <%= link_to "Connexion", new_user_session_path, class: "btn btn-primary", style:"color:white"%>
+      <% else %>
+        <%= button_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: "btn btn-primary", style:"color:white"%>
+      <% end %>
     </div>
   </div>
 
