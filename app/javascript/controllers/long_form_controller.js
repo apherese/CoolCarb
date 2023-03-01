@@ -18,7 +18,6 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log(this.baseValuesValue)
     this.calculator = new FootprintCalculator(this.companyValue, this.baseValuesValue)
     this.index = 0
     this.#preventSubmitUntilEndReached()
@@ -59,26 +58,20 @@ export default class extends Controller {
 
   updateResult(event) {
     const val = event.currentTarget.value
-    // if (isNaN(val)) return;
-    if (event.params.step === 'buildings') {
-      var currentValue = this.calculator.buildings(val)
-    } else if (event.params.step === 'gas') {
-      var currentValue = this.calculator.gas(val)
-    } else if (event.params.step === 'fuel') {
-      var currentValue = this.calculator.fuel(val)
-    } else if (event.params.step === 'gasoline') {
-      var currentValue = this.calculator.gasoline(val)
-    } else if (event.params.step === 'diesel') {
-      var currentValue = this.calculator.diesel(val)
-    } else if (event.params.step === 'electricity') {
-      var currentValue = this.calculator.electricity(val)
-    } else if (event.params.step === 'clientsFr') {
-      var currentValue = this.calculator.clientsFr(val)
-    } else if (event.params.step === 'clientsInt') {
-      var currentValue = this.calculator.clientsInt(val)
-    } else if (event.params.step === 'suppliers') {
-      var currentValue = this.calculator.suppliers(val)
+    if (val && !!val.match(/[^\d]/)) return
+
+    switch (event.params.step) {
+      case 'buildings':   { var currentValue = this.calculator.buildings(val); break; }
+      case 'gas':         { var currentValue = this.calculator.gas(val); break; }
+      case 'fuel':        { var currentValue = this.calculator.fuel(val); break; }
+      case 'gasoline':    { var currentValue = this.calculator.gasoline(val); break; }
+      case 'diesel':      { var currentValue = this.calculator.diesel(val); break; }
+      case 'electricity': { var currentValue = this.calculator.electricity(val); break; }
+      case 'clientsFr':   { var currentValue = this.calculator.clientsFr(val); break; }
+      case 'clientsInt':  { var currentValue = this.calculator.clientsInt(val); break; }
+      case 'suppliers':   { var currentValue = this.calculator.suppliers(val); break; }
     }
+
     this.#updateCurrentValues(currentValue)
 
     this.ghgResultTarget.innerText = this.calculator.result()
