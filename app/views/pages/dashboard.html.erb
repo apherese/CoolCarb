@@ -25,9 +25,9 @@
 
   <div class="dashboard_content">
     <div class="dashboard-header container-fluid navbar justify-content-end">
-    <svg width="1139" height="258" viewBox="0 0 1139 258" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M1138.91 256.946C936.4 260.941 757.59 199.115 571.904 134.912C396.086 74.1216 214.103 11.1991 0 0H1138.91V256.946Z" fill="#CCF7BB"/>
-</svg>
+      <svg width="1139" height="258" viewBox="0 0 1139 258" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M1138.91 256.946C936.4 260.941 757.59 199.115 571.904 134.912C396.086 74.1216 214.103 11.1991 0 0H1138.91V256.946Z" fill="#CCF7BB"/>
+      </svg>
       <%= link_to root_path do %>
         <%= image_tag "logo.png", class:"w-75 ps-4" %>
         <p>Réduisez votre empreinte carbone!</p>
@@ -50,7 +50,7 @@
       <% if @company.footprints.blank? && @company.footprints.flat_map(&:tasks).blank? %>
         <div class="dashboard-company-summary">
           <div class="dashboard-company-summary__figure align-items-center d-flex flex-column justify-content-center">
-            <h1><strong><%=  @footprint_benchmark_per_employee.round(1)%> t</strong>/employé</h1>
+            <h1><strong><%=  @footprint_benchmark_per_employee.round %></strong>  t/collaborateur</h1>
             <h2><%= "la moyenne du secteur" %></h2>
             <h2><%= "#{@company.industry}" %></h2>
           </div>
@@ -74,13 +74,13 @@
       <% elsif @company.footprints.present? && @company.footprints.flat_map(&:tasks).blank? %>
         <div class="dashboard-company-summary">
           <div class="dashboard-company-summary__figure">
-            <h1><strong><%=  @footprint_benchmark_per_employee.round(1)%></strong>t/employé</h1>
+            <h1><strong><%=  @footprint_benchmark_per_employee.round(1)%></strong>t/collaborateur</h1>
             <h2><%= "la moyenne du secteur" %></h2>
             <h2><%= "#{@company.industry}" %></h2>
           </div>
           <div class="dashboard-company-summary__footprint">
             <h1><strong><%= "Mon bilan carbon"%></strong></h1>
-            <h3> <%= @company_ghg_result_per_employee.round(1) %>t/employé</h3>
+            <h3> <%= @company_ghg_result_per_employee.round(1) %>t/collaborateur</h3>
             <h3>soit <%= @company_ghg_result.round(1) %>t/an</h3>
             <div class="d-flex align-items-baseline">
               <% if current_user != nil %>
@@ -104,13 +104,13 @@
       <% elsif @company.footprints.present? && @company.footprints.flat_map(&:tasks).present? %>
         <div class="dashboard-company-summary">
           <div class="dashboard-company-summary__figure">
-            <h1><strong><%=  @footprint_benchmark_per_employee.round(1)%></strong>t/employé</h1>
+            <h1><strong><%=  @footprint_benchmark_per_employee.round(1)%></strong>t/collaborateur</h1>
             <h2><%= "la moyenne du secteur" %></h2>
             <h2><%= "#{@company.industry}" %></h2>
           </div>
           <div class="dashboard-company-summary__footprint">
             <h1><strong><%= "Mon bilan carbon"%></strong></h1>
-            <h3> <%= @company_ghg_result_per_employee.round(1) %>t/employé</h3>
+            <h3> <%= @company_ghg_result_per_employee.round(1) %>t/collaborateur</h3>
             <h3>soit <%= @company_ghg_result.round(1) %>t/an</h3>
             <div class="d-flex align-items-baseline">
               <% if current_user != nil %>
@@ -128,6 +128,9 @@
         <div class="card_action_plan">
             <h1><strong><%= "Mon plan d'action" %></strong></h1>
             <h3><%= "Demander à JP/ Nath comment récuperer les actions pour importer une liste" %></h3>
+            <h3><%= @company.footprints.tasks.each do |task| %></h3>
+              <%= task.name %>
+            <% end %>
         </div>
       <% end %>
     </div>
