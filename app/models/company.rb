@@ -5,6 +5,6 @@ class Company < ApplicationRecord
 
   scope :sector, ->(industry) { where(industry: industry) }
   validates :name, :industry, :employee_nb, :room_nb, :length_of_stay, :load_factor, presence: true
-  validates :room_nb, numericality: { only_integer: true, greater_than: 0 }
-  validates :length_of_stay, numericality: { greater_than_or_equal_to: 1 }
+  validates :room_nb, numericality: { only_integer: true, greater_than_or_equal_to: 0, allow_nil: true }
+  validates :length_of_stay, numericality: { greater_than_or_equal_to: 1, allow_nil: true }
 end

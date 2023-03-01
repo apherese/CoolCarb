@@ -2,6 +2,7 @@
   font-weight: bold;
   font-family: $body-font;
   color: #40497E;
+  border-color: #40497E;
   // position: relative;
   width: 90%;
  // height: 100vh;
@@ -20,7 +21,8 @@
 .long-form-div-company input[type=email],
 .long-form-div-company input[type=number] {
   background-color: rgba(255, 255, 255, 0.5); // Opacité de 50% pour le fond des champs de saisie
-  border: none;
+  border-color: #40497E;
+  border-radius: 10px;
   box-sizing: border-box;
   width: 100%;
   margin-bottom: 1rem;
@@ -28,5 +30,5 @@
 
 .long-form-div-company input[type=submit] {
   margin-top: 2rem;
-  width: 60vh
+  width: 60vh;
 }
