@@ -128,9 +128,6 @@
         <div class="card_action_plan">
             <h1><strong><%= "Mon plan d'action" %></strong></h1>
             <h3><%= "Demander à JP/ Nath comment récuperer les actions pour importer une liste" %></h3>
-            <h3><%= @company.footprints.tasks.each do |task| %></h3>
-              <%= task.name %>
-            <% end %>
         </div>
       <% end %>
     </div>

@@ -44,7 +44,7 @@ list_data.each do |el|
     employee_nb: el["Nombre_de_salariés_/_d'agents"]
   }
 
-  company = Company.create(hotel_parameter)
+  company = Company.create!(hotel_parameter)
 
   scope_1 = [el["Emissions_publication_P1_-_tCO2e"], el["Emissions_publication_P2_-_tCO2e"], el["Emissions_publication_P3_-_tCO2e"], el["Emissions_publication_P4_-_tCO2e"], el["Emissions_publication_P5_-_tCO2e"]].compact.sum
   scope_2 = [el["Emissions_publication_P6_-_tCO2e"], el["Emissions_publication_P7_-_tCO2e"]].compact.sum
@@ -60,7 +60,7 @@ list_data.each do |el|
     certified: true,
     company_id: company.id
   }
-  Footprint.create(footprint_parameter)
+  Footprint.create!(footprint_parameter)
 end
 
 aigle_noir = Company.create!({ name: "Aigle Noir", industry: "Hôtel", employee_nb: 15, room_nb: 80, length_of_stay: 4.2, load_factor: 0.8 })
