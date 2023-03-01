@@ -1,92 +1,176 @@
-<div class="container-long-form" data-controller="long-form">
-  <%= simple_form_for [@company, @footprint], html: {data: {long_form_target: "form"}} do |f| %>
-    <%# <h2>Scope 1</h2>
-      <h3>Bâtiments</h3> %>
-        <div class="long-form-div" data-long-form-target="screen">
-          <div class="inner-form">
-            <%= f.input :taille_batiments, label: "Quelle est la surface de vos locaux (en m²) ?", autofocus: true %>
-            <span class="span" data-action="click->long-form#next">Suivant</span>
-          </div>
-          <div class="astuce"></div>
-        </div>
+<div class="container-long-form"
+     data-controller="long-form"
+     data-long-form-company-value="<%= @company.to_json %>"
+     data-long-form-base-values-value="<%= EmissionFactors.to_json %>">
 
-        <div class="long-form-div" data-long-form-target="screen">
-          <div class="inner-form">
-            <%= f.input :gaz, label: "Quelle est votre consommation de gaz par an ? (en MWh/an) ?" %>
-            <span class="span" data-action="click->long-form#back">Précédent</span>
-            <span class="span" data-action="click->long-form#next">Suivant</span>
-          </div>
-          <div class="astuce">Astuce : comptez 240 MWh/1000 m²/an</div>
-        </div>
+  <div class="long-form-results-container">
+    <p class="mb-1 fw-bold fs-5 text-center">Emissions globales</p>
+    <p class="mb-2 fw-bold text-center"><span data-long-form-target="ghgResult">0</span>T CO²eq/an</p>
+    <hr>
+    <p class="mb-1 fw-bold text-center">Emissions scope 1</p>
+    <p class="mb-2 text-center"><span data-long-form-target="scope1Result">0</span>T CO²eq/an</p>
+    <hr>
+    <p class="mb-1 fw-bold text-center">Emissions scope 2</p>
+    <p class="mb-2 text-center"><span data-long-form-target="scope2Result">0</span>T CO²eq/an</p>
+    <hr>
+    <p class="mb-1 fw-bold text-center">Emissions scope 3</p>
+    <p class="mb-2 text-center"><span data-long-form-target="scope3Result">0</span>T CO²eq/an</p>
+    <hr>
+    <p class="hint">Valeurs en Tonnes de CO²eq/an</p>
+  </div>
 
-        <div class="long-form-div" data-long-form-target="screen">
-          <div class="inner-form">
-            <%= f.input :fioul, label: "Quelle est votre consommation de fioul par an ? (en milliers de litres/an) ?" %>
-            <span class="span" data-action="click->long-form#back">Précédent</span>
-            <span class="span" data-action="click->long-form#next">Suivant</span>
-          </div>
-          <div class="astuce">Astuce : comptez 2 milliers de litres/1000 m²/an</div>
-        </div>
+  <div class="container-long-form-inner">
+    <%= simple_form_for [@company, @footprint], html: {data: {long_form_target: "form"}} do |f| %>
 
-      <%# <h3>Véhicules</h3> %>
-        <div class="long-form-div" data-long-form-target="screen">
-          <div class="inner-form">
-            <%= f.input :essence, label: "Combien de salariés utilisent une voiture à essence ?" %>
-            <span class="span" data-action="click->long-form#back">Précédent</span>
-            <span class="span" data-action="click->long-form#next">Suivant</span>
-          </div>
-          <div class="astuce"></div>
-        </div>
-
-        <div class="long-form-div" data-long-form-target="screen">
-          <div class="inner-form">
-            <%= f.input :gazole, label: "Combien de salariés utilisent une voiture diesel ?" %>
-            <span class="span" data-action="click->long-form#back">Précédent</span>
-            <span class="span" data-action="click->long-form#next">Suivant</span>
-          </div>
-          <div class="astuce"></div>
-        </div>
-
-    <%# <h2>Scope 2</h2> %>
-      <%# <h3>Electricité</h3> %>
-        <div class="long-form-div" data-long-form-target="screen">
-          <div class="inner-form">
-            <%= f.input :electricite, label: "Quelle consommation d'électricité par an (en MWh/an) ?" %>
-            <span class="span" data-action="click->long-form#back">Précédent</span>
-            <span class="span" data-action="click->long-form#next">Suivant</span>
-          </div>
-          <div class="astuce">Astuce : comptez 240 MWh/1000 m²/an</div>
-        </div>
-
-    <%# <h2>Scope 3</h2> %>
       <div class="long-form-div" data-long-form-target="screen">
         <div class="inner-form">
-          <%= f.input :clients_fr, label: "Pourcentage de clients venant de France ? ex: Entrez 80 pour 80%" %>
-          <span class="span" data-action="click->long-form#back">Précédent</span>
+          <%= f.input :taille_batiments,
+                      label: "Quelle est la surface de vos locaux (en m²) ?",
+                      autofocus: true,
+                      input_html: {
+                        data: {
+                          action: 'keyup->long-form#updateResult',
+                          long_form_step_param: 'buildings'
+                        }
+                      } %>
           <span class="span" data-action="click->long-form#next">Suivant</span>
         </div>
-          <div class="astuce">Aide : arrivant et repartant en véhicules thermiques - 300 km aller-retour</div>
+        <p class="mt-5 mb-0 text-center"><span data-long-form-target="currentInputValueResult">0</span>T CO²/an</p>
       </div>
 
       <div class="long-form-div" data-long-form-target="screen">
         <div class="inner-form">
-          <%= f.input :clients_int, label: "Pourcentage de clients venant de l'étranger ? ex: Entrez 10 pour 10%" %>
+          <%= f.input :gaz,
+                      label: "Quelle est votre consommation de gaz par an ? (en MWh/an) ?",
+                      hint: 'comptez 240 MWh/1000 m²/an',
+                      input_html: {
+                        data: {
+                          action: 'keyup->long-form#updateResult',
+                          long_form_step_param: 'gas'
+                        }
+                      } %>
           <span class="span" data-action="click->long-form#back">Précédent</span>
           <span class="span" data-action="click->long-form#next">Suivant</span>
         </div>
-        <div class="astuce">Aide : arrivant et repartant en avion - 2 000 km aller-retour</div>
+        <p class="mt-5 mb-0 text-center"><span data-long-form-target="currentInputValueResult">0</span>T CO²/an</p>
       </div>
 
       <div class="long-form-div" data-long-form-target="screen">
         <div class="inner-form">
-          <%= f.input :fournisseurs, label: "Combien avez-vous de fournisseurs ?" %>
+          <%= f.input :fioul,
+                      label: "Quelle est votre consommation de fioul par an ? (en milliers de litres/an) ?",
+                      hint: 'comptez 2 milliers de litres/1000 m²/an',
+                      input_html: {
+                        data: {
+                          action: 'keyup->long-form#updateResult',
+                          long_form_step_param: 'fuel'
+                        }
+                      } %>
           <span class="span" data-action="click->long-form#back">Précédent</span>
           <span class="span" data-action="click->long-form#next">Suivant</span>
         </div>
-        <div class="astuce"></div>
+        <p class="mt-5 mb-0 text-center"><span data-long-form-target="currentInputValueResult">0</span>T CO²/an</p>
       </div>
 
-    <%# <h2>Voulez-vous certifier votre Bilan Carbone ?</h2> %>
+      <div class="long-form-div" data-long-form-target="screen">
+        <div class="inner-form">
+          <%= f.input :essence,
+                      label: "Combien de salariés utilisent une voiture à essence ?",
+                      input_html: {
+                        data: {
+                          action: 'keyup->long-form#updateResult',
+                          long_form_step_param: 'gasoline'
+                        }
+                      } %>
+          <span class="span" data-action="click->long-form#back">Précédent</span>
+          <span class="span" data-action="click->long-form#next">Suivant</span>
+        </div>
+        <p class="mt-5 mb-0 text-center"><span data-long-form-target="currentInputValueResult">0</span>T CO²/an</p>
+      </div>
+
+      <div class="long-form-div" data-long-form-target="screen">
+        <div class="inner-form">
+          <%= f.input :gazole,
+                      label: "Combien de salariés utilisent une voiture diesel ?",
+                      input_html: {
+                        data: {
+                          action: 'keyup->long-form#updateResult',
+                          long_form_step_param: 'diesel'
+                        }
+                      } %>
+          <span class="span" data-action="click->long-form#back">Précédent</span>
+          <span class="span" data-action="click->long-form#next">Suivant</span>
+        </div>
+        <p class="mt-5 mb-0 text-center"><span data-long-form-target="currentInputValueResult">0</span>T CO²/an</p>
+      </div>
+
+      <div class="long-form-div" data-long-form-target="screen">
+        <div class="inner-form">
+          <%= f.input :electricite,
+                      label: "Quelle consommation d'électricité par an (en MWh/an) ?",
+                      hint: 'comptez 240 MWh/1000 m²/an',
+                      input_html: {
+                        data: {
+                          action: 'keyup->long-form#updateResult',
+                          long_form_step_param: 'electricity'
+                        }
+                      } %>
+          <span class="span" data-action="click->long-form#back">Précédent</span>
+          <span class="span" data-action="click->long-form#next">Suivant</span>
+        </div>
+        <p class="mt-5 mb-0 text-center"><span data-long-form-target="currentInputValueResult">0</span>T CO²/an</p>
+      </div>
+
+      <div class="long-form-div" data-long-form-target="screen">
+        <div class="inner-form">
+          <%= f.input :clients_fr,
+                      label: "Pourcentage de clients venant de France ? ex: Entrez 80 pour 80%",
+                      hint: 'arrivant et repartant en véhicules thermiques - 300 km aller-retour',
+                      input_html: {
+                        data: {
+                          action: 'keyup->long-form#updateResult',
+                          long_form_step_param: 'clientsFr'
+                        }
+                      } %>
+          <span class="span" data-action="click->long-form#back">Précédent</span>
+          <span class="span" data-action="click->long-form#next">Suivant</span>
+        </div>
+        <p class="mt-5 mb-0 text-center"><span data-long-form-target="currentInputValueResult">0</span>T CO²/an</p>
+      </div>
+
+      <div class="long-form-div" data-long-form-target="screen">
+        <div class="inner-form">
+          <%= f.input :clients_int,
+                      label: "Pourcentage de clients venant de l'étranger ? ex: Entrez 10 pour 10%",
+                      hint: 'arrivant et repartant en avion - 2 000 km aller-retour',
+                      input_html: {
+                        data: {
+                          action: 'keyup->long-form#updateResult',
+                          long_form_step_param: 'clientsInt'
+                        }
+                      } %>
+          <span class="span" data-action="click->long-form#back">Précédent</span>
+          <span class="span" data-action="click->long-form#next">Suivant</span>
+        </div>
+        <p class="mt-5 mb-0 text-center"><span data-long-form-target="currentInputValueResult">0</span>T CO²/an</p>
+      </div>
+
+      <div class="long-form-div" data-long-form-target="screen">
+        <div class="inner-form">
+          <%= f.input :fournisseurs,
+                      label: "Combien avez-vous de fournisseurs ?",
+                      input_html: {
+                        data: {
+                          action: 'keyup->long-form#updateResult',
+                          long_form_step_param: 'suppliers'
+                        }
+                      } %>
+          <span class="span" data-action="click->long-form#back">Précédent</span>
+          <span class="span" data-action="click->long-form#next">Suivant</span>
+        </div>
+        <p class="mt-5 mb-0 text-center"><span data-long-form-target="currentInputValueResult">0</span>T CO²/an</p>
+      </div>
+
       <div class="long-form-div" data-long-form-target="screen">
         <div class="inner-form-certified">
           <%= f.input :certified, label: "Voulez-vous certifier ce bilan carbone ?"%>
@@ -97,5 +181,6 @@
         </div>
       </div>
 
-  <% end %>
+    <% end %>
+  </div>
 </div>
