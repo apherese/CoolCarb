@@ -6,7 +6,7 @@ class PagesController < ApplicationController
   before_action :check_footprint, only: %i[mon_bilan_carbone targets]
   before_action :compute_company_ghg_result, only: %i[dashboard]
   before_action :compute_company_ghg_result_per_employee, only: %i[dashboard]
-
+  before_action :list_taks, only: %i[dashboard]
 
   def home
   end
@@ -59,16 +59,21 @@ class PagesController < ApplicationController
   def compute_company_ghg_result
     @footprint = @company.footprints.last
     @company_ghg_result = 0
-    if @footprint != nil?
-      @company_ghg_result = @footprint.ghg_result.round
+    if !@footprint.nil?
+      @company_ghg_result = @footprint.ghg_result
     end
   end
 
   def compute_company_ghg_result_per_employee
     @footprint = @company.footprints.last
     @company_ghg_result_per_employee = 0
-    if @footprint != nil?
-      @company_ghg_result_per_employee = @footprint.ghg_result.fdiv(@company.employee_nb).round
+    if !@footprint.nil?
+      @company_ghg_result_per_employee = @footprint.ghg_result.fdiv(@company.employee_nb)
     end
+  end
+
+  def list_taks
+    @footprint = @company.footprints.last
+    @footprint.nil? ? @tasks_list = "Vous n'avez pas encore créé d'actions" : @tasks_list = @footprint.tasks
   end
 end

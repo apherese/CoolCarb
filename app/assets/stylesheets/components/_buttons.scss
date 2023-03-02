@@ -65,6 +65,23 @@ a:hover {
   color: $my-body-bg;
 }
 
+// dashboard
+
+.hero-button-dashboard-2 {
+  background: #778AFB;
+  color: $my-body-bg;
+  border-radius: 20px;
+  width: 40%;
+  margin: 0 auto;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.hero-button-dashboard-2:hover {
+  color: #778AFB;
+  background: $my-body-bg;
+}
+
 // Bilan
 
 .hero-button-bilan {

@@ -24,21 +24,26 @@
   </div>
 
   <div class="dashboard_content">
-    <div class="container-fluid navbar justify-content-end green-wave-top">
-        <%= link_to root_path do %>
-          <%= image_tag "logo.png", class:"w-50 ps-4" %>
+    <div class="dashboard-header container-fluid navbar justify-content-end">
+      <svg width="1139" height="258" viewBox="0 0 1139 258" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M1138.91 256.946C936.4 260.941 757.59 199.115 571.904 134.912C396.086 74.1216 214.103 11.1991 0 0H1138.91V256.946Z" fill="#CCF7BB"/>
+      </svg>
+      <%= link_to root_path do %>
+        <%= image_tag "logo.png", class:"w-75 ps-4" %>
         <p>Réduisez votre empreinte carbone!</p>
-        <% end %>
+      <% end %>
     </div>
-    <div class="container dashboard-company-infos">
-      <div class="dashboard-company-icon">
-        <i class="fa-solid fa-hotel text-center me-5">
-          <h2><%= "#{@company.industry}" %></h2>
-        </i>
-      </div>
-      <div class="d-flex align-items-end">
-        <h1 class="mb-0"><%= "#{@company.name}" %></h1>
-        <p class="mb-2"><%= "#{@company.employee_nb} collaborateurs" %></p>
+    <div class="container">
+      <div class="dashboard-company-infos">
+        <div class="dashboard-company-icon">
+          <i class="fa-solid fa-hotel text-center me-5">
+            <h2><%= "#{@company.industry}" %></h2>
+          </i>
+        </div>
+        <div class="d-flex flex-column">
+          <h1 class="mb-0"><%= "#{@company.name}" %></h1>
+          <p class="mb-2"><%= "#{@company.employee_nb} collaborateurs" %></p>
+        </div>
       </div>
     </div>
 
