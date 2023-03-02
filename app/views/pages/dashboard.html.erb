@@ -127,7 +127,6 @@
         </div>
         <div class="card_action_plan">
             <h1><strong><%= "Mon plan d'action" %></strong></h1>
-            <h3><%= "Demander à JP/ Nath comment récuperer les actions pour importer une liste : FAIT, cf. ci-dessous, améliorer le front" %></h3>
             <h3><% @tasks_list.each do |task| %></h3>
             <ul>
               <%= "Action : #{task.name}, impact: - #{task.ghg_contribution.fdiv(@company.employee_nb).round} tCO2/collaborateur" %>
