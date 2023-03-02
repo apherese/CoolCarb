@@ -2,4 +2,4 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import "bootstrap"
-
+import { FootprintCalculator } from './services/footprint_calculator'
