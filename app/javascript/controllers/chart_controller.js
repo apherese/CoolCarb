@@ -73,9 +73,9 @@ export default class extends Controller {
                 display: true,
                 align: "center",
                 color: "#40497E",
-                text: 'Vos résultats avant votre plan d\'action',
+                text: 'Vos résultats (tCO2/col.) avant votre plan d\'action',
                 font: {
-                  size: 40,
+                  size: 35,
                   style: "bold",
                 },
                 padding: {
@@ -142,7 +142,7 @@ export default class extends Controller {
         {
           type: "bar",
           data: {
-            labels: ["Benchmark", "Bilan carbone", "Bilan après le plan d'action", "Objectif 2030", "Objectif 2040", "Objectif 2050"],
+            labels: ["Benchmark", "Bilan carbone", this.data.get("myValue8") , "Objectif 2030", "Objectif 2040", "Objectif 2050"],
             datasets: [{
               backgroundColor:  "#CCF7BB",
               data: [this.data.get("myValue0"), 0, 0, this.data.get("myValue4"), this.data.get("myValue5"), this.data.get("myValue6") ],
@@ -191,9 +191,9 @@ export default class extends Controller {
                 display: true,
                 align: "center",
                 color: "#40497E",
-                text: 'Vos résultats, avant / après vos actions',
+                text: 'Vos résultats (tCO2/col.), avant / après vos actions',
                 font: {
-                  size: 40,
+                  size: 35,
                   style: "bold",
                 },
                 padding: {

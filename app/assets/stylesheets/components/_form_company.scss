@@ -1,17 +1,34 @@
 .long-form-div-company {
-  font-size: larger;
   font-weight: bold;
   font-family: $body-font;
   color: #40497E;
+  border-color: #40497E;
   // position: relative;
-  width: 50%;
+  width: 90%;
  // height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-image: url(image-home.png);
   background-repeat: no-repeat;
-  background-position: bottom;
-  margin-bottom: 2rem;
+  background-position: top;
+  margin-bottom: 3rem;
   border-radius: 16px;
+  position: relative;
+}
+
+.long-form-div-company input[type=text],
+.long-form-div-company input[type=email],
+.long-form-div-company input[type=number] {
+  background-color: rgba(255, 255, 255, 0.5); // Opacité de 50% pour le fond des champs de saisie
+  border-color: #40497E;
+  border-radius: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.long-form-div-company input[type=submit] {
+  margin-top: 2rem;
+  width: 60vh;
 }

@@ -39,12 +39,12 @@ class TasksController < ApplicationController
       @task.ghg_contribution = @ghg_result_initial - @simul_footprint_post_action.ghg_result
     elsif params[:task][:name] == "Electricité intelligente du bâtiment"
       @ghg_result_initial = @footprint.ghg_result
-      @footprint.electricite = 0.85 * @footprint.electricite
+      @footprint.electricite = 0.7 * @footprint.electricite
       @simul_footprint_post_action = ::FootprintCalculation.new(@company, @footprint).calculate
       @task.ghg_contribution = @ghg_result_initial - @simul_footprint_post_action.ghg_result
     elsif params[:task][:name] == "Proposer une réduction aux clients venant en train"
       @ghg_result_initial = @footprint.ghg_result
-      @footprint.clients_int = 0.3 * @footprint.clients_int
+      @footprint.clients_int = 0.8 * @footprint.clients_int
       @simul_footprint_post_action = ::FootprintCalculation.new(@company, @footprint).calculate
       @task.ghg_contribution = @ghg_result_initial - @simul_footprint_post_action.ghg_result
     end

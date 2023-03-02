@@ -11,7 +11,11 @@
   .form-control.is-valid {
     border-color: black
   }
+  .form-text {
+    font-weight: lighter;
+  }
 }
+
 .inner-form {
   display: flex;
   justify-content: center;
@@ -26,7 +30,10 @@
 
 .container-long-form {
   height: 100vh;
-  overflow: hidden;
+  &-inner {
+    height: 100%;
+    overflow: hidden;
+  }
 }
 
 .span {
@@ -46,4 +53,19 @@
   font-size: smaller;
   font-weight: lighter;
   text-align: center;
+}
+
+.long-form-results-container {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 250px;
+  background-color: RGB(145, 199, 136);
+  padding: 2rem;
+  border-radius: 1rem 0 0 1rem;
+  color: white;
+  .hint {
+    font-size: 0.75rem;
+  }
 }

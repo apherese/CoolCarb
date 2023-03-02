@@ -3,7 +3,10 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home ]
   before_action :compute_benchmark_per_employee, only: %i[dashboard targets mon_bilan_carbone]
   before_action :set_footprint, only: %i[dashboard targets mon_bilan_carbone]
-  before_action :check_footprint, only: [:mon_bilan_carbone]
+  before_action :check_footprint, only: %i[mon_bilan_carbone targets]
+  before_action :compute_company_ghg_result, only: %i[dashboard]
+  before_action :compute_company_ghg_result_per_employee, only: %i[dashboard]
+  before_action :list_taks, only: %i[dashboard]
 
   def home
   end
@@ -22,10 +25,9 @@ class PagesController < ApplicationController
   end
 
   private
+
   def check_footprint
-    if @footprint.nil?
-      redirect_to new_company_footprint_path(current_company)
-    end
+    redirect_to new_company_footprint_path(current_company) if @footprint.nil?
   end
 
   def set_footprint
@@ -52,5 +54,26 @@ class PagesController < ApplicationController
       end
     end
     @footprint_benchmark_per_employee = @footprint_benchmark_per_employee.fdiv(@company_benchmark_size)
+  end
+
+  def compute_company_ghg_result
+    @footprint = @company.footprints.last
+    @company_ghg_result = 0
+    if !@footprint.nil?
+      @company_ghg_result = @footprint.ghg_result
+    end
+  end
+
+  def compute_company_ghg_result_per_employee
+    @footprint = @company.footprints.last
+    @company_ghg_result_per_employee = 0
+    if !@footprint.nil?
+      @company_ghg_result_per_employee = @footprint.ghg_result.fdiv(@company.employee_nb)
+    end
+  end
+
+  def list_taks
+    @footprint = @company.footprints.last
+    @footprint.nil? ? @tasks_list = "Vous n'avez pas encore créé d'actions" : @tasks_list = @footprint.tasks
   end
 end
