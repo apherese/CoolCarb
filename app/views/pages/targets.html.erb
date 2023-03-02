@@ -101,14 +101,12 @@
           <li><h5>Votre position par rapport aux meilleurs :</h5></li>
           <%= @footprint.ghg_result.fdiv(@company.employee_nb) > ((@footprint_benchmark_per_employee.round) * 1.05) ? "Votre bilan carbone est supérieur aux meilleurs. Pas de stress, nous vous suggérons des actions d'améliorations (\"passez à l'action\")" : "Bravo, vous vous comparez aux meilleurs. Vous pouvez tout de même être le leader en testant nos suggestions d'actions" %>
         </ul>
-      </div>
-
-
-        <!-- Button trigger modal -->
-      <div class="dashboard_content_footer m-5">
-            <button class="btn-bottom-pervenche-content" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Passez à l'action: créez un nouveau plan!
-            </button>
+          <!-- Button trigger modal -->
+        <div class="dashboard_content_footer m-5">
+              <button class="btn-bottom-pervenche-content" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Passez à l'action: créez un nouveau plan!
+              </button>
+        </div>
       </div>
 
         <!-- Modal -->

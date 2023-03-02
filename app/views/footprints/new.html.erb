@@ -166,20 +166,20 @@
                         }
                       } %>
           <span class="span" data-action="click->long-form#back">Précédent</span>
-          <span class="span" data-action="click->long-form#next">Suivant</span>
+          <%# <span class="span" data-action="click->long-form#next">Suivant</span> %>
         </div>
         <p class="mt-5 mb-0 text-center"><span data-long-form-target="currentInputValueResult">0</span>T CO²/an</p>
-      </div>
-
-      <div class="long-form-div" data-long-form-target="screen">
-        <div class="inner-form-certified">
-          <%= f.input :certified, label: "Voulez-vous certifier ce bilan carbone ?"%>
-          <span class="span" data-action="click->long-form#back">Précédent</span>
-        </div>
         <div class="astuce">
           <%= f.submit "Calculez le bilan carbone", class: "btn btn-primary hero-button-form", style:"color:white" %>
         </div>
       </div>
+
+      <%# <div class="long-form-div" data-long-form-target="screen">
+        <div class="inner-form-certified">
+          <%= f.input :certified, label: "Voulez-vous certifier ce bilan carbone ?"%>
+          <%# <span class="span" data-action="click->long-form#back">Précédent</span>
+        </div>
+      </div> %>
 
     <% end %>
   </div>
