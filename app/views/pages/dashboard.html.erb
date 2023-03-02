@@ -73,12 +73,12 @@
         </div>
       <% elsif @company.footprints.present? && @company.footprints.flat_map(&:tasks).blank? %>
         <div class="dashboard-company-summary">
-          <div class="dashboard-company-summary__figure">
-            <h1><strong><%=  @footprint_benchmark_per_employee.round(1)%></strong>t/collaborateur</h1>
+          <div class="dashboard-company-summary__figure align-items-center d-flex flex-column justify-content-center">
+            <h1><strong><%=  @footprint_benchmark_per_employee.round(1)%></strong>t/employé</h1>
             <h2><%= "la moyenne du secteur" %></h2>
             <h2><%= "#{@company.industry}" %></h2>
           </div>
-          <div class="dashboard-company-summary__footprint">
+          <div class="dashboard-company-summary__footprint align-items-center d-flex flex-column justify-content-center">
             <h1><strong><%= "Mon bilan carbon"%></strong></h1>
             <h3> <%= @company_ghg_result_per_employee.round(1) %>t/collaborateur</h3>
             <h3>soit <%= @company_ghg_result.round(1) %>t/an</h3>
@@ -96,21 +96,21 @@
           </div>
         </div>
 
-        <div class="card_action_plan">
+        <div class="card_action_plan align-items-center d-flex flex-column justify-content-center">
             <h1><strong><%= "Plan d'action" %></strong></h1>
             <h3><%= "N'attendez plus pour passer à l'action et réaliser vos objectifs ! Avec un plan d'action clair et bien défini, vous êtes prêt à avancer vers la réussite." %></h3>
             <%= link_to "Définir mon plan d'action", targets_path, class: "btn hero-button-bilan" %>
         </div>
       <% elsif @company.footprints.present? && @company.footprints.flat_map(&:tasks).present? %>
         <div class="dashboard-company-summary">
-          <div class="dashboard-company-summary__figure">
-            <h1><strong><%=  @footprint_benchmark_per_employee.round(1)%></strong>t/collaborateur</h1>
+          <div class="dashboard-company-summary__figure align-items-center d-flex flex-column justify-content-center">
+            <h1><strong><%=  @footprint_benchmark_per_employee.round(1)%></strong>t/employé</h1>
             <h2><%= "la moyenne du secteur" %></h2>
             <h2><%= "#{@company.industry}" %></h2>
           </div>
-          <div class="dashboard-company-summary__footprint">
-            <h1><strong><%= "Mon bilan carbone"%></strong></h1>
-            <h3> <%= @company_ghg_result_per_employee.round(1) %>t/collaborateur</h3>
+          <div class="dashboard-company-summary__footprint align-items-center d-flex flex-column justify-content-center">
+            <h1><strong><%= "Mon bilan carbon"%></strong></h1>
+            <h3> <%= @company_ghg_result_per_employee.round(1) %>t/employé</h3>
             <h3>soit <%= @company_ghg_result.round(1) %>t/an</h3>
             <div class="d-flex align-items-baseline">
               <% if current_user != nil %>
@@ -125,7 +125,7 @@
             </div>
           </div>
         </div>
-        <div class="card_action_plan">
+        <div class="card_action_plan align-items-center d-flex flex-column justify-content-center">
             <h1><strong><%= "Mon plan d'action" %></strong></h1>
             <h3><% @tasks_list.each do |task| %></h3>
             <ul>
