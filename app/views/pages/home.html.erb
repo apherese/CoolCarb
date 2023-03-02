@@ -6,8 +6,8 @@
       <p>Réduisez votre empreinte carbone!</p>
       </a>
       <%= link_to "Pourquoi Coolcarb?", companies_path,  class: "btn-home" %>
-      <%= link_to "Notre offre?", "#offre", class: "btn-home" %>
-      <%= link_to "Benchmarks", companies_path, class: "btn-home" %>
+      <%= link_to "Notre offre", "#offre", class: "btn-home" %>
+      <%= link_to "Nos succès", companies_path, class: "btn-home" %>
       <% if user_signed_in? %>
         <%= button_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: "btn btn-primary", style:"color:white"%>
       <% else %>
