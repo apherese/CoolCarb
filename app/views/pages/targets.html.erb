@@ -70,9 +70,6 @@
               <% @footprint.tasks.map(&:end_date).map(&:year).max != nil ? @furthest_end_date = @footprint.tasks.map(&:end_date).map(&:year).max : @furthest_end_date = Date.today.year.to_i %>
               data-chart-my-value8="<%= @furthest_end_date %>" >
             <canvas id="tasks"></canvas>
-            <ul>
-              Date de fin de la dernière action du plan : <%= @furthest_end_date %>
-            </ul>
           </div>
         <% end %>
       </div>

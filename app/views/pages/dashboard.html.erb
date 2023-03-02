@@ -82,6 +82,7 @@
             <h1><strong><%= "Mon bilan carbone"%></strong></h1>
             <h3> <%= @company_ghg_result_per_employee.round(1) %> tCO2/collaborateur</h3>
             <h3>soit <%= @company_ghg_result.round(1) %> tCO2/an</h3>
+
             <div class="d-flex align-items-baseline">
               <% if current_user != nil %>
                 <% if current_user.company == nil %>
@@ -125,6 +126,7 @@
             </div>
           </div>
         </div>
+
         <div class="card_action_plan align-items-center d-flex flex-column justify-content-center px-2">
             <h1><strong><%= "Mon plan d'action" %></strong></h1>
             <h3><% @tasks_list.each do |task| %></h3>
