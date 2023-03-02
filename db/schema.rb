@@ -48,9 +48,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_17_213447) do
     t.integer "employee_nb"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "room_nb", default: 50, null: false
+    t.integer "room_nb", default: 100, null: false
     t.float "length_of_stay", default: 2.0, null: false
-    t.float "load_factor", default: 0.7, null: false
+    t.float "load_factor", default: 70, null: false
   end
 
   create_table "footprints", force: :cascade do |t|
