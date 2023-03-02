@@ -105,6 +105,11 @@
 
 
         <!-- Button trigger modal -->
+      <div class="dashboard_content_footer m-5">
+            <button class="btn-bottom-pervenche-content" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Passez à l'action: créez un nouveau plan!
+            </button>
+      </div>
 
         <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -117,14 +122,13 @@
 
             <div class="modal-body">
               <p>
-                <button class="btn-bottom-pervenche-content" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                <button class="btn-bottom-pervenche-content" type="button" data-bs-toggle="collapse" data-bs-target="#suggested_tasks" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">
                   1 - Actions que nous vous suggerons
                 </button>
               </p>
-              <div class="collapse" id="collapseExample">
+              <div class="collapse" id="suggested_tasks">
                 <div class="card card-body">
                   <%= simple_form_for [@footprint, @task] do |f| %>
-                    <%#= l(task.created_at) %>
                     <%= f.input :name, include_blank: true, collection: ["Remplacer la cuve fioul par une pompe à chaleur", "Electricité intelligente du bâtiment", "Proposer une réduction aux clients venant en train"], input_html: {style: "font-weight: bold"} %>
                     <%= f.input_field :start_date, hidden: true, value: Date.today, :label => "Date de début de mise en oeuvre de l'action" %>
                     <%= f.input :end_date, :label => "Date effective de l'impact de votre action" %>
@@ -135,11 +139,11 @@
               </div>
 
               <p>
-                <button class="btn-bottom-pervenche-content" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                <button class="btn-bottom-pervenche-content" type="button" data-bs-toggle="collapse" data-bs-target="#custom_tasks" aria-expanded="false" aria-controls="collapseExample">
                   2 - Créez <strong>vos propres actions</strong> de réduction
                 </button>
               </p>
-              <div class="collapse" id="collapseExample">
+              <div class="collapse" id="custom_tasks">
                 <div class="card card-body">
                   <div class="container">
                     <%= simple_form_for [@footprint, @task] do |f| %>
@@ -161,10 +165,5 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="dashboard_content_footer m-5">
-        <button class="btn-bottom-pervenche-content" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Passez à l'action: créez un nouveau plan!
-        </button>
   </div>
 </div>

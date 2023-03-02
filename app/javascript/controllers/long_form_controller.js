@@ -39,6 +39,7 @@ export default class extends Controller {
   next() {
     this.index++
     const screen = this.screenTargets[this.index]
+
     screen.scrollIntoView({behavior: "smooth"})
     setTimeout(() => {
       screen.querySelector("input").focus()

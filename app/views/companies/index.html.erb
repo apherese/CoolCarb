@@ -60,7 +60,7 @@
                   <div class="ag-courses-item_date-box">
                     Année de reporting
                     <span class="ag-courses-item_date">
-                      <%=company_details["Année_de_reporting"]%>
+                      <%= l(Date.parse(company_details["Année_de_reporting"]), format: "%e %B %Y") %>
                     </span>
                   </div>
 
