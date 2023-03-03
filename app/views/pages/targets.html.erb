@@ -46,6 +46,9 @@
         </div>
       </div>
     </div>
+    <div class="container">
+      <h2><strong>Résultats avant/après le plan d'action</strong></h2>
+    </div>
 
     <div class="dashboard_content_body">
       <div class="dashboard_content_graph">
@@ -75,7 +78,7 @@
       </div>
 
       <div class="dashboard_content_advise flex-column">
-        <h1><strong>Voici nos conseils :</strong></h1>
+        <h2><strong>Voici nos conseils :</strong></h2>
         <ul>
           <li><h5>Votre position par rapport à vos objectifs :</h5></li>
             <% if @footprint_post_action != 0 || @footprint_post_action != nil %>
@@ -88,8 +91,6 @@
 
             <%# compare emission post actions with the limit and set the warning or bravo message %>
             <strong><%= @footprint_post_action > @limit_to_be_on_track ? "Il vous reste des actions à entreprendre pour être sur vos objectifs SBTi! Continuez à tester nos idées d'actions" : "Bravo ! votre plan d'action vous permettrait d'atteindre vos objectifs en 2030. Ne relâchez pas vos effforts et mesurez vos résultats en continu. Continuez à suivre nos conseils!" %></strong>
-
-
           <% else %>
             <%= "Vous n'avez pas encore engagé de plan d'action et ne pourrez pas atteindre vos objectifs de réduction de vos émissions en 2030 : cliquez sur \passez à l'action\"" %>
           <% end %>
@@ -100,7 +101,7 @@
         </ul>
           <!-- Button trigger modal -->
         <div class="dashboard_content_footer m-5">
-              <button class="btn-bottom-pervenche-content" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <button class="btn btn-primary hero-button-target" data-bs-toggle="modal" data-bs-target="#exampleModal">
                   Passez à l'action: créez un nouveau plan!
               </button>
         </div>

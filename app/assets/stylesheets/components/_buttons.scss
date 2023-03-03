@@ -33,6 +33,7 @@ a:hover {
 // Home companies-index
 
 .hero-button-companies {
+  color: $my-body-bg;
   border-radius: 20px;
   width: 100%;
   margin: auto auto;
@@ -42,6 +43,7 @@ a:hover {
 // Home Banner
 
 .hero-button {
+  color: $my-body-bg;
   border-radius: 20px;
   width: 60%;
   margin: 0 auto;
@@ -57,7 +59,7 @@ a:hover {
   width: 40%;
   margin: 0 auto;
   font-weight: bold;
-  transition: background 0.3s ease;
+  transition: background 0.5s ease;
 }
 
 .hero-button-dashboard:hover {
@@ -74,7 +76,7 @@ a:hover {
   width: 40%;
   margin: 0 auto;
   font-weight: bold;
-  transition: background 0.3s ease;
+  transition: background 0.5s ease;
 }
 
 .hero-button-dashboard-2:hover {
@@ -92,20 +94,33 @@ a:hover {
   color: $my-body-bg;
 }
 
+.hero-button-bilan:hover {
+  color: #778AFB;
+  background: $my-body-bg;
+}
+
+// Target (plan d'action)
+
+.hero-button-target {
+  border-radius: 20px;
+  width: 350px;
+  margin: 10px 0px 0px 0px;
+  font-weight: bold;
+  color: $my-body-bg;
+}
+
+.hero-button-target:hover {
+  color: #778AFB;
+  background: $my-body-bg;
+}
+
 // Home Exemples de PME
 
 .btn-sme {
-  color: $my-body-bg;
-  padding: 8px 8px 8px 12px;
   border-radius: 20px;
-  background: $my-dark-pervenche;
-  transition: background 0.3s ease;
+  width: 100%;
+  margin: 0 auto;
   font-weight: bold;
-}
-
-.btn-sme:hover {
-  background: $my-body-bg;
-  color: $my-dark-pervenche;
 }
 
 // Home news
@@ -124,11 +139,11 @@ a:hover {
 
 .btn-partners {
   color: #778AFB;
-  padding: 8px 8px 8px 12px;
   border-radius: 20px;
   background: $my-body-bg;
-  transition: background 0.3s ease;
+  transition: background 0.5s ease;
   font-weight: bold;
+  padding: 2px 2px 2px 2px;
 }
 
 .btn-partners:hover {
@@ -140,10 +155,10 @@ a:hover {
 
 .btn-middle-pervenche-navbar {
   color: $my-body-bg;
-  padding: 8px 140px 8px 24px;
+  padding: 8px 120px 8px 24px;
   border-radius: 20px;
   background:  #778AFB;
-  transition: background 0.3s ease;
+  transition: background 0.5s ease;
 }
 
 .btn-middle-pervenche-navbar:hover {
@@ -156,7 +171,7 @@ a:hover {
   padding: 8px 140px 8px 24px;
   border-radius: 20px;
   background: $my-body-bg;
-  transition: background 0.3s ease;
+  transition: background 0.5s ease;
 }
 
 .btn-middle-white-navbar:hover {
@@ -183,7 +198,7 @@ a:hover {
   padding: 8px 8px 8px 8px;
   border-radius: 20px;
   background:  #778AFB;
-  transition: background 0.3s ease;
+  transition: background 0.5s ease;
   font-weight: bold;
 }
 
