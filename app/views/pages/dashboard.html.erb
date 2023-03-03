@@ -138,9 +138,10 @@
 
         <div class="card_action_plan align-items-center d-flex flex-column justify-content-center px-2">
             <h1><strong><%= "Mon plan d'action" %></strong></h1>
+            <% @tasks_list = @tasks_list.sort_by(&:end_date) %>
             <h3><% @tasks_list.each do |task| %></h3>
-            <ul>
-              <h4><strong><%= "#{task.end_date.year}" %></strong> <%= "Action : #{task.name}, Impact : - #{task.ghg_contribution.fdiv(@company.employee_nb).round} tCO2/collaborateur" %></h4>
+            <ul class='p-0 m-0'>
+              <h5><strong><%= "#{task.end_date.year}" %></strong> <%= "Action : #{task.name}, Impact : - #{task.ghg_contribution.fdiv(@company.employee_nb).round} tCO2/collaborateur" %></h5>
             </ul>
             <% end %>
         </div>
