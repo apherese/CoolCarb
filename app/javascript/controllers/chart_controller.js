@@ -30,7 +30,7 @@ export default class extends Controller {
         {
           type: "bar",
           data: {
-            labels: ["Benchmark", `Bilan carbone (total=${this.data.get("myValue30")})`, "Objectif 2030", "Objectif 2040", "Objectif 2050"],
+            labels: ["Meilleurs", `Bilan actuel (total=${this.data.get("myValue30")})`, "En 2030", "En 2040", "Objectif accord de Paris 2050"],
             datasets: [{
               backgroundColor:  "#CCF7BB",
               data: [this.data.get("myValue0"), 0, this.data.get("myValue4"), this.data.get("myValue5"), this.data.get("myValue6") ],
@@ -140,7 +140,7 @@ export default class extends Controller {
         {
           type: "bar",
           data: {
-            labels: ["Benchmark", `Bilan carbone (total=${this.data.get("myValue30")})`, "Objectif 2030", "Objectif 2040", "Objectif 2050"],
+            labels: ["Meilleurs", `Bilan actuel (total=${this.data.get("myValue30")})`, `Bilan après actions (en ${this.data.get("myValue8")} )` , "Trajectoire idéale 2030", "Trajectoire idéale 2040", "Objectif accord de Paris 2050"],
             datasets: [{
               backgroundColor:  "#CCF7BB",
               data: [this.data.get("myValue0"), 0, 0, this.data.get("myValue4"), this.data.get("myValue5"), this.data.get("myValue6") ],
