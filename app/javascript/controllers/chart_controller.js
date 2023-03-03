@@ -14,8 +14,6 @@ export default class extends Controller {
   }
 
   render() {
-    console.log("coucou from chart controller!!!!!")
-    // const benchmarkCanva = document.querySelector('canvas#benchmark')
     const footprintCanva = document.querySelector('canvas#footprint')
     const tasksCanva = document.querySelector('canvas#tasks')
 
@@ -73,9 +71,9 @@ export default class extends Controller {
                 display: true,
                 align: "center",
                 color: "#40497E",
-                text: 'Vos résultats (tCO2/col.) avant votre plan d\'action',
+                text: 'en tCO2/collaborateur/an',
                 font: {
-                  size: 35,
+                  size: 16,
                   style: "bold",
                 },
                 padding: {
@@ -191,9 +189,9 @@ export default class extends Controller {
                 display: true,
                 align: "center",
                 color: "#40497E",
-                text: 'Vos résultats (tCO2/col.), avant / après vos actions',
+                text: 'en tCO2/collaborateur/an',
                 font: {
-                  size: 35,
+                  size: 16,
                   style: "bold",
                 },
                 padding: {

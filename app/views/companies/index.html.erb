@@ -51,35 +51,35 @@
                   </div>
 
                   <div class="ag-courses-item_date-box">
-                    Secteur
+                    Secteur :
                     <span class="ag-courses-item_date">
                       <%=company_details["Secteur"]%>
                     </span>
                   </div>
 
                   <div class="ag-courses-item_date-box">
-                    Année de reporting
+                    Année de reporting :
                     <span class="ag-courses-item_date">
                       <%= l(Date.parse(company_details["Année_de_reporting"]), format: "%e %B %Y") %>
                     </span>
                   </div>
 
                   <div class="ag-courses-item_date-box">
-                    Nombre de salariés
+                    Nombre de collaborateurs :
                     <span class="ag-courses-item_date">
                       <%= company.employee_nb %>
                     </span>
                   </div>
 
                   <div class="ag-courses-item_date-box">
-                    Emissions
+                    Emissions (tCO²/an) :
                     <span class="ag-courses-item_date">
                       <%= company.footprints.find_by(certified: true).ghg_result.round %>
                     </span>
                   </div>
 
                   <div class="ag-courses-item_date-box">
-                    Emissions par employés
+                    Em./collaborateur (tCO²/an) :
                     <span class="ag-courses-item_date">
                       <%= ((company.footprints.find_by(certified: true).ghg_result) / (company.employee_nb)).round %>
                     </span>
