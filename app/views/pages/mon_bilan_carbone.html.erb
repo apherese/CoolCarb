@@ -60,6 +60,7 @@
             data-chart-my-value1="<%= @footprint.scope_1.fdiv(@company.employee_nb).round %>"
             data-chart-my-value2="<%= @footprint.scope_2.fdiv(@company.employee_nb).round %>"
             data-chart-my-value3="<%= @footprint.scope_3.fdiv(@company.employee_nb).round %>"
+            data-chart-my-value30="<%= @footprint.scope_1.fdiv(@company.employee_nb).round + @footprint.scope_2.fdiv(@company.employee_nb).round + @footprint.scope_3.fdiv(@company.employee_nb).round %>"
             data-chart-my-value4="<%= (@footprint.ghg_result.fdiv(@company.employee_nb) * 0.77).round %>"
             data-chart-my-value5="<%= (@footprint.ghg_result.fdiv(@company.employee_nb) * 0.45).round %>"
             data-chart-my-value6="<%= @footprint.ghg_target.fdiv(@company.employee_nb).round %>">
